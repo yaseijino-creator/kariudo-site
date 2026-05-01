@@ -17,7 +17,7 @@ header .sub{font-size:11px;color:#a8d878;margin-top:2px}
 .nav a.active{background:#2D5016;color:#fff}
 .section{background:#fff;border-radius:12px;margin-bottom:16px;overflow:hidden;border:1px solid #e0e0d8}
 .section-hdr{background:#2D5016;color:#fff;padding:12px 16px;font-size:15px;font-weight:bold}
-.section-hdr span{color:#C8A030}
+.section-hdr span{color:#C8A030;font-size:13px;font-weight:normal}
 table{width:100%;border-collapse:collapse;font-size:13px}
 th{background:#4A7C28;color:#fff;padding:8px 10px;text-align:center;font-weight:bold;font-size:12px}
 td{padding:10px;border-bottom:1px solid #f0f0ea;text-align:center;vertical-align:middle}
@@ -25,13 +25,15 @@ tr:last-child td{border-bottom:none}
 tr:nth-child(even) td{background:#f8f8f4}
 .price{font-weight:bold;font-size:15px;color:#2D5016}
 .price.zero{color:#C0392B}
-.season{font-size:11px;color:#666}
-.tag-best{background:#2D5016;color:#fff;font-size:10px;padding:2px 6px;border-radius:4px;display:inline-block}
-.tag-stop{background:#C0392B;color:#fff;font-size:10px;padding:2px 6px;border-radius:4px;display:inline-block}
-.warn{background:#fffbe6;border:1px solid #E8A020;border-radius:8px;padding:12px 14px;margin-top:12px;font-size:12px;color:#7a5a00;line-height:1.75}
-.warn strong{font-weight:bold;color:#C8A030}
+.season{font-size:11px;color:#666;display:block;margin-top:2px}
+.tag-best{background:#2D5016;color:#fff;font-size:10px;padding:2px 6px;border-radius:4px;display:inline-block;margin-bottom:2px}
+.tag-mid{background:#4A7C28;color:#fff;font-size:10px;padding:2px 6px;border-radius:4px;display:inline-block;margin-bottom:2px}
+.tag-stop{background:#C0392B;color:#fff;font-size:10px;padding:2px 6px;border-radius:4px;display:inline-block;margin-bottom:2px}
 .kukuri{background:#fff9e6;border:2px solid #E8A020;border-radius:8px;padding:12px 16px;margin:0 0 12px;font-size:12px;color:#7a5a00;line-height:1.75}
 .kukuri strong{display:block;font-size:14px;font-weight:bold;color:#E8A020;margin-bottom:4px}
+.warn{background:#fffbe6;border:1px solid #E8A020;border-radius:8px;padding:12px 14px;margin-top:12px;font-size:12px;color:#7a5a00;line-height:1.75}
+.info-box{background:#f0f8e8;border:1px solid #4A7C28;border-radius:8px;padding:12px 14px;margin:0 0 10px;font-size:12px;color:#2D5016;line-height:1.75}
+.info-box strong{display:block;font-weight:bold;margin-bottom:3px}
 footer{background:#2D5016;color:#a8c890;font-size:11px;text-align:center;padding:20px 16px;margin-top:24px}
 footer a{color:#C8A030;text-decoration:none;font-weight:bold;display:block;margin-top:8px;background:#06c755;color:#fff;padding:12px;border-radius:24px;font-size:14px}
 </style>
@@ -48,40 +50,91 @@ footer a{color:#C8A030;text-decoration:none;font-weight:bold;display:block;margi
     <a href="prices.html" class="active">買取価格表</a>
     <a href="reservation.html">加工場の予約</a>
   </nav>
+
   <div class="kukuri">
     <strong>⚠️ 括りわなの場合は全て20%引き</strong>
-    例）300円/kg → 240円/kg　100円/kg → 80円/kg
+    例）300円/kg → 240円/kg　200円/kg → 160円/kg
   </div>
+
+  <!-- 猪 -->
   <div class="section">
     <div class="section-hdr">猪（イノシシ）<span>　生体 円/kg</span></div>
     <table>
       <tr><th>性別</th><th>時期</th><th>買取価格</th></tr>
-      <tr><td>メス・オス</td><td><span class="tag-best">最高品質期</span><br><span class="season">11〜12月</span></td><td><span class="price">300円/kg</span></td></tr>
-      <tr><td>メス</td><td>発情期<br><span class="season">1〜4月</span></td><td><span class="price">200円/kg</span></td></tr>
-      <tr><td>オス</td><td>発情期<br><span class="season">1〜4月</span></td><td><span class="price zero">買取なし</span></td></tr>
-      <tr><td>全性別</td><td><span class="tag-stop">買取停止</span><br><span class="season">5〜10月</span></td><td><span class="price zero">買取なし</span></td></tr>
+      <tr>
+        <td>メス</td>
+        <td><span class="tag-best">最高品質期</span><span class="season">11月〜2月</span></td>
+        <td><span class="price">300円/kg</span></td>
+      </tr>
+      <tr>
+        <td>メス</td>
+        <td><span class="tag-mid">発情期</span><span class="season">3〜4月</span></td>
+        <td><span class="price">200円/kg</span></td>
+      </tr>
+      <tr>
+        <td>オス</td>
+        <td><span class="tag-best">最高品質期</span><span class="season">11〜12月</span></td>
+        <td><span class="price">300円/kg</span></td>
+      </tr>
+      <tr>
+        <td>オス</td>
+        <td>発情期〜夏<span class="season">1〜10月</span></td>
+        <td><span class="price zero">買取なし</span></td>
+      </tr>
+      <tr>
+        <td>全性別</td>
+        <td><span class="tag-stop">買取停止</span><span class="season">5〜10月</span></td>
+        <td><span class="price zero">買取なし</span></td>
+      </tr>
     </table>
   </div>
+
+  <!-- 鹿 -->
   <div class="section">
-    <div class="section-hdr">鹿（シカ）<span>　生体 円/kg</span></div>
+    <div class="section-hdr">鹿（シカ）<span>　生体 円/kg ＋ ツノ加算</span></div>
+    <div class="info-box">
+      <strong>ツノの段数について</strong>
+      段数 ＝ 枝分かれの数で数えます。<br>
+      例）枝が3本 → 3段 → +3,000円
+    </div>
     <table>
-      <tr><th>性別・状態</th><th>時期</th><th>買取価格</th></tr>
-      <tr><td>メス（毛皮良）</td><td>通年</td><td><span class="price">50円/kg</span></td></tr>
-      <tr><td>オス（ツノ良・毛皮良）</td><td>通年</td><td><span class="price">100円/kg<br><small style="font-weight:normal;color:#666">＋ツノ代別途</small></span></td></tr>
+      <tr><th>条件</th><th>買取価格</th></tr>
+      <tr>
+        <td style="text-align:left;padding-left:14px">毛皮良（全性別）</td>
+        <td><span class="price">50円/kg</span></td>
+      </tr>
+      <tr>
+        <td style="text-align:left;padding-left:14px">ツノ加算（毛皮良のオス）</td>
+        <td><span class="price">+1,000円/段</span></td>
+      </tr>
     </table>
-    <div style="padding:10px 14px;font-size:11px;color:#888;border-top:1px solid #f0f0ea">※ 毛皮・ツノの状態が条件に満たない場合は要相談</div>
+    <div style="padding:10px 14px;font-size:11px;color:#888;border-top:1px solid #f0f0ea">
+      ※ 毛皮・ツノの状態が条件に満たない場合は要相談<br>
+      ※ ツノは状態良好のものが対象（先端欠け・腐食は減額）
+    </div>
   </div>
+
+  <!-- 穴熊 -->
   <div class="section">
-    <div class="section-hdr">日本穴熊（アナグマ）<span>　円/頭</span></div>
+    <div class="section-hdr">日本穴熊（アナグマ）<span>　円/頭（固定）</span></div>
     <table>
-      <tr><th>対象</th><th>時期</th><th>買取価格</th></tr>
-      <tr><td>全個体</td><td><span class="tag-best">買取期</span><br><span class="season">10〜12月</span></td><td><span class="price">2,000円/頭</span></td></tr>
-      <tr><td>全個体</td><td><span class="tag-stop">買取停止</span><br><span class="season">1〜9月</span></td><td><span class="price zero">買取なし</span></td></tr>
+      <tr><th>時期</th><th>買取価格</th></tr>
+      <tr>
+        <td><span class="tag-best">買取期</span><span class="season">10〜12月</span></td>
+        <td><span class="price">2,000円/頭</span></td>
+      </tr>
+      <tr>
+        <td><span class="tag-stop">買取停止</span><span class="season">1〜9月</span></td>
+        <td><span class="price zero">買取なし</span></td>
+      </tr>
     </table>
-    <div style="padding:10px 14px;font-size:11px;color:#888;border-top:1px solid #f0f0ea">※ 肉＋毛皮目的・冬毛最良</div>
+    <div style="padding:10px 14px;font-size:11px;color:#888;border-top:1px solid #f0f0ea">
+      ※ 肉＋毛皮目的・冬毛最良
+    </div>
   </div>
+
   <div class="warn">
-    <strong style="display:block;margin-bottom:6px">振込について</strong>
+    <strong style="display:block;margin-bottom:6px;font-weight:bold">振込について</strong>
     振込は毎月末日に一括でご登録の口座へ振込みます。<br>
     振込完了後にラインでご連絡します。<br>
     口座情報の変更はラインのチャットからご連絡ください。
