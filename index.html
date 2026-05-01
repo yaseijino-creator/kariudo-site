@@ -12,9 +12,12 @@ header .brand{font-size:10px;color:#C8A030;letter-spacing:2px}
 header h1{font-size:20px;font-weight:bold;color:#fff;margin-top:2px}
 header .sub{font-size:11px;color:#a8d878;margin-top:2px}
 .container{max-width:500px;margin:0 auto;padding:16px}
-.nav{display:flex;gap:8px;margin-bottom:20px}
-.nav a{flex:1;padding:10px 4px;text-align:center;border-radius:8px;font-size:12px;font-weight:bold;text-decoration:none;border:2px solid #2D5016;color:#2D5016;background:#fff}
+.nav{display:flex;gap:6px;margin-bottom:20px;overflow-x:auto;-webkit-overflow-scrolling:touch;padding-bottom:4px;scrollbar-width:none}
+.nav::-webkit-scrollbar{display:none}
+.nav a{flex:0 0 auto;padding:9px 12px;text-align:center;border-radius:8px;font-size:11px;font-weight:bold;text-decoration:none;border:2px solid #2D5016;color:#2D5016;background:#fff;white-space:nowrap}
 .nav a.active{background:#2D5016;color:#fff}
+.nav a.sell{border-color:#C8A030;color:#7a5500;background:#fffbe6}
+.nav a.sell.active{background:#C8A030;color:#1a3009;border-color:#C8A030}
 .legend{display:flex;flex-wrap:wrap;gap:8px;background:#fff;border-radius:10px;padding:12px 14px;margin-bottom:16px;font-size:11px;border:1px solid #e0e0d8}
 .lg{display:flex;align-items:center;gap:5px}
 .ld{width:12px;height:12px;border-radius:3px;flex-shrink:0}
@@ -35,7 +38,6 @@ header .sub{font-size:11px;color:#a8d878;margin-top:2px}
 .branch-wrap{width:100%;display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:0}
 .branch-line{width:100%;height:1px;background:#aaa;margin:8px 0}
 .tip{background:#e8f5d0;border-radius:6px;padding:8px 12px;font-size:11px;color:#2D5016;margin-top:8px}
-.btn-big{display:block;width:100%;background:#C8A030;color:#1a3009;text-align:center;padding:16px;border-radius:12px;font-size:16px;font-weight:bold;text-decoration:none;margin-bottom:20px}
 .arrow.dashed{background:repeating-linear-gradient(to bottom,#aaa 0,#aaa 4px,transparent 4px,transparent 8px)}
 .fade-text{font-size:11px;color:#aaa;text-align:center;padding:4px}
 footer{background:#2D5016;color:#a8c890;font-size:11px;text-align:center;padding:20px 16px;margin-top:24px}
@@ -51,12 +53,10 @@ footer a{color:#C8A030;text-decoration:none;font-weight:bold;display:block;margi
 <div class="container">
   <nav class="nav">
     <a href="index.html" class="active">売る手順</a>
+    <a href="sell.html" class="sell">📋 捕獲を報告</a>
     <a href="prices.html">買取価格表</a>
     <a href="reservation.html">加工場の予約</a>
   </nav>
-
-  <a href="sell.html" class="btn-big">🦌 捕獲を報告する（ここをタップ）</a>
-
   <div class="legend">
     <div class="lg"><div class="ld" style="background:#2D5016"></div>自動で届く</div>
     <div class="lg"><div class="ld" style="background:#4A7C28"></div>あなたの操作</div>
@@ -66,8 +66,8 @@ footer a{color:#C8A030;text-decoration:none;font-weight:bold;display:block;margi
     <div class="node hunter">
       <div class="node-label">あなたの操作</div>
       <div class="node-title">獲物が捕れたら報告する</div>
-      <div class="node-sub green">上の「捕獲を報告する」ボタンをタップ<br>フォームに入力してLINEで送信</div>
-      <div class="tip">メニューが邪魔なときは「メニューを閉じてチャット」バーを押すと隠れます</div>
+      <div class="node-sub green">上の「捕獲を報告」タブをタップして入力<br>フォームに記入してLINEで送信</div>
+      <div class="tip">メニューが邪魔なときは「←マークでチャット入力」バーを押すと隠れます</div>
     </div>
     <div class="arrow"></div>
     <div class="node auto">
