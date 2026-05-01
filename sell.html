@@ -28,15 +28,17 @@ header .sub{font-size:11px;color:#5a3a00;margin-top:2px}
 label{display:block;font-size:13px;font-weight:bold;color:#2D5016;margin-bottom:6px}
 label .req{color:#C0392B;margin-left:4px}
 label .opt{color:#888;font-size:11px;font-weight:normal;margin-left:4px}
-select,input[type=text],input[type=number],textarea{width:100%;border:2px solid #ddd;border-radius:8px;padding:12px;font-size:15px;color:#222;background:#fff;-webkit-appearance:none;appearance:none}
+select,input[type=text],input[type=number],input[type=date],input[type=time],textarea{width:100%;border:2px solid #ddd;border-radius:8px;padding:12px;font-size:15px;color:#222;background:#fff;-webkit-appearance:none;appearance:none;font-family:inherit}
 .form-card.bank select,.form-card.bank input{border-color:#c0c8e8}
 select:focus,input:focus,textarea:focus{outline:none;border-color:#4A7C28}
 select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%234A7C28' stroke-width='2' fill='none'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 12px center;padding-right:36px}
 textarea{resize:vertical;min-height:80px}
 .hint{font-size:11px;color:#888;margin-top:4px}
 .warn-kukuri{background:#fff9e6;border:1px solid #E8A020;border-radius:8px;padding:10px 12px;font-size:12px;color:#7a5a00;margin-top:6px}
-.btn-send{display:block;width:100%;background:#2D5016;color:#fff;border:none;border-radius:12px;padding:18px;font-size:17px;font-weight:bold;cursor:pointer;margin-top:8px}
-.btn-send:active{background:#1a3009}
+.date-time-row{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.date-time-row label{font-size:11px;color:#888;font-weight:normal;margin-bottom:3px}
+.btn-send{display:block;width:100%;background:#06c755;color:#fff;border:none;border-radius:12px;padding:18px;font-size:17px;font-weight:bold;cursor:pointer;margin-top:8px;text-align:center;text-decoration:none;-webkit-tap-highlight-color:transparent}
+.btn-send:active{background:#05a844}
 .how-to{background:#f0f4ff;border:1px solid #8090D0;border-radius:10px;padding:14px 16px;margin-top:16px}
 .how-to h3{font-size:13px;font-weight:bold;color:#303080;margin-bottom:10px}
 .how-to-item{display:flex;gap:10px;align-items:flex-start;margin-bottom:10px;font-size:12px;color:#303080;line-height:1.65}
@@ -60,7 +62,7 @@ footer{background:#2D5016;color:#a8c890;font-size:11px;text-align:center;padding
   </nav>
   <div class="note">
     <strong>📱 入力してLINEで送るだけ</strong>
-    フォームに入力して「LINEで報告する」を押すと、ラインのチャット画面が開きます。<br>
+    フォームに入力して「LINEで報告する」をタップすると、ラインが開いてメッセージが自動入力されます。<br>
     <span style="font-size:11px;margin-top:4px;display:block">送信後に📍マップのピンと📷写真も続けて送ってください</span>
   </div>
   <form id="reportForm">
@@ -103,19 +105,29 @@ footer{background:#2D5016;color:#a8c890;font-size:11px;text-align:center;padding
       </div>
       <div class="form-group">
         <label>捕獲日時<span class="req">必須</span></label>
-        <input type="text" id="datetime" placeholder="例：5月1日 午前9時ごろ" required>
-      </div>
-      <div class="form-group">
-        <label>捕獲場所（大まかな地名でOK）<span class="req">必須</span></label>
-        <input type="text" id="location" placeholder="例：○○市 △△地区の山中" required>
+        <div class="date-time-row">
+          <div>
+            <label>日付</label>
+            <input type="date" id="captureDate" required>
+          </div>
+          <div>
+            <label>時間（おおよそ）</label>
+            <input type="time" id="captureTime">
+          </div>
+        </div>
       </div>
       <div class="form-group">
         <label>立ち会いの有無<span class="req">必須</span></label>
         <select id="attendance" required>
           <option value="">選んでください</option>
-          <option value="立ち会いあり">立ち会いあり（その場で尻尾をお渡し）</option>
-          <option value="立ち会いなし">立ち会いなし（尻尾は和職工房で保管）</option>
+          <option value="立ち会いあり（その場で尻尾をお渡し）">立ち会いあり（その場で尻尾をお渡し）</option>
+          <option value="立ち会いなし（尻尾は和職工房で保管）">立ち会いなし（尻尾は和職工房で保管）</option>
         </select>
+      </div>
+      <div class="form-group">
+        <label>捕獲場所<span class="req">必須</span></label>
+        <input type="text" id="location" placeholder="例：○○市 △△地区の山中" required>
+        <div class="hint">場所のピンは送信後に続けて送ってください</div>
       </div>
     </div>
     <div class="form-card">
@@ -162,7 +174,7 @@ footer{background:#2D5016;color:#a8c890;font-size:11px;text-align:center;padding
       </div>
       <div class="hint" style="margin-top:8px">※2回目以降は省略してください</div>
     </div>
-    <button type="submit" class="btn-send">📱 LINEで報告する</button>
+    <a id="lineBtn" class="btn-send" href="#" onclick="return sendReport()">📱 LINEで報告する</a>
     <div style="text-align:center;font-size:11px;color:#888;margin-top:10px">タップするとLINEが開きます。そのまま送信してください。</div>
   </form>
   <div class="how-to">
@@ -182,33 +194,39 @@ footer{background:#2D5016;color:#a8c890;font-size:11px;text-align:center;padding
 document.getElementById('trap').addEventListener('change',function(){
   document.getElementById('kukuriWarn').style.display=this.value.includes('括り')?'block':'none';
 });
-document.getElementById('reportForm').addEventListener('submit',function(e){
-  e.preventDefault();
-  const s=id=>document.getElementById(id).value;
-  if(!s('species')||!s('gender')||!s('weight')||!s('trap')||!s('datetime')||!s('location')||!s('attendance')){
-    alert('必須項目を入力してください');return;
+function sendReport(){
+  const g=id=>document.getElementById(id)?.value||'';
+  if(!g('species')||!g('gender')||!g('weight')||!g('trap')||!g('captureDate')||!g('attendance')||!g('location')){
+    alert('必須項目を入力してください');return false;
   }
+  const date=g('captureDate');
+  const time=g('captureTime');
+  const dateStr=date?new Date(date).toLocaleDateString('ja-JP',{month:'long',day:'numeric',weekday:'short'}):'';
+  const timeStr=time?time+'ごろ':'';
   let msg='【捕獲報告】\n';
-  msg+='種類：'+s('species')+'\n';
-  msg+='性別：'+s('gender')+'\n';
-  msg+='重さ：約'+s('weight')+'kg\n';
-  msg+='罠：'+s('trap')+'\n';
-  msg+='日時：'+s('datetime')+'\n';
-  msg+='場所：'+s('location')+'\n';
-  msg+='立ち会い：'+s('attendance')+'\n';
-  if(s('antler')) msg+='ツノ：'+s('antler')+'\n';
-  if(s('notes')) msg+='補足：'+s('notes')+'\n';
-  // 振込先（入力がある場合）
-  if(s('bankName')){
+  msg+='種類：'+g('species')+'\n';
+  msg+='性別：'+g('gender')+'\n';
+  msg+='重さ：約'+g('weight')+'kg\n';
+  msg+='罠：'+g('trap')+'\n';
+  msg+='日時：'+dateStr+' '+timeStr+'\n';
+  msg+='場所：'+g('location')+'\n';
+  msg+='立ち会い：'+g('attendance')+'\n';
+  if(g('antler')) msg+='ツノ：'+g('antler')+'\n';
+  if(g('notes')) msg+='補足：'+g('notes')+'\n';
+  if(g('bankName')){
     msg+='---\n【振込先（初回）】\n';
-    msg+='銀行：'+s('bankName')+(s('branchName')?' '+s('branchName')+'支店':'')+'\n';
-    if(s('accountType')) msg+='種別：'+s('accountType')+'\n';
-    if(s('accountNum')) msg+='番号：'+s('accountNum')+'\n';
-    if(s('accountName')) msg+='名義：'+s('accountName')+'\n';
+    msg+='銀行：'+g('bankName')+(g('branchName')?' '+g('branchName')+'支店':'')+'\n';
+    if(g('accountType')) msg+='種別：'+g('accountType')+'\n';
+    if(g('accountNum')) msg+='番号：'+g('accountNum')+'\n';
+    if(g('accountName')) msg+='名義：'+g('accountName')+'\n';
   }
   msg+='---\nこの後、マップのピンと写真を続けて送ります';
-  window.open('https://line.me/R/oaMessage/@010vvmsj/?text='+encodeURIComponent(msg),'_blank');
-});
+  const lineUrl='https://line.me/R/oaMessage/@010vvmsj/?text='+encodeURIComponent(msg);
+  document.getElementById('lineBtn').href=lineUrl;
+  return true;
+}
+// 日付のデフォルトを今日に設定
+document.getElementById('captureDate').value=new Date().toISOString().split('T')[0];
 </script>
 </body>
 </html>
