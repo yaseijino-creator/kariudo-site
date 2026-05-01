@@ -25,14 +25,14 @@ tr:last-child td{border-bottom:none}
 tr:nth-child(even) td{background:#f8f8f4}
 .price{font-weight:bold;font-size:15px;color:#2D5016}
 .price.zero{color:#C0392B}
-.price.orange{color:#E8A020;font-weight:bold;font-size:14px}
+.price.free{color:#4A7C28;font-weight:bold;font-size:14px}
 .season{font-size:11px;color:#666;display:block;margin-top:2px}
 .tag-best{background:#2D5016;color:#fff;font-size:10px;padding:2px 6px;border-radius:4px;display:inline-block;margin-bottom:2px}
 .tag-mid{background:#4A7C28;color:#fff;font-size:10px;padding:2px 6px;border-radius:4px;display:inline-block;margin-bottom:2px}
 .tag-ok{background:#E8A020;color:#fff;font-size:10px;padding:2px 6px;border-radius:4px;display:inline-block;margin-bottom:2px}
 .kukuri{background:#fff9e6;border:2px solid #E8A020;border-radius:8px;padding:12px 16px;margin:0 0 12px;font-size:12px;color:#7a5a00;line-height:1.75}
 .kukuri strong{display:block;font-size:14px;font-weight:bold;color:#E8A020;margin-bottom:4px}
-.harm{background:#f0f0ff;border:1px solid #6060C0;border-radius:8px;padding:12px 16px;margin:0 0 10px;font-size:12px;color:#303080;line-height:1.75}
+.harm{background:#f0f0ff;border:1px solid #6060C0;border-radius:8px;padding:12px 16px;margin:0 0 12px;font-size:12px;color:#303080;line-height:1.75}
 .harm strong{display:block;font-size:14px;font-weight:bold;margin-bottom:6px}
 .warn{background:#fffbe6;border:1px solid #E8A020;border-radius:8px;padding:12px 14px;margin-top:12px;font-size:12px;color:#7a5a00;line-height:1.75}
 .info-box{background:#f0f8e8;border:1px solid #4A7C28;border-radius:8px;padding:12px 14px;margin:0 0 10px;font-size:12px;color:#2D5016;line-height:1.75}
@@ -57,16 +57,6 @@ footer a{color:#C8A030;text-decoration:none;font-weight:bold;display:block;margi
   <div class="kukuri">
     <strong>⚠️ 括りわなの場合は全て20%引き</strong>
     例）300円/kg → 240円/kg　200円/kg → 160円/kg
-  </div>
-
-  <!-- 有害駆除 -->
-  <div class="harm">
-    <strong>🏛️ 有害駆除の獲物について</strong>
-    行政への証拠として必要な<strong style="color:#C0392B">尻尾の提出</strong>が必要な場合：<br>
-    ・尻尾を直接受け渡し<br>
-    ・または <strong>尻尾代として別途お支払い</strong><br>
-    どちらでも対応可能です。事前にご相談ください。<br>
-    <span style="font-size:11px;color:#6060C0;margin-top:4px;display:block">※有害駆除の獲物は5〜10月も引き取り可能です</span>
   </div>
 
   <!-- 猪 -->
@@ -97,11 +87,11 @@ footer a{color:#C8A030;text-decoration:none;font-weight:bold;display:block;margi
       <tr>
         <td>全性別</td>
         <td><span class="tag-ok">引き取り可</span><span class="season">5〜10月</span></td>
-        <td><span class="price orange">有害駆除のみ<br>要相談</span></td>
+        <td><span class="price free">無料引き取り</span></td>
       </tr>
     </table>
     <div style="padding:10px 14px;font-size:11px;color:#888;border-top:1px solid #f0f0ea">
-      ※ 5〜10月は有害駆除で捕獲した場合のみ引き取り可。通常の狩猟は買取なし。
+      ※ 5〜10月は有害駆除で捕獲した場合のみ無料引き取り。通常の狩猟は買取なし。
     </div>
   </div>
 
@@ -140,8 +130,8 @@ footer a{color:#C8A030;text-decoration:none;font-weight:bold;display:block;margi
         <td><span class="price">2,000円/頭</span></td>
       </tr>
       <tr>
-        <td><span class="tag-ok">要相談</span><span class="season">1〜9月</span></td>
-        <td><span class="price orange">有害駆除のみ<br>要相談</span></td>
+        <td><span class="tag-ok">買取停止</span><span class="season">1〜9月</span></td>
+        <td><span class="price zero">買取なし</span></td>
       </tr>
     </table>
     <div style="padding:10px 14px;font-size:11px;color:#888;border-top:1px solid #f0f0ea">
@@ -149,6 +139,16 @@ footer a{color:#C8A030;text-decoration:none;font-weight:bold;display:block;margi
     </div>
   </div>
 
+  <!-- 有害駆除 -->
+  <div class="harm">
+    <strong>🏛️ 有害駆除の獲物について</strong>
+    行政への証拠として必要な<strong style="color:#C0392B">尻尾の提出</strong>が必要な場合：<br>
+    ・尻尾を直接受け渡し<br>
+    ・または <strong>尻尾代として別途お支払い</strong><br>
+    どちらでも対応可能です。事前にご相談ください。
+  </div>
+
+  <!-- 振込 -->
   <div class="warn">
     <strong style="display:block;margin-bottom:6px;font-weight:bold">振込について</strong>
     振込は毎月末日に一括でご登録の口座へ振込みます。<br>
