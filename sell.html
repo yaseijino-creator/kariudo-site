@@ -14,25 +14,29 @@ header .sub{font-size:11px;color:#5a3a00;margin-top:2px}
 .container{max-width:500px;margin:0 auto;padding:16px}
 .nav{display:flex;gap:6px;margin-bottom:20px;overflow-x:auto;-webkit-overflow-scrolling:touch;padding-bottom:4px;scrollbar-width:none}
 .nav::-webkit-scrollbar{display:none}
-.nav a{flex:0 0 auto;padding:9px 12px;text-align:center;border-radius:8px;font-size:11px;font-weight:bold;text-decoration:none;border:2px solid #2D5016;color:#2D5016;background:#fff;white-space:nowrap}
+.nav a{flex:0 0 auto;padding:9px 12px;border-radius:8px;font-size:11px;font-weight:bold;text-decoration:none;border:2px solid #2D5016;color:#2D5016;background:#fff;white-space:nowrap}
 .nav a.active{background:#2D5016;color:#fff}
 .nav a.sell{border-color:#C8A030;color:#7a5500;background:#fffbe6}
 .nav a.sell.active{background:#C8A030;color:#1a3009;border-color:#C8A030}
-.note{background:#e8f5d0;border:1px solid #4A7C28;border-radius:10px;padding:12px 14px;font-size:12px;color:#2D5016;line-height:1.75;margin-bottom:20px}
+.note{background:#e8f5d0;border:1px solid #4A7C28;border-radius:10px;padding:12px 14px;font-size:12px;color:#2D5016;line-height:1.75;margin-bottom:16px}
 .note strong{display:block;font-size:14px;margin-bottom:4px}
 .form-card{background:#fff;border-radius:12px;padding:16px;margin-bottom:12px;border:1px solid #e0e0d8}
+.form-card.bank{background:#f0f4ff;border-color:#8090D0}
+.form-card h3{font-size:13px;font-weight:bold;color:#303080;margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid #c0c8e8;display:flex;align-items:center;gap:6px}
 .form-group{margin-bottom:16px}
 .form-group:last-child{margin-bottom:0}
 label{display:block;font-size:13px;font-weight:bold;color:#2D5016;margin-bottom:6px}
 label .req{color:#C0392B;margin-left:4px}
+label .opt{color:#888;font-size:11px;font-weight:normal;margin-left:4px}
 select,input[type=text],input[type=number],textarea{width:100%;border:2px solid #ddd;border-radius:8px;padding:12px;font-size:15px;color:#222;background:#fff;-webkit-appearance:none;appearance:none}
+.form-card.bank select,.form-card.bank input{border-color:#c0c8e8}
 select:focus,input:focus,textarea:focus{outline:none;border-color:#4A7C28}
 select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%234A7C28' stroke-width='2' fill='none'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 12px center;padding-right:36px}
 textarea{resize:vertical;min-height:80px}
 .hint{font-size:11px;color:#888;margin-top:4px}
-.btn-send{display:block;width:100%;background:#2D5016;color:#fff;border:none;border-radius:12px;padding:18px;font-size:17px;font-weight:bold;cursor:pointer;margin-top:8px;text-align:center}
-.btn-send:active{background:#1a3009}
 .warn-kukuri{background:#fff9e6;border:1px solid #E8A020;border-radius:8px;padding:10px 12px;font-size:12px;color:#7a5a00;margin-top:6px}
+.btn-send{display:block;width:100%;background:#2D5016;color:#fff;border:none;border-radius:12px;padding:18px;font-size:17px;font-weight:bold;cursor:pointer;margin-top:8px}
+.btn-send:active{background:#1a3009}
 .how-to{background:#f0f4ff;border:1px solid #8090D0;border-radius:10px;padding:14px 16px;margin-top:16px}
 .how-to h3{font-size:13px;font-weight:bold;color:#303080;margin-bottom:10px}
 .how-to-item{display:flex;gap:10px;align-items:flex-start;margin-bottom:10px;font-size:12px;color:#303080;line-height:1.65}
@@ -54,13 +58,11 @@ footer{background:#2D5016;color:#a8c890;font-size:11px;text-align:center;padding
     <a href="prices.html">買取価格表</a>
     <a href="reservation.html">加工場の予約</a>
   </nav>
-
   <div class="note">
     <strong>📱 入力してLINEで送るだけ</strong>
-    フォームに入力して「LINEで報告する」を押すと、ラインのチャット画面が開きます。そのまま送信してください。<br>
-    <span style="font-size:11px;margin-top:4px;display:block">送信後に📍マップのピンと📷写真も続けて送ってください（送り方は下に記載）</span>
+    フォームに入力して「LINEで報告する」を押すと、ラインのチャット画面が開きます。<br>
+    <span style="font-size:11px;margin-top:4px;display:block">送信後に📍マップのピンと📷写真も続けて送ってください</span>
   </div>
-
   <form id="reportForm">
     <div class="form-card">
       <div class="form-group">
@@ -97,9 +99,7 @@ footer{background:#2D5016;color:#a8c890;font-size:11px;text-align:center;padding
           <option value="有害駆除">有害駆除</option>
           <option value="その他">その他</option>
         </select>
-        <div class="warn-kukuri" id="kukuriWarn" style="display:none">
-          ⚠️ 括りわなの場合、買取価格が<strong>20%引き</strong>になります
-        </div>
+        <div class="warn-kukuri" id="kukuriWarn" style="display:none">⚠️ 括りわなの場合、買取価格が<strong>20%引き</strong>になります</div>
       </div>
       <div class="form-group">
         <label>捕獲日時<span class="req">必須</span></label>
@@ -108,6 +108,14 @@ footer{background:#2D5016;color:#a8c890;font-size:11px;text-align:center;padding
       <div class="form-group">
         <label>捕獲場所（大まかな地名でOK）<span class="req">必須</span></label>
         <input type="text" id="location" placeholder="例：○○市 △△地区の山中" required>
+      </div>
+      <div class="form-group">
+        <label>立ち会いの有無<span class="req">必須</span></label>
+        <select id="attendance" required>
+          <option value="">選んでください</option>
+          <option value="立ち会いあり">立ち会いあり（その場で尻尾をお渡し）</option>
+          <option value="立ち会いなし">立ち会いなし（尻尾は和職工房で保管）</option>
+        </select>
       </div>
     </div>
     <div class="form-card">
@@ -122,70 +130,83 @@ footer{background:#2D5016;color:#a8c890;font-size:11px;text-align:center;padding
       </div>
       <div class="form-group">
         <label>補足・その他</label>
-        <textarea id="notes" placeholder="気になる点、有害駆除の場合の尻尾の有無など"></textarea>
+        <textarea id="notes" placeholder="気になる点など"></textarea>
       </div>
     </div>
-    <button type="submit" class="btn-send">📱 LINEで報告する</button>
-    <div style="text-align:center;font-size:11px;color:#888;margin-top:10px">
-      タップするとLINEが開きます。そのまま送信してください。
+    <!-- 振込先（初回のみ） -->
+    <div class="form-card bank">
+      <h3>🏦 振込先口座（初回の方のみご記入ください）</h3>
+      <div class="form-group">
+        <label>銀行名<span class="opt">（初回のみ）</span></label>
+        <input type="text" id="bankName" placeholder="例：○○銀行">
+      </div>
+      <div class="form-group">
+        <label>支店名<span class="opt">（初回のみ）</span></label>
+        <input type="text" id="branchName" placeholder="例：△△支店">
+      </div>
+      <div class="form-group">
+        <label>口座種別<span class="opt">（初回のみ）</span></label>
+        <select id="accountType">
+          <option value="">選んでください</option>
+          <option value="普通">普通</option>
+          <option value="当座">当座</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>口座番号<span class="opt">（初回のみ）</span></label>
+        <input type="text" id="accountNum" placeholder="例：1234567">
+      </div>
+      <div class="form-group">
+        <label>口座名義（カタカナ）<span class="opt">（初回のみ）</span></label>
+        <input type="text" id="accountName" placeholder="例：ヤマダ タロウ">
+      </div>
+      <div class="hint" style="margin-top:8px">※2回目以降は省略してください</div>
     </div>
+    <button type="submit" class="btn-send">📱 LINEで報告する</button>
+    <div style="text-align:center;font-size:11px;color:#888;margin-top:10px">タップするとLINEが開きます。そのまま送信してください。</div>
   </form>
-
-  <!-- ピン・写真の送り方 -->
   <div class="how-to">
     <h3>📍 送信後にピンと写真を送る方法</h3>
     <div class="how-to-item">
       <span class="how-to-icon">📍</span>
-      <div>
-        <strong>マップのピンの送り方</strong><br>
-        ラインのチャット画面で「＋」をタップ<br>
-        →「位置情報」を選ぶ<br>
-        → 場所を確認して「送信」
-      </div>
+      <div><strong>マップのピンの送り方</strong><br>ラインのチャット画面で「＋」をタップ<br>→「位置情報」を選ぶ → 場所を確認して「送信」</div>
     </div>
     <div class="how-to-item">
       <span class="how-to-icon">📷</span>
-      <div>
-        <strong>写真の送り方</strong><br>
-        チャット画面下のカメラアイコンをタップ<br>
-        → アルバムから写真を選んで送信<br>
-        <span style="font-size:11px;color:#6060a0">（全体がわかる写真を1〜2枚）</span>
-      </div>
+      <div><strong>写真の送り方</strong><br>チャット画面下のカメラアイコンをタップ<br>→ アルバムから写真を選んで送信<br><span style="font-size:11px;color:#6060a0">（全体がわかる写真を1〜2枚）</span></div>
     </div>
   </div>
 </div>
-
-<footer>
-  <p>狩人の日常 猟師専用ライン @010vvmsj</p>
-</footer>
-
+<footer><p>狩人の日常 猟師専用ライン @010vvmsj</p></footer>
 <script>
 document.getElementById('trap').addEventListener('change',function(){
   document.getElementById('kukuriWarn').style.display=this.value.includes('括り')?'block':'none';
 });
 document.getElementById('reportForm').addEventListener('submit',function(e){
   e.preventDefault();
-  const species=document.getElementById('species').value;
-  const gender=document.getElementById('gender').value;
-  const weight=document.getElementById('weight').value;
-  const trap=document.getElementById('trap').value;
-  const datetime=document.getElementById('datetime').value;
-  const location=document.getElementById('location').value;
-  const antler=document.getElementById('antler').value;
-  const notes=document.getElementById('notes').value;
-  if(!species||!gender||!weight||!trap||!datetime||!location){alert('必須項目を入力してください');return;}
+  const s=id=>document.getElementById(id).value;
+  if(!s('species')||!s('gender')||!s('weight')||!s('trap')||!s('datetime')||!s('location')||!s('attendance')){
+    alert('必須項目を入力してください');return;
+  }
   let msg='【捕獲報告】\n';
-  msg+='種類：'+species+'\n';
-  msg+='性別：'+gender+'\n';
-  msg+='重さ：約'+weight+'kg\n';
-  msg+='罠：'+trap+'\n';
-  msg+='日時：'+datetime+'\n';
-  msg+='場所：'+location+'\n';
-  if(antler) msg+='ツノ：'+antler+'\n';
-  if(notes) msg+='補足：'+notes+'\n';
-  msg+='---\n';
-  msg+='この後、マップのピンと写真を続けて送ります\n';
-  msg+='（ピン：＋→位置情報 ／ 写真：カメラアイコン）';
+  msg+='種類：'+s('species')+'\n';
+  msg+='性別：'+s('gender')+'\n';
+  msg+='重さ：約'+s('weight')+'kg\n';
+  msg+='罠：'+s('trap')+'\n';
+  msg+='日時：'+s('datetime')+'\n';
+  msg+='場所：'+s('location')+'\n';
+  msg+='立ち会い：'+s('attendance')+'\n';
+  if(s('antler')) msg+='ツノ：'+s('antler')+'\n';
+  if(s('notes')) msg+='補足：'+s('notes')+'\n';
+  // 振込先（入力がある場合）
+  if(s('bankName')){
+    msg+='---\n【振込先（初回）】\n';
+    msg+='銀行：'+s('bankName')+(s('branchName')?' '+s('branchName')+'支店':'')+'\n';
+    if(s('accountType')) msg+='種別：'+s('accountType')+'\n';
+    if(s('accountNum')) msg+='番号：'+s('accountNum')+'\n';
+    if(s('accountName')) msg+='名義：'+s('accountName')+'\n';
+  }
+  msg+='---\nこの後、マップのピンと写真を続けて送ります';
   window.open('https://line.me/R/oaMessage/@010vvmsj/?text='+encodeURIComponent(msg),'_blank');
 });
 </script>
