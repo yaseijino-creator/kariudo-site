@@ -21,28 +21,32 @@ header .sub{font-size:11px;color:#a8d878;margin-top:2px}
 .note strong{display:block;font-size:14px;margin-bottom:4px}
 .form-card{background:#fff;border-radius:12px;padding:16px;margin-bottom:12px;border:1px solid #e0e0d8}
 .form-card h3{font-size:13px;font-weight:bold;color:#2D5016;margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid #e0e0d8;display:flex;align-items:center;gap:6px}
-.facility-section{background:#f8fff8;border:1px solid #4A7C28;border-radius:10px;padding:14px;margin-bottom:10px}
-.facility-section h4{font-size:13px;font-weight:bold;color:#2D5016;margin-bottom:10px;display:flex;align-items:center;gap:6px}
+.facility-section{background:#f8fff8;border:1.5px solid #4A7C28;border-radius:10px;padding:14px;margin-bottom:10px}
+.facility-section h4{font-size:13px;font-weight:bold;color:#2D5016;margin-bottom:12px;display:flex;align-items:center;gap:6px}
 .form-group{margin-bottom:14px}
 .form-group:last-child{margin-bottom:0}
 label{display:block;font-size:12px;font-weight:bold;color:#555;margin-bottom:5px}
 label .req{color:#C0392B;margin-left:4px}
-.date-row{display:grid;grid-template-columns:1fr 1fr;gap:8px}
-.date-row .date-label{font-size:11px;color:#888;display:block;margin-bottom:3px}
-input[type=text],select,textarea{width:100%;border:2px solid #ddd;border-radius:8px;padding:10px 12px;font-size:14px;color:#222;background:#fff;-webkit-appearance:none;appearance:none}
-input[type=text]:focus,select:focus,textarea:focus{outline:none;border-color:#4A7C28}
+.date-time-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:10px}
+.date-time-grid .col label{font-size:11px;color:#888;display:block;margin-bottom:4px}
+input[type=text],input[type=date],input[type=time],select,textarea{width:100%;border:2px solid #ddd;border-radius:8px;padding:10px 12px;font-size:14px;color:#222;background:#fff;-webkit-appearance:none;appearance:none;font-family:inherit}
+input[type=date],input[type=time]{padding:10px 8px}
+input[type=text]:focus,input[type=date]:focus,input[type=time]:focus,select:focus,textarea:focus{outline:none;border-color:#4A7C28}
 select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%234A7C28' stroke-width='2' fill='none'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 10px center;padding-right:32px}
 .check-group{display:flex;flex-direction:column;gap:10px}
-.check-item{display:flex;align-items:center;gap:10px;padding:10px 12px;border:2px solid #ddd;border-radius:8px;cursor:pointer;transition:border-color 0.2s}
-.check-item input[type=checkbox]{width:20px;height:20px;cursor:pointer;accent-color:#2D5016;flex-shrink:0}
-.check-item label{font-size:14px;color:#222;cursor:pointer;margin:0;font-weight:bold}
-.check-item:has(input:checked){border-color:#4A7C28;background:#f0f8e8}
-.facility-details{display:none;margin-top:10px;padding:12px;background:#fff;border-radius:8px;border:1px solid #c0e0c0}
+.check-item{border:2px solid #ddd;border-radius:10px;overflow:hidden;transition:border-color 0.2s}
+.check-item.checked{border-color:#4A7C28}
+.check-header{display:flex;align-items:center;gap:10px;padding:12px 14px;cursor:pointer;background:#fff}
+.check-header input[type=checkbox]{width:20px;height:20px;cursor:pointer;accent-color:#2D5016;flex-shrink:0}
+.check-header label{font-size:15px;color:#222;cursor:pointer;margin:0;font-weight:bold}
+.facility-details{display:none;padding:12px 14px;background:#f8fff8;border-top:1px solid #c0e0c0}
 .facility-details.visible{display:block}
-.time-sep{text-align:center;line-height:36px;font-weight:bold;color:#2D5016}
-.time-grid{display:grid;grid-template-columns:1fr auto 1fr;gap:6px;align-items:center}
-.btn-send{display:block;width:100%;background:#2D5016;color:#fff;border:none;border-radius:12px;padding:18px;font-size:17px;font-weight:bold;cursor:pointer;margin-top:8px}
+.detail-label{font-size:11px;color:#666;font-weight:bold;margin-bottom:6px}
+.btn-send{display:block;width:100%;background:#2D5016;color:#fff;border:none;border-radius:12px;padding:18px;font-size:17px;font-weight:bold;cursor:pointer;margin-top:8px;text-align:center}
 .btn-send:active{background:#1a3009}
+.btn-group{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:8px}
+.btn-copy{background:#2D5016;color:#fff;border:none;border-radius:12px;padding:14px;font-size:14px;font-weight:bold;cursor:pointer}
+.btn-open{background:#06c755;color:#fff;border:none;border-radius:12px;padding:14px;font-size:14px;font-weight:bold;cursor:pointer;text-decoration:none;display:flex;align-items:center;justify-content:center}
 .rules{background:#fff;border-radius:12px;margin-top:16px;border:1px solid #e0e0d8;overflow:hidden}
 .rules-hdr{background:#4A7C28;color:#fff;padding:10px 14px;font-size:13px;font-weight:bold}
 .rule{display:flex;gap:10px;padding:11px 14px;border-bottom:1px solid #f0f0ea;font-size:13px;align-items:center}
@@ -66,9 +70,9 @@ footer a{color:#C8A030;text-decoration:none;font-weight:bold;display:block;margi
     <a href="reservation.html" class="active">加工場の予約</a>
   </nav>
   <div class="note">
-    <strong>🏭 使い方はシンプル</strong>
-    フォームに入力して「グループに報告する」を押すと、報告文がコピーされます。<br>
-    加工場グループに貼り付けて送信してください。
+    <strong>🏭 3ステップで完了</strong>
+    ①フォームに入力 → ②「コピーしてグループを開く」をタップ → ③貼り付けて送信<br>
+    <span style="font-size:11px;margin-top:4px;display:block">施設ごとに使用日が異なる場合は別々に設定できます</span>
   </div>
   <form id="reserveForm">
     <div class="form-card">
@@ -88,70 +92,63 @@ footer a{color:#C8A030;text-decoration:none;font-weight:bold;display:block;margi
         </select>
       </div>
     </div>
-    <!-- 施設ごとの使用日時 -->
     <div class="form-card">
       <h3>🏭 施設と使用日時（複数選択可）</h3>
       <div class="check-group">
         <!-- 加工場 -->
-        <div class="check-item">
-          <input type="checkbox" id="chk_kakouba">
-          <label for="chk_kakouba">加工場</label>
-        </div>
-        <div class="facility-details" id="detail_kakouba">
-          <div class="time-grid">
-            <div>
-              <span class="date-label">開始日</span>
-              <input type="text" id="k_start_date" placeholder="例：5月1日（木）">
-            </div>
-            <div class="time-sep">〜</div>
-            <div>
-              <span class="date-label">終了日</span>
-              <input type="text" id="k_end_date" placeholder="翌日の場合：5月2日">
-            </div>
+        <div class="check-item" id="wrap_kakouba">
+          <div class="check-header">
+            <input type="checkbox" id="chk_kakouba">
+            <label for="chk_kakouba">🏭 加工場</label>
           </div>
-          <div style="margin-top:8px">
-            <div class="time-grid">
-              <div><span class="date-label">開始時間</span><input type="text" id="k_start_time" placeholder="例：10:00"></div>
-              <div class="time-sep">〜</div>
-              <div><span class="date-label">終了時間</span><input type="text" id="k_end_time" placeholder="例：翌8:00"></div>
+          <div class="facility-details" id="detail_kakouba">
+            <div class="detail-label">使用開始</div>
+            <div class="date-time-grid">
+              <div class="col"><label>日付</label><input type="date" id="k_start_date"></div>
+              <div class="col"><label>時間</label><input type="time" id="k_start_time"></div>
+            </div>
+            <div class="detail-label">使用終了（翌日またぎOK）</div>
+            <div class="date-time-grid">
+              <div class="col"><label>日付</label><input type="date" id="k_end_date"></div>
+              <div class="col"><label>時間</label><input type="time" id="k_end_time"></div>
             </div>
           </div>
         </div>
         <!-- 冷蔵庫 -->
-        <div class="check-item">
-          <input type="checkbox" id="chk_reizoko">
-          <label for="chk_reizoko">冷蔵庫</label>
-        </div>
-        <div class="facility-details" id="detail_reizoko">
-          <div class="time-grid">
-            <div><span class="date-label">搬入日</span><input type="text" id="r_in_date" placeholder="例：5月1日（木）"></div>
-            <div class="time-sep">〜</div>
-            <div><span class="date-label">搬出日</span><input type="text" id="r_out_date" placeholder="例：5月3日（土）"></div>
+        <div class="check-item" id="wrap_reizoko">
+          <div class="check-header">
+            <input type="checkbox" id="chk_reizoko">
+            <label for="chk_reizoko">❄️ 冷蔵庫</label>
           </div>
-          <div style="margin-top:8px">
-            <div class="time-grid">
-              <div><span class="date-label">搬入時間</span><input type="text" id="r_in_time" placeholder="例：12:00"></div>
-              <div class="time-sep">〜</div>
-              <div><span class="date-label">搬出時間</span><input type="text" id="r_out_time" placeholder="例：15:00"></div>
+          <div class="facility-details" id="detail_reizoko">
+            <div class="detail-label">搬入日時</div>
+            <div class="date-time-grid">
+              <div class="col"><label>日付</label><input type="date" id="r_in_date"></div>
+              <div class="col"><label>時間</label><input type="time" id="r_in_time"></div>
+            </div>
+            <div class="detail-label">搬出日時（翌日またぎOK）</div>
+            <div class="date-time-grid">
+              <div class="col"><label>日付</label><input type="date" id="r_out_date"></div>
+              <div class="col"><label>時間</label><input type="time" id="r_out_time"></div>
             </div>
           </div>
         </div>
         <!-- 冷凍庫 -->
-        <div class="check-item">
-          <input type="checkbox" id="chk_reitoko">
-          <label for="chk_reitoko">冷凍庫</label>
-        </div>
-        <div class="facility-details" id="detail_reitoko">
-          <div class="time-grid">
-            <div><span class="date-label">搬入日</span><input type="text" id="t_in_date" placeholder="例：5月1日（木）"></div>
-            <div class="time-sep">〜</div>
-            <div><span class="date-label">搬出日</span><input type="text" id="t_out_date" placeholder="例：5月5日（月）"></div>
+        <div class="check-item" id="wrap_reitoko">
+          <div class="check-header">
+            <input type="checkbox" id="chk_reitoko">
+            <label for="chk_reitoko">🧊 冷凍庫</label>
           </div>
-          <div style="margin-top:8px">
-            <div class="time-grid">
-              <div><span class="date-label">搬入時間</span><input type="text" id="t_in_time" placeholder="例：14:00"></div>
-              <div class="time-sep">〜</div>
-              <div><span class="date-label">搬出時間</span><input type="text" id="t_out_time" placeholder="例：未定"></div>
+          <div class="facility-details" id="detail_reitoko">
+            <div class="detail-label">搬入日時</div>
+            <div class="date-time-grid">
+              <div class="col"><label>日付</label><input type="date" id="t_in_date"></div>
+              <div class="col"><label>時間</label><input type="time" id="t_in_time"></div>
+            </div>
+            <div class="detail-label">搬出日時（翌日またぎOK）</div>
+            <div class="date-time-grid">
+              <div class="col"><label>日付</label><input type="date" id="t_out_date"></div>
+              <div class="col"><label>時間</label><input type="time" id="t_out_time"></div>
             </div>
           </div>
         </div>
@@ -163,8 +160,15 @@ footer a{color:#C8A030;text-decoration:none;font-weight:bold;display:block;margi
         <input type="text" id="notes" placeholder="急遽今日使えますか？など">
       </div>
     </div>
-    <button type="submit" class="btn-send">📋 グループに報告する</button>
-    <div style="text-align:center;font-size:11px;color:#888;margin-top:10px">報告文をコピーします。グループに貼り付けて送信してください。</div>
+    <div id="btnArea" style="display:none">
+      <div class="btn-group">
+        <button type="button" class="btn-copy" onclick="doCopy()">📋 報告文をコピー</button>
+        <a href="https://line.me/ti/g/zv_u429vsM" class="btn-open" target="_blank">🟢 グループを開く</a>
+      </div>
+      <div style="text-align:center;font-size:11px;color:#888;margin-top:8px">コピーしてからグループを開いて貼り付けてください</div>
+    </div>
+    <button type="submit" class="btn-send" id="makeBtn">📋 グループに報告する</button>
+    <div style="text-align:center;font-size:11px;color:#888;margin-top:10px">ボタンを押すと報告文が作られます</div>
   </form>
   <div class="rules">
     <div class="rules-hdr">📌 使用ルール</div>
@@ -179,51 +183,75 @@ footer a{color:#C8A030;text-decoration:none;font-weight:bold;display:block;margi
   <a href="https://line.me/R/ti/p/@010vvmsj">LINEで友達追加する</a>
 </footer>
 <script>
-// チェックボックスで詳細を表示/非表示
+const g=id=>document.getElementById(id);
+const gv=id=>g(id)?.value||'';
+const fmtDate=d=>{if(!d)return'';const dt=new Date(d+'T00:00:00');return dt.toLocaleDateString('ja-JP',{month:'long',day:'numeric',weekday:'short'});};
+const fmtTime=t=>t||'';
+
+// チェックボックス制御
 ['kakouba','reizoko','reitoko'].forEach(id=>{
-  const chk=document.getElementById('chk_'+id);
-  const det=document.getElementById('detail_'+id);
+  const chk=g('chk_'+id),det=g('detail_'+id),wrap=g('wrap_'+id);
   chk.addEventListener('change',()=>{
     det.classList.toggle('visible',chk.checked);
+    wrap.classList.toggle('checked',chk.checked);
   });
 });
-const g=id=>document.getElementById(id)?.value||'';
-document.getElementById('reserveForm').addEventListener('submit',function(e){
-  e.preventDefault();
-  const name=g('name');const purpose=g('purpose');
-  if(!name||!purpose){alert('名前と使用目的を入力してください');return;}
-  const k=document.getElementById('chk_kakouba').checked;
-  const r=document.getElementById('chk_reizoko').checked;
-  const t=document.getElementById('chk_reitoko').checked;
-  if(!k&&!r&&!t){alert('使用する施設を選択してください');return;}
+
+let _msg='';
+function buildMsg(){
+  const name=gv('name'),purpose=gv('purpose');
+  if(!name||!purpose){alert('名前と使用目的を入力してください');return null;}
+  const k=g('chk_kakouba').checked,r=g('chk_reizoko').checked,t=g('chk_reitoko').checked;
+  if(!k&&!r&&!t){alert('使用する施設を選択してください');return null;}
   let msg='【加工場 使用予約🟢】\n';
-  msg+='名前：'+name+'\n';
-  msg+='目的：'+purpose+'\n';
+  msg+='名前：'+name+'\n目的：'+purpose+'\n';
   if(k){
     msg+='\n🏭 加工場\n';
-    msg+='　開始：'+(g('k_start_date')||'?')+' '+(g('k_start_time')||'?')+'\n';
-    msg+='　終了：'+(g('k_end_date')||g('k_start_date')||'?')+' '+(g('k_end_time')||'?')+'\n';
+    const sd=fmtDate(gv('k_start_date')),st=fmtTime(gv('k_start_time'));
+    const ed=fmtDate(gv('k_end_date')),et=fmtTime(gv('k_end_time'));
+    msg+='　開始：'+(sd||'?')+' '+(st||'?')+'\n';
+    msg+='　終了：'+(ed||sd||'?')+' '+(et||'?')+'\n';
   }
   if(r){
     msg+='\n❄️ 冷蔵庫\n';
-    msg+='　搬入：'+(g('r_in_date')||'?')+' '+(g('r_in_time')||'?')+'\n';
-    msg+='　搬出：'+(g('r_out_date')||'?')+' '+(g('r_out_time')||'?')+'\n';
+    const sd=fmtDate(gv('r_in_date')),st=fmtTime(gv('r_in_time'));
+    const ed=fmtDate(gv('r_out_date')),et=fmtTime(gv('r_out_time'));
+    msg+='　搬入：'+(sd||'?')+' '+(st||'?')+'\n';
+    msg+='　搬出：'+(ed||'?')+' '+(et||'?')+'\n';
   }
   if(t){
     msg+='\n🧊 冷凍庫\n';
-    msg+='　搬入：'+(g('t_in_date')||'?')+' '+(g('t_in_time')||'?')+'\n';
-    msg+='　搬出：'+(g('t_out_date')||'未定')+' '+(g('t_out_time')||'')+'\n';
+    const sd=fmtDate(gv('t_in_date')),st=fmtTime(gv('t_in_time'));
+    const ed=fmtDate(gv('t_out_date')),et=fmtTime(gv('t_out_time'));
+    msg+='　搬入：'+(sd||'?')+' '+(st||'?')+'\n';
+    msg+='　搬出：'+(ed||'未定')+' '+(et||'')+'\n';
   }
-  if(g('notes')) msg+='\n補足：'+g('notes')+'\n';
+  if(gv('notes')) msg+='\n補足：'+gv('notes')+'\n';
   msg+='---\n終了時「使用終了🔴 清掃済み」と投稿します';
-  navigator.clipboard.writeText(msg).then(()=>{
-    alert('✅ 報告文をコピーしました！\n\n加工場グループを開いて貼り付けて送信してください。');
-  }).catch(()=>{
-    const ta=document.createElement('textarea');ta.value=msg;document.body.appendChild(ta);ta.select();
-    document.execCommand('copy');document.body.removeChild(ta);
-    alert('✅ 報告文をコピーしました！\n\n加工場グループを開いて貼り付けて送信してください。');
-  });
+  return msg;
+}
+g('reserveForm').addEventListener('submit',function(e){
+  e.preventDefault();
+  const msg=buildMsg();if(!msg)return;
+  _msg=msg;
+  g('makeBtn').style.display='none';
+  g('btnArea').style.display='block';
+  // 自動コピー
+  doCopy(true);
 });
+function doCopy(auto){
+  if(!_msg){const msg=buildMsg();if(!msg)return;_msg=msg;}
+  navigator.clipboard.writeText(_msg).then(()=>{
+    if(!auto) alert('✅ コピーしました！\nグループを開いて貼り付けてください。');
+  }).catch(()=>{
+    const ta=document.createElement('textarea');ta.value=_msg;document.body.appendChild(ta);ta.select();
+    document.execCommand('copy');document.body.removeChild(ta);
+    if(!auto) alert('✅ コピーしました！\nグループを開いて貼り付けてください。');
+  });
+}
+// 今日の日付をデフォルト設定
+const today=new Date().toISOString().split('T')[0];
+['k_start_date','r_in_date','t_in_date'].forEach(id=>{if(g(id))g(id).value=today;});
 </script>
 </body>
 </html>
