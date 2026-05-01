@@ -14,10 +14,9 @@ header .sub{font-size:11px;color:#a8d878;margin-top:2px}
 .container{max-width:500px;margin:0 auto;padding:16px}
 .nav{display:flex;gap:6px;margin-bottom:20px;overflow-x:auto;-webkit-overflow-scrolling:touch;padding-bottom:4px;scrollbar-width:none}
 .nav::-webkit-scrollbar{display:none}
-.nav a{flex:0 0 auto;padding:9px 12px;text-align:center;border-radius:8px;font-size:11px;font-weight:bold;text-decoration:none;border:2px solid #2D5016;color:#2D5016;background:#fff;white-space:nowrap}
+.nav a{flex:0 0 auto;padding:9px 12px;border-radius:8px;font-size:11px;font-weight:bold;text-decoration:none;border:2px solid #2D5016;color:#2D5016;background:#fff;white-space:nowrap}
 .nav a.active{background:#2D5016;color:#fff}
 .nav a.sell{border-color:#C8A030;color:#7a5500;background:#fffbe6}
-.nav a.sell.active{background:#C8A030;color:#1a3009;border-color:#C8A030}
 .section{background:#fff;border-radius:12px;margin-bottom:16px;overflow:hidden;border:1px solid #e0e0d8}
 .section-hdr{background:#2D5016;color:#fff;padding:12px 16px;font-size:15px;font-weight:bold}
 .section-hdr span{color:#C8A030;font-size:12px;font-weight:normal}
@@ -35,8 +34,6 @@ tr:nth-child(even) td{background:#f8f8f4}
 .tag-ok{background:#E8A020;color:#fff;font-size:10px;padding:2px 6px;border-radius:4px;display:inline-block;margin-bottom:2px}
 .kukuri{background:#fff9e6;border:2px solid #E8A020;border-radius:8px;padding:12px 16px;margin:0 0 12px;font-size:12px;color:#7a5a00;line-height:1.75}
 .kukuri strong{display:block;font-size:14px;font-weight:bold;color:#E8A020;margin-bottom:4px}
-.harm{background:#f0f0ff;border:1px solid #6060C0;border-radius:8px;padding:12px 16px;margin:0 0 12px;font-size:12px;color:#303080;line-height:1.75}
-.harm strong{display:block;font-size:14px;font-weight:bold;margin-bottom:6px}
 .warn{background:#fffbe6;border:1px solid #E8A020;border-radius:8px;padding:12px 14px;margin-top:12px;font-size:12px;color:#7a5a00;line-height:1.75}
 .info-box{background:#f0f8e8;border:1px solid #4A7C28;border-radius:8px;padding:12px 14px;margin:0 0 10px;font-size:12px;color:#2D5016;line-height:1.75}
 .info-box strong{display:block;font-weight:bold;margin-bottom:3px}
@@ -57,12 +54,10 @@ footer a{color:#C8A030;text-decoration:none;font-weight:bold;display:block;margi
     <a href="prices.html" class="active">買取価格表</a>
     <a href="reservation.html">加工場の予約</a>
   </nav>
-
   <div class="kukuri">
     <strong>⚠️ 括りわなの場合は全て20%引き</strong>
     例）300円/kg → 240円/kg　200円/kg → 160円/kg
   </div>
-
   <div class="section">
     <div class="section-hdr">猪（イノシシ）<span>　生体 円/kg</span></div>
     <table>
@@ -73,11 +68,8 @@ footer a{color:#C8A030;text-decoration:none;font-weight:bold;display:block;margi
       <tr><td>オス</td><td>発情期〜夏<span class="season">1〜4月</span></td><td><span class="price zero">買取なし</span></td></tr>
       <tr><td>全性別</td><td><span class="tag-ok">引き取り可</span><span class="season">5〜10月</span></td><td><span class="price free">無料引き取り</span></td></tr>
     </table>
-    <div style="padding:10px 14px;font-size:11px;color:#888;border-top:1px solid #f0f0ea">
-      ※ 5〜10月は有害駆除で捕獲した場合のみ無料引き取り。通常の狩猟は買取なし。
-    </div>
+    <div style="padding:10px 14px;font-size:11px;color:#888;border-top:1px solid #f0f0ea">※ 5〜10月は有害駆除で捕獲した場合のみ無料引き取り。通常の狩猟は買取なし。</div>
   </div>
-
   <div class="section">
     <div class="section-hdr">鹿（シカ）<span>　生体 円/kg ＋ ツノ加算</span></div>
     <div class="info-box">
@@ -94,7 +86,6 @@ footer a{color:#C8A030;text-decoration:none;font-weight:bold;display:block;margi
       ※ ツノは状態良好のものが対象（先端欠け・腐食は減額）
     </div>
   </div>
-
   <div class="section">
     <div class="section-hdr">日本穴熊（アナグマ）<span>　円/頭（固定）</span></div>
     <table>
@@ -104,20 +95,11 @@ footer a{color:#C8A030;text-decoration:none;font-weight:bold;display:block;margi
     </table>
     <div style="padding:10px 14px;font-size:11px;color:#888;border-top:1px solid #f0f0ea">※ 肉＋毛皮目的・冬毛最良</div>
   </div>
-
-  <div class="harm">
-    <strong>🏛️ 有害駆除の獲物について</strong>
-    行政への証拠として必要な<strong style="color:#C0392B">尻尾の提出</strong>が必要な場合：<br>
-    ・尻尾を直接受け渡し<br>
-    ・または <strong>尻尾代として別途お支払い</strong><br>
-    どちらでも対応可能です。事前にご相談ください。
-  </div>
-
   <div class="warn">
     <strong style="display:block;margin-bottom:6px;font-weight:bold">振込について</strong>
     振込は毎月末日に一括でご登録の口座へ振込みます。<br>
     振込完了後にラインでご連絡します。<br>
-    口座情報の変更はラインのチャットからご連絡ください。
+    初回の方は捕獲報告フォームに振込先をご記入ください。
   </div>
 </div>
 <footer>
