@@ -14,10 +14,9 @@ header .sub{font-size:11px;color:#a8d878;margin-top:2px}
 .container{max-width:500px;margin:0 auto;padding:16px}
 .nav{display:flex;gap:6px;margin-bottom:20px;overflow-x:auto;-webkit-overflow-scrolling:touch;padding-bottom:4px;scrollbar-width:none}
 .nav::-webkit-scrollbar{display:none}
-.nav a{flex:0 0 auto;padding:9px 12px;text-align:center;border-radius:8px;font-size:11px;font-weight:bold;text-decoration:none;border:2px solid #2D5016;color:#2D5016;background:#fff;white-space:nowrap}
+.nav a{flex:0 0 auto;padding:9px 12px;border-radius:8px;font-size:11px;font-weight:bold;text-decoration:none;border:2px solid #2D5016;color:#2D5016;background:#fff;white-space:nowrap}
 .nav a.active{background:#2D5016;color:#fff}
 .nav a.sell{border-color:#C8A030;color:#7a5500;background:#fffbe6}
-.nav a.sell.active{background:#C8A030;color:#1a3009;border-color:#C8A030}
 .legend{display:flex;flex-wrap:wrap;gap:8px;background:#fff;border-radius:10px;padding:12px 14px;margin-bottom:16px;font-size:11px;border:1px solid #e0e0d8}
 .lg{display:flex;align-items:center;gap:5px}
 .ld{width:12px;height:12px;border-radius:3px;flex-shrink:0}
@@ -27,12 +26,13 @@ header .sub{font-size:11px;color:#a8d878;margin-top:2px}
 .node.auto{background:#2D5016;color:#fff}
 .node.owner{background:#E8A020;color:#fff}
 .node.pass{background:#8B5A2B;color:#fff}
+.node.info{background:#4A4080;color:#fff}
 .node-label{font-size:10px;font-weight:bold;opacity:0.75;margin-bottom:3px}
 .node-title{font-size:15px;font-weight:bold;margin-bottom:5px}
-.node-sub{font-size:12px;line-height:1.7;opacity:0.95}
+.node-sub{font-size:12px;line-height:1.75;opacity:0.95}
 .node-sub.green{color:#a8d878}
 .node-sub.yellow{color:#ffe0a0}
-.node-sub.tan{color:#ffd4a0}
+.node-sub.purple{color:#d8c8ff}
 .arrow{width:2px;height:20px;background:#aaa;position:relative;margin:0 auto}
 .arrow::after{content:'';position:absolute;bottom:-6px;left:-4px;border:5px solid transparent;border-top-color:#aaa;border-bottom:none}
 .branch-wrap{width:100%;display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:0}
@@ -61,6 +61,7 @@ footer a{color:#C8A030;text-decoration:none;font-weight:bold;display:block;margi
     <div class="lg"><div class="ld" style="background:#2D5016"></div>自動で届く</div>
     <div class="lg"><div class="ld" style="background:#4A7C28"></div>あなたの操作</div>
     <div class="lg"><div class="ld" style="background:#E8A020"></div>こちらが対応</div>
+    <div class="lg"><div class="ld" style="background:#4A4080"></div>重要なお知らせ</div>
   </div>
   <div class="flow">
     <div class="node hunter">
@@ -87,12 +88,30 @@ footer a{color:#C8A030;text-decoration:none;font-weight:bold;display:block;margi
       <div class="node-title">実際に見てから判断します</div>
       <div class="node-sub yellow">写真だけでなく、実物を確認してから<br>買取するかどうか決めます</div>
     </div>
+    <div class="arrow"></div>
+    <!-- 止め刺し・尻尾の説明 -->
+    <div class="node info">
+      <div class="node-label">重要：止め刺しと尻尾について</div>
+      <div class="node-title">認定業者以外はこちらで止め刺し</div>
+      <div class="node-sub purple">
+        <div style="margin-bottom:8px;padding-bottom:8px;border-bottom:1px solid rgba(255,255,255,0.2)">
+          <strong style="color:#d8c8ff">立ち会いアリの場合</strong><br>
+          その場で尻尾をお渡しします
+        </div>
+        <div>
+          <strong style="color:#d8c8ff">立ち会いなしの場合</strong><br>
+          尻尾はこちらで保管します。<br>
+          有害駆除申請日に<strong>和職工房</strong>まで<br>お引き取りください。
+        </div>
+      </div>
+    </div>
+    <div class="arrow"></div>
     <div class="branch-line"></div>
     <div class="branch-wrap">
       <div class="node auto" style="border-radius:8px">
         <div class="node-label" style="color:#a8d878">買取する場合 ✅</div>
-        <div style="font-size:14px;font-weight:bold">その場でお支払い</div>
-        <div style="font-size:11px;color:#a8d878;margin-top:5px">月末に口座へ振込</div>
+        <div style="font-size:14px;font-weight:bold">月末に口座へ振込</div>
+        <div style="font-size:11px;color:#a8d878;margin-top:5px">毎月末日・ラインでお知らせ</div>
       </div>
       <div class="node pass" style="border-radius:8px">
         <div class="node-label" style="color:#ffd4a0">引き取れない場合</div>
@@ -102,12 +121,6 @@ footer a{color:#C8A030;text-decoration:none;font-weight:bold;display:block;margi
     </div>
     <div style="width:100%;display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:0">
       <div style="display:flex;flex-direction:column;align-items:center">
-        <div class="arrow" style="margin-top:8px"></div>
-        <div class="node auto" style="width:100%;border-radius:8px;margin-top:8px">
-          <div class="node-label">自動で届く</div>
-          <div class="node-title" style="font-size:13px">買取完了の連絡</div>
-          <div class="node-sub" style="font-size:11px">金額と振込予定月をお知らせ</div>
-        </div>
         <div class="arrow" style="margin-top:8px"></div>
         <div class="node owner" style="width:100%;border-radius:8px;margin-top:8px">
           <div class="node-label">こちらが対応</div>
