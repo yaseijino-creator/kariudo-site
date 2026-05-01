@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>買取の流れ｜狩人の日常</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Hiragino Kaku Gothic ProN', 'Noto Sans JP', sans-serif;
+    background: #1a3509; color: #fff; min-height: 100vh;
+  }
+  header {
+    background: #2d5016; padding: 16px 20px 14px;
+    text-align: center; border-bottom: 3px solid #c8a030;
+    position: sticky; top: 0; z-index: 100;
+  }
+  header .brand { font-size: 11px; color: #c8a030; letter-spacing: 2px; }
+  header h1 { font-size: 22px; font-weight: bold; margin-top: 3px; }
+
+  .container { max-width: 480px; margin: 0 auto; padding: 20px 16px 48px; }
+
+  .legend {
+    display: flex; flex-wrap: wrap; gap: 8px;
+    background: #1e3c0e; border-radius: 10px;
+    padding: 12px 14px; margin-bottom: 24px; font-size: 11px;
+  }
+  .legend-item { display: flex; align-items: center; gap: 5px; }
+  .dot { width: 11px; height: 11px; border-radius: 3px; flex-shrink: 0; }
+
+  .step { position: relative; margin-bottom: 8px; }
+  .step-num {
+    position: absolute; top: -10px; left: 14px;
+    background: #c8a030; color: #1a3509;
+    font-size: 10px; font-weight: bold;
+    padding: 2px 10px; border-radius: 10px;
+  }
+  .card {
+    border-radius: 14px; padding: 18px 16px 14px;
+  }
+  .card.hunter { background: #3a6820; border: 1.5px solid #4a7c28; }
+  .card.auto   { background: #2d5016; border: 1.5px solid #3d6b1f; }
+  .card.owner  { background: #7a4a00; border: 1.5px solid #e8a020; }
+  .card.pass   { background: #6b1a13; border: 1.5px solid #c0392b; }
+
+  .card-label { font-size: 10px; font-weight: bold; letter-spacing: 1px; opacity: 0.7; margin-bottom: 4px; }
+  .card-title { font-size: 15px; font-weight: bold; margin-bottom: 6px; }
+  .card-sub   { font-size: 12px; color: #a8d878; line-height: 1.75; }
+  .card.owner .card-sub { color: #ffe0a0; }
+  .card.pass  .card-sub { color: #ffb0a0; }
+
+  .arrow { text-align: center; padding: 5px 0; font-size: 20px; color: #c8a030; }
+  .arrow.left { text-align: left; padding-left: 22%; }
+
+  .branch { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 8px; }
+  .branch-label { font-size: 10px; font-weight: bold; opacity: 0.75; margin-bottom: 5px; }
+
+  .note {
+    background: #fffbe6; color: #7a5a00;
+    border: 1px solid #e8a020; border-radius: 10px;
+    padding: 14px 16px; margin-top: 24px; font-size: 12px; line-height: 1.75;
+  }
+  .note strong { display: block; margin-bottom: 6px; font-size: 13px; font-weight: bold; }
+
+  .tag {
+    display: inline-block; background: #c8a030; color: #1a3509;
+    font-size: 10px; font-weight: bold; padding: 2px 8px;
+    border-radius: 6px; margin-bottom: 8px;
+  }
+
+  footer {
+    text-align: center; padding: 24px 16px;
+    font-size: 11px; color: #a8c890; background: #1e3c0e;
+    margin-top: 20px;
+  }
+  footer a { color: #c8a030; text-decoration: none; font-weight: bold; }
+
+  .line-btn {
+    display: block; width: 100%; max-width: 280px; margin: 12px auto 0;
+    background: #06c755; color: #fff; font-size: 15px; font-weight: bold;
+    padding: 13px; border-radius: 30px; text-align: center;
+    text-decoration: none; border: none;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="brand">狩人の日常 猟師専用ライン</div>
+  <h1>買取の流れ</h1>
+</header>
+
+<div class="container">
+
+  <div class="legend">
+    <div class="legend-item"><div class="dot" style="background:#4a7c28"></div><span>猟師の操作</span></div>
+    <div class="legend-item"><div class="dot" style="background:#2d5016"></div><span>自動返信</span></div>
+    <div class="legend-item"><div class="dot" style="background:#e8a020"></div><span>オーナー対応</span></div>
+    <div class="legend-item"><div class="dot" style="background:#c0392b"></div><span>今回はパス</span></div>
+  </div>
+
+  <!-- STEP 1 -->
+  <div class="step">
+    <div class="step-num">STEP 1</div>
+    <div class="card hunter">
+      <div class="card-label">猟師の操作</div>
+      <div class="card-title">ラインを友達追加</div>
+      <div class="card-sub">QRコード・猟友会紹介・SNS経由</div>
+    </div>
+  </div>
+  <div class="arrow">▼</div>
+
+  <!-- STEP 2 -->
+  <div class="step">
+    <div class="step-num">STEP 2</div>
+    <div class="card auto">
+      <div class="card-label">自動返信</div>
+      <div class="card-title">ウェルカムメッセージ＋メニュー表示</div>
+      <div class="card-sub">使い方の案内が届き、リッチメニューが表示されます</div>
+    </div>
+  </div>
+  <div class="arrow">▼</div>
+
+  <!-- STEP 3 -->
+  <div class="step">
+    <div class="step-num">STEP 3</div>
+    <div class="card hunter">
+      <div class="card-label">猟師の操作</div>
+      <div class="card-title">獲物を捕獲したらラインで報告</div>
+      <div class="card-sub">「獲物を売る」ボタンをタップ または「捕獲」と送信</div>
+    </div>
+  </div>
+  <div class="arrow">▼</div>
+
+  <!-- STEP 4 -->
+  <div class="step">
+    <div class="step-num">STEP 4</div>
+    <div class="card auto">
+      <div class="card-label">自動返信</div>
+      <div class="card-title">捕獲報告フォームが届く</div>
+      <div class="card-sub">
+        ① 獲物の種類（猪・鹿・穴熊）<br>
+        ② 性別（オス・メス）<br>
+        ③ 推定重量<br>
+        ④ 罠の種類<span style="color:#ffd080;font-size:11px">（括りわなは２割引き）</span><br>
+        ⑤ 捕獲日時<br>
+        ⑥ マップのピンを送る<br>
+        ⑦ 写真１〜２枚を添付
+      </div>
+    </div>
+  </div>
+  <div class="arrow">▼</div>
+
+  <!-- STEP 5 -->
+  <div class="step">
+    <div class="step-num">STEP 5</div>
+    <div class="card hunter">
+      <div class="card-label">猟師の操作</div>
+      <div class="card-title">情報と写真を送信</div>
+      <div class="card-sub">テンプレートに沿って入力して送るだけ</div>
+    </div>
+  </div>
+  <div class="arrow">▼</div>
+
+  <!-- STEP 6 -->
+  <div class="step">
+    <div class="step-num">STEP 6</div>
+    <div class="card owner">
+      <div class="card-label">オーナー対応（当日中に返信）</div>
+      <div class="card-title">内容を確認して判断</div>
+      <div class="card-sub">性別・重量・季節から買取可否を判断します</div>
+    </div>
+  </div>
+  <div class="arrow">▼</div>
+
+  <!-- 分岐 -->
+  <div class="branch">
+    <div class="card auto" style="border-radius:14px;padding:14px 12px;">
+      <div class="branch-label" style="color:#a8d878">買取OK ✅</div>
+      <div style="font-size:14px;font-weight:bold">「買取します！」</div>
+      <div style="font-size:11px;color:#a8d878;margin-top:5px">引き取り日程を提案</div>
+    </div>
+    <div class="card pass" style="border-radius:14px;padding:14px 12px;">
+      <div class="branch-label" style="color:#ffb0a0">今回はパス ❌</div>
+      <div style="font-size:14px;font-weight:bold">理由を添えて返信</div>
+      <div style="font-size:11px;color:#ffb0a0;margin-top:5px">「また次回よろしく」</div>
+    </div>
+  </div>
+  <div class="arrow left">▼</div>
+
+  <!-- STEP 7 -->
+  <div class="step">
+    <div class="step-num">STEP 7</div>
+    <div class="card hunter">
+      <div class="card-label">猟師の操作</div>
+      <div class="card-title">日程調整・引き取り</div>
+      <div class="card-sub">
+        場所が分かれば立ち会い不要<br>
+        分かりにくければ立ち会いをお願ぇします<br>
+        計量 → 買取懑額を確定
+      </div>
+    </div>
+  </div>
+  <div class="arrow">▼</div>
+
+  <!-- STEP 8 -->
+  <div class="step">
+    <div class="step-num">STEP 8</div>
+    <div class="card auto">
+      <div class="card-label">自動返信</div>
+      <div class="card-title">買取完了メッセージ</div>
+      <div class="card-sub">金額と振込予定月をラインでお知らせ</div>
+    </div>
+  </div>
+  <div class="arrow">▼</div>
+
+  <!-- STEP 9 -->
+  <div class="step">
+    <div class="step-num">STEP 9</div>
+    <div class="card owner">
+      <div class="card-label">オーナー対応</div>
+      <div class="card-title">月末に口座へ一括振込</div>
+      <div class="card-sub">振込リストで管理 → 毎月末日に振込完了をラインでご連絡</div>
+    </div>
+  </div>
+
+  <!-- 注記 -->
+  <div class="note">
+    <strong>ご注意</strong>
+    ・自動返信は無制限で使えます<br>
+    ・月末振込通知などの配信は月200通まで<br>
+    ・括りわなの場合は買取単価が<strong>２割引き</strong>になります
+  </div>
+
+</div>
+
+<footer>
+  <p>狩人の日常 猟師専用ライン</p>
+  <a class="line-btn" href="https://line.me/R/ti/p/@010vvmsj">LINE끧友達追加する</a>
+</footer>
+
+</body>
+</html>
