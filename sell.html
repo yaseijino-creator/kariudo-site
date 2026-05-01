@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>捕獲を報告する｜狩人の日常</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Hiragino Kaku Gothic ProN','Noto Sans JP',sans-serif;background:#f5f5f2;color:#222;min-height:100vh}
+header{background:#2D5016;padding:14px 20px 12px;text-align:center;border-bottom:3px solid #C8A030;position:sticky;top:0;z-index:100}
+header .brand{font-size:10px;color:#C8A030;letter-spacing:2px}
+header h1{font-size:20px;font-weight:bold;color:#fff;margin-top:2px}
+header .sub{font-size:11px;color:#a8d878;margin-top:2px}
+.container{max-width:500px;margin:0 auto;padding:16px}
+.back{display:inline-flex;align-items:center;gap:6px;color:#2D5016;font-size:13px;font-weight:bold;text-decoration:none;margin-bottom:16px}
+.note{background:#e8f5d0;border:1px solid #4A7C28;border-radius:10px;padding:12px 14px;font-size:12px;color:#2D5016;line-height:1.75;margin-bottom:20px}
+.note strong{display:block;font-size:14px;margin-bottom:4px}
+.form-card{background:#fff;border-radius:12px;padding:16px;margin-bottom:12px;border:1px solid #e0e0d8}
+.form-group{margin-bottom:16px}
+.form-group:last-child{margin-bottom:0}
+label{display:block;font-size:13px;font-weight:bold;color:#2D5016;margin-bottom:6px}
+label .req{color:#C0392B;margin-left:4px}
+select,input[type=text],input[type=number],textarea{width:100%;border:2px solid #ddd;border-radius:8px;padding:12px;font-size:15px;color:#222;background:#fff;-webkit-appearance:none;appearance:none}
+select:focus,input:focus,textarea:focus{outline:none;border-color:#4A7C28}
+select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%234A7C28' stroke-width='2' fill='none'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 12px center;padding-right:36px}
+textarea{resize:vertical;min-height:80px}
+.hint{font-size:11px;color:#888;margin-top:4px}
+.btn-send{display:block;width:100%;background:#2D5016;color:#fff;border:none;border-radius:12px;padding:18px;font-size:17px;font-weight:bold;cursor:pointer;margin-top:8px;text-align:center}
+.btn-send:active{background:#1a3009}
+.warn-kukuri{background:#fff9e6;border:1px solid #E8A020;border-radius:8px;padding:10px 12px;font-size:12px;color:#7a5a00;margin-top:6px}
+footer{background:#2D5016;color:#a8c890;font-size:11px;text-align:center;padding:16px;margin-top:24px}
+</style>
+</head>
+<body>
+<header>
+  <div class="brand">狩人の日常 猟師専用ライン</div>
+  <h1>捕獲を報告する</h1>
+  <div class="sub">入力後LINEで送信してください</div>
+</header>
+<div class="container">
+  <a href="index.html" class="back">← 売る手順に戻る</a>
+
+  <div class="note">
+    <strong>📋 入力してLINEで送るだけ</strong>
+    フォームに入力して「LINEで報告する」を押すと、ラインのチャット画面が開きます。そのまま送信してください。<br>
+    <span style="font-size:11px;margin-top:4px;display:block">※写真とマップのピンは送信後に続けて送ってください</span>
+  </div>
+
+  <form id="reportForm">
+    <div class="form-card">
+      <div class="form-group">
+        <label>獲物の種類<span class="req">必須</span></label>
+        <select id="species" required>
+          <option value="">選んでください</option>
+          <option value="猪（イノシシ）">猪（イノシシ）</option>
+          <option value="鹿（シカ）">鹿（シカ）</option>
+          <option value="日本穴熊">日本穴熊</option>
+          <option value="その他">その他</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>性別<span class="req">必須</span></label>
+        <select id="gender" required>
+          <option value="">選んでください</option>
+          <option value="メス">メス</option>
+          <option value="オス">オス</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>推定重量（kg）<span class="req">必須</span></label>
+        <input type="number" id="weight" placeholder="例：45" min="1" max="999" required>
+      </div>
+    </div>
+
+    <div class="form-card">
+      <div class="form-group">
+        <label>罠の種類<span class="req">必須</span></label>
+        <select id="trap" required>
+          <option value="">選んでください</option>
+          <option value="箱わな">箱わな</option>
+          <option value="括りわな">括りわな（※買取価格が20%引きになります）</option>
+          <option value="銃猟">銃猟</option>
+          <option value="有害駆除">有害駆除</option>
+          <option value="その他">その他</option>
+        </select>
+        <div class="warn-kukuri" id="kukuriWarn" style="display:none">
+          ⚠️ 括りわなの場合、買取価格が<strong>20%引き</strong>になります
+        </div>
+      </div>
+      <div class="form-group">
+        <label>捕獲日時<span class="req">必須</span></label>
+        <input type="text" id="datetime" placeholder="例：5月1日 午前9時ごろ" required>
+      </div>
+      <div class="form-group">
+        <label>捕獲場所（大まかな地名でOK）<span class="req">必須</span></label>
+        <input type="text" id="location" placeholder="例：○○市 △△地区の山中" required>
+        <div class="hint">※マップのピンは送信後に続けて送ってください</div>
+      </div>
+    </div>
+
+    <div class="form-card">
+      <div class="form-group">
+        <label>鹿の場合：ツノの状態</label>
+        <select id="antler">
+          <option value="">（猪・穴熊の場合は選択不要）</option>
+          <option value="ツノあり・状態良好">ツノあり・状態良好</option>
+          <option value="ツノあり・先端欠けあり">ツノあり・先端欠けあり</option>
+          <option value="ツノなし">ツノなし</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>補足・その他</label>
+        <textarea id="notes" placeholder="気になる点、有害駆除の場合の尻尾の有無など"></textarea>
+      </div>
+    </div>
+
+    <button type="submit" class="btn-send">📱 LINEで報告する</button>
+    <div style="text-align:center;font-size:11px;color:#888;margin-top:10px">
+      タップするとLINEが開きます。そのまま送信してください。
+    </div>
+  </form>
+</div>
+
+<footer>
+  <p>狩人の日常 猟師専用ライン @010vvmsj</p>
+</footer>
+
+<script>
+// 括りわな警告
+document.getElementById('trap').addEventListener('change', function(){
+  const warn = document.getElementById('kukuriWarn');
+  warn.style.display = this.value.includes('括り') ? 'block' : 'none';
+});
+
+// フォーム送信
+document.getElementById('reportForm').addEventListener('submit', function(e){
+  e.preventDefault();
+  const species  = document.getElementById('species').value;
+  const gender   = document.getElementById('gender').value;
+  const weight   = document.getElementById('weight').value;
+  const trap     = document.getElementById('trap').value;
+  const datetime = document.getElementById('datetime').value;
+  const location = document.getElementById('location').value;
+  const antler   = document.getElementById('antler').value;
+  const notes    = document.getElementById('notes').value;
+
+  if(!species||!gender||!weight||!trap||!datetime||!location){
+    alert('必須項目を入力してください');
+    return;
+  }
+
+  let msg = '【捕獲報告】\n';
+  msg += '種類：' + species + '\n';
+  msg += '性別：' + gender + '\n';
+  msg += '重さ：約' + weight + 'kg\n';
+  msg += '罠：' + trap + '\n';
+  msg += '日時：' + datetime + '\n';
+  msg += '場所：' + location + '\n';
+  if(antler) msg += 'ツノ：' + antler + '\n';
+  if(notes)  msg += '補足：' + notes + '\n';
+  msg += '※写真とマップのピンは続けて送ります';
+
+  const lineUrl = 'https://line.me/R/oaMessage/@010vvmsj/?text=' + encodeURIComponent(msg);
+  window.open(lineUrl, '_blank');
+});
+</script>
+</body>
+</html>
