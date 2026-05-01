@@ -12,9 +12,12 @@ header .brand{font-size:10px;color:#C8A030;letter-spacing:2px}
 header h1{font-size:18px;font-weight:bold;color:#fff;margin-top:2px}
 header .sub{font-size:11px;color:#a8d878;margin-top:2px}
 .container{max-width:500px;margin:0 auto;padding:16px}
-.nav{display:flex;gap:8px;margin-bottom:20px}
-.nav a{flex:1;padding:10px 4px;text-align:center;border-radius:8px;font-size:12px;font-weight:bold;text-decoration:none;border:2px solid #2D5016;color:#2D5016;background:#fff}
+.nav{display:flex;gap:6px;margin-bottom:20px;overflow-x:auto;-webkit-overflow-scrolling:touch;padding-bottom:4px;scrollbar-width:none}
+.nav::-webkit-scrollbar{display:none}
+.nav a{flex:0 0 auto;padding:9px 12px;text-align:center;border-radius:8px;font-size:11px;font-weight:bold;text-decoration:none;border:2px solid #2D5016;color:#2D5016;background:#fff;white-space:nowrap}
 .nav a.active{background:#2D5016;color:#fff}
+.nav a.sell{border-color:#C8A030;color:#7a5500;background:#fffbe6}
+.nav a.sell.active{background:#C8A030;color:#1a3009;border-color:#C8A030}
 .section{background:#fff;border-radius:12px;margin-bottom:16px;overflow:hidden;border:1px solid #e0e0d8}
 .section-hdr{background:#2D5016;color:#fff;padding:12px 16px;font-size:15px;font-weight:bold}
 .section-hdr span{color:#C8A030;font-size:12px;font-weight:normal}
@@ -49,7 +52,8 @@ footer a{color:#C8A030;text-decoration:none;font-weight:bold;display:block;margi
 </header>
 <div class="container">
   <nav class="nav">
-    <a href="index.html">買取の流れ</a>
+    <a href="index.html">売る手順</a>
+    <a href="sell.html" class="sell">📋 捕獲を報告</a>
     <a href="prices.html" class="active">買取価格表</a>
     <a href="reservation.html">加工場の予約</a>
   </nav>
@@ -59,60 +63,31 @@ footer a{color:#C8A030;text-decoration:none;font-weight:bold;display:block;margi
     例）300円/kg → 240円/kg　200円/kg → 160円/kg
   </div>
 
-  <!-- 猪 -->
   <div class="section">
     <div class="section-hdr">猪（イノシシ）<span>　生体 円/kg</span></div>
     <table>
       <tr><th>性別</th><th>時期</th><th>買取価格</th></tr>
-      <tr>
-        <td>メス</td>
-        <td><span class="tag-best">最高品質期</span><span class="season">11月〜2月</span></td>
-        <td><span class="price">300円/kg</span></td>
-      </tr>
-      <tr>
-        <td>メス</td>
-        <td><span class="tag-mid">買取期</span><span class="season">3〜4月</span></td>
-        <td><span class="price">200円/kg</span></td>
-      </tr>
-      <tr>
-        <td>オス</td>
-        <td><span class="tag-best">最高品質期</span><span class="season">11〜12月</span></td>
-        <td><span class="price">300円/kg</span></td>
-      </tr>
-      <tr>
-        <td>オス</td>
-        <td>発情期〜夏<span class="season">1〜4月</span></td>
-        <td><span class="price zero">買取なし</span></td>
-      </tr>
-      <tr>
-        <td>全性別</td>
-        <td><span class="tag-ok">引き取り可</span><span class="season">5〜10月</span></td>
-        <td><span class="price free">無料引き取り</span></td>
-      </tr>
+      <tr><td>メス</td><td><span class="tag-best">最高品質期</span><span class="season">11月〜2月</span></td><td><span class="price">300円/kg</span></td></tr>
+      <tr><td>メス</td><td><span class="tag-mid">買取期</span><span class="season">3〜4月</span></td><td><span class="price">200円/kg</span></td></tr>
+      <tr><td>オス</td><td><span class="tag-best">最高品質期</span><span class="season">11〜12月</span></td><td><span class="price">300円/kg</span></td></tr>
+      <tr><td>オス</td><td>発情期〜夏<span class="season">1〜4月</span></td><td><span class="price zero">買取なし</span></td></tr>
+      <tr><td>全性別</td><td><span class="tag-ok">引き取り可</span><span class="season">5〜10月</span></td><td><span class="price free">無料引き取り</span></td></tr>
     </table>
     <div style="padding:10px 14px;font-size:11px;color:#888;border-top:1px solid #f0f0ea">
       ※ 5〜10月は有害駆除で捕獲した場合のみ無料引き取り。通常の狩猟は買取なし。
     </div>
   </div>
 
-  <!-- 鹿 -->
   <div class="section">
     <div class="section-hdr">鹿（シカ）<span>　生体 円/kg ＋ ツノ加算</span></div>
     <div class="info-box">
       <strong>ツノの段数について</strong>
-      段数 ＝ 枝分かれの数で数えます。<br>
-      例）枝が3本 → 3段 → +3,000円
+      段数 ＝ 枝分かれの数で数えます。例）枝が3本 → 3段 → +3,000円
     </div>
     <table>
       <tr><th>条件</th><th>買取価格</th></tr>
-      <tr>
-        <td style="text-align:left;padding-left:14px">毛皮良（全性別）</td>
-        <td><span class="price">50円/kg</span></td>
-      </tr>
-      <tr>
-        <td style="text-align:left;padding-left:14px">ツノ加算（毛皮良のオス）</td>
-        <td><span class="price">+1,000円/段</span></td>
-      </tr>
+      <tr><td style="text-align:left;padding-left:14px">毛皮良（全性別）</td><td><span class="price">50円/kg</span></td></tr>
+      <tr><td style="text-align:left;padding-left:14px">ツノ加算（毛皮良のオス）</td><td><span class="price">+1,000円/段</span></td></tr>
     </table>
     <div style="padding:10px 14px;font-size:11px;color:#888;border-top:1px solid #f0f0ea">
       ※ 毛皮・ツノの状態が条件に満たない場合は要相談<br>
@@ -120,26 +95,16 @@ footer a{color:#C8A030;text-decoration:none;font-weight:bold;display:block;margi
     </div>
   </div>
 
-  <!-- 穴熊 -->
   <div class="section">
     <div class="section-hdr">日本穴熊（アナグマ）<span>　円/頭（固定）</span></div>
     <table>
       <tr><th>時期</th><th>買取価格</th></tr>
-      <tr>
-        <td><span class="tag-best">買取期</span><span class="season">10〜12月</span></td>
-        <td><span class="price">2,000円/頭</span></td>
-      </tr>
-      <tr>
-        <td><span class="tag-ok">買取停止</span><span class="season">1〜9月</span></td>
-        <td><span class="price zero">買取なし</span></td>
-      </tr>
+      <tr><td><span class="tag-best">買取期</span><span class="season">10〜12月</span></td><td><span class="price">2,000円/頭</span></td></tr>
+      <tr><td><span class="tag-ok">買取停止</span><span class="season">1〜9月</span></td><td><span class="price zero">買取なし</span></td></tr>
     </table>
-    <div style="padding:10px 14px;font-size:11px;color:#888;border-top:1px solid #f0f0ea">
-      ※ 肉＋毛皮目的・冬毛最良
-    </div>
+    <div style="padding:10px 14px;font-size:11px;color:#888;border-top:1px solid #f0f0ea">※ 肉＋毛皮目的・冬毛最良</div>
   </div>
 
-  <!-- 有害駆除 -->
   <div class="harm">
     <strong>🏛️ 有害駆除の獲物について</strong>
     行政への証拠として必要な<strong style="color:#C0392B">尻尾の提出</strong>が必要な場合：<br>
@@ -148,7 +113,6 @@ footer a{color:#C8A030;text-decoration:none;font-weight:bold;display:block;margi
     どちらでも対応可能です。事前にご相談ください。
   </div>
 
-  <!-- 振込 -->
   <div class="warn">
     <strong style="display:block;margin-bottom:6px;font-weight:bold">振込について</strong>
     振込は毎月末日に一括でご登録の口座へ振込みます。<br>
