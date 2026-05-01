@@ -12,36 +12,32 @@ header .brand{font-size:10px;color:#C8A030;letter-spacing:2px}
 header h1{font-size:18px;font-weight:bold;color:#fff;margin-top:2px}
 header .sub{font-size:11px;color:#a8d878;margin-top:2px}
 .container{max-width:500px;margin:0 auto;padding:16px}
-.nav{display:flex;gap:8px;margin-bottom:16px}
-.nav a{flex:1;padding:10px 4px;text-align:center;border-radius:8px;font-size:12px;font-weight:bold;text-decoration:none;border:2px solid #2D5016;color:#2D5016;background:#fff}
+.nav{display:flex;gap:6px;margin-bottom:20px;overflow-x:auto;-webkit-overflow-scrolling:touch;padding-bottom:4px;scrollbar-width:none}
+.nav::-webkit-scrollbar{display:none}
+.nav a{flex:0 0 auto;padding:9px 12px;text-align:center;border-radius:8px;font-size:11px;font-weight:bold;text-decoration:none;border:2px solid #2D5016;color:#2D5016;background:#fff;white-space:nowrap}
 .nav a.active{background:#2D5016;color:#fff}
-
-/* メインの手順 */
-.main-flow{background:#fff;border-radius:14px;padding:20px 16px;margin-bottom:16px;border:2px solid #2D5016;text-align:center}
-.main-flow h2{font-size:20px;font-weight:bold;color:#2D5016;margin-bottom:8px}
-.main-flow p{font-size:13px;color:#555;line-height:1.7}
-.steps{display:flex;justify-content:center;align-items:center;gap:8px;margin:16px 0;flex-wrap:wrap}
-.step-box{background:#2D5016;color:#fff;border-radius:10px;padding:10px 14px;font-size:13px;font-weight:bold;text-align:center;min-width:80px}
-.step-box .num{font-size:10px;opacity:0.7;display:block;margin-bottom:2px}
-.arrow-r{font-size:20px;color:#C8A030;font-weight:bold}
-
-/* テンプレートカード */
-.tmpl-card{background:#fff;border-radius:12px;margin-bottom:14px;border:1px solid #e0e0d8;overflow:hidden}
-.tmpl-hdr{background:#4A7C28;color:#fff;padding:10px 14px;font-size:13px;font-weight:bold;display:flex;align-items:center;gap:6px}
-.tmpl-body{padding:12px 14px;position:relative}
-.tmpl-text{font-size:13px;color:#2D5016;line-height:1.9;white-space:pre-line;background:#f0f8e8;border-radius:8px;padding:12px 14px;margin-bottom:10px;font-family:monospace}
-.copy-btn{width:100%;background:#2D5016;color:#fff;border:none;border-radius:8px;padding:12px;font-size:14px;font-weight:bold;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px;transition:background 0.2s}
-.copy-btn:active{background:#1a3009}
-.copy-btn.copied{background:#C8A030}
-
-/* ルール */
-.rules{background:#fff;border-radius:12px;margin-bottom:16px;border:1px solid #e0e0d8;overflow:hidden}
-.rules-hdr{background:#2D5016;color:#fff;padding:10px 14px;font-size:13px;font-weight:bold}
+.nav a.sell{border-color:#C8A030;color:#7a5500;background:#fffbe6}
+.nav a.sell.active{background:#C8A030;color:#1a3009;border-color:#C8A030}
+.note{background:#e8f5d0;border:1px solid #4A7C28;border-radius:10px;padding:12px 14px;font-size:12px;color:#2D5016;line-height:1.75;margin-bottom:20px}
+.note strong{display:block;font-size:14px;margin-bottom:4px}
+.form-card{background:#fff;border-radius:12px;padding:16px;margin-bottom:12px;border:1px solid #e0e0d8}
+.form-group{margin-bottom:16px}
+.form-group:last-child{margin-bottom:0}
+label{display:block;font-size:13px;font-weight:bold;color:#2D5016;margin-bottom:6px}
+label .req{color:#C0392B;margin-left:4px}
+select,input[type=text],textarea{width:100%;border:2px solid #ddd;border-radius:8px;padding:12px;font-size:15px;color:#222;background:#fff;-webkit-appearance:none;appearance:none}
+select:focus,input:focus,textarea:focus{outline:none;border-color:#4A7C28}
+select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%234A7C28' stroke-width='2' fill='none'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 12px center;padding-right:36px}
+.time-row{display:grid;grid-template-columns:1fr auto 1fr;gap:8px;align-items:center}
+.time-sep{text-align:center;font-weight:bold;color:#2D5016}
+.btn-send{display:block;width:100%;background:#2D5016;color:#fff;border:none;border-radius:12px;padding:18px;font-size:17px;font-weight:bold;cursor:pointer;margin-top:8px;text-align:center}
+.btn-send:active{background:#1a3009}
+.rules{background:#fff;border-radius:12px;margin-top:16px;border:1px solid #e0e0d8;overflow:hidden}
+.rules-hdr{background:#4A7C28;color:#fff;padding:10px 14px;font-size:13px;font-weight:bold}
 .rule{display:flex;gap:10px;padding:11px 14px;border-bottom:1px solid #f0f0ea;font-size:13px;align-items:center}
 .rule:last-child{border-bottom:none}
 .rule-num{width:22px;height:22px;border-radius:50%;background:#2D5016;color:#fff;font-size:11px;font-weight:bold;display:flex;align-items:center;justify-content:center;flex-shrink:0}
-
-footer{background:#2D5016;color:#a8c890;font-size:11px;text-align:center;padding:20px 16px;margin-top:8px}
+footer{background:#2D5016;color:#a8c890;font-size:11px;text-align:center;padding:16px;margin-top:24px}
 footer a{color:#C8A030;text-decoration:none;font-weight:bold;display:block;margin-top:8px;background:#06c755;color:#fff;padding:12px;border-radius:24px;font-size:14px}
 </style>
 </head>
@@ -49,63 +45,86 @@ footer a{color:#C8A030;text-decoration:none;font-weight:bold;display:block;margi
 <header>
   <div class="brand">狩人の日常 猟師専用ライン</div>
   <h1>加工場の予約</h1>
-  <div class="sub">グループに報告するだけ</div>
+  <div class="sub">入力してグループに報告するだけ</div>
 </header>
 <div class="container">
   <nav class="nav">
-    <a href="index.html">買取の流れ</a>
+    <a href="index.html">売る手順</a>
+    <a href="sell.html" class="sell">📋 捕獲を報告</a>
     <a href="prices.html">買取価格表</a>
     <a href="reservation.html" class="active">加工場の予約</a>
   </nav>
 
-  <!-- メインの流れ -->
-  <div class="main-flow">
-    <h2>🏭 予約は3ステップだけ</h2>
-    <div class="steps">
-      <div class="step-box"><span class="num">STEP 1</span>グループを開く</div>
-      <div class="arrow-r">→</div>
-      <div class="step-box"><span class="num">STEP 2</span>開始を投稿</div>
-      <div class="arrow-r">→</div>
-      <div class="step-box"><span class="num">STEP 3</span>終了を投稿</div>
-    </div>
-    <p>フォームや予約ページは不要。<br>加工場メンバーグループに投稿するだけ。<br>グループのタイムラインを見れば誰が使っているかわかります。</p>
+  <div class="note">
+    <strong>🏭 使い方はシンプル</strong>
+    フォームに入力して「グループに報告する」を押すと、報告文が作られます。<br>
+    加工場グループに貼り付けて送信してください。<br>
+    <span style="font-size:11px;margin-top:4px;display:block">（グループのリンクがあれば自動で開きます）</span>
   </div>
 
-  <!-- 使用開始テンプレート -->
-  <div class="tmpl-card">
-    <div class="tmpl-hdr">🟢 使い始めるとき（コピーして送る）</div>
-    <div class="tmpl-body">
-      <div class="tmpl-text" id="start-tmpl">【加工場 使用開始🟢】
-名前：
-施設：加工場 / 冷蔵庫 / 冷凍庫
-日時：　月　日（　）　時〜
-目的：</div>
-      <button class="copy-btn" onclick="copyText('start-tmpl', this)">
-        📋 このテンプレートをコピー
-      </button>
+  <form id="reserveForm">
+    <div class="form-card">
+      <div class="form-group">
+        <label>あなたの名前<span class="req">必須</span></label>
+        <input type="text" id="name" placeholder="例：山田" required>
+      </div>
+      <div class="form-group">
+        <label>使用する施設<span class="req">必須</span></label>
+        <select id="facility" required>
+          <option value="">選んでください</option>
+          <option value="加工場">加工場</option>
+          <option value="冷蔵庫">冷蔵庫</option>
+          <option value="冷凍庫">冷凍庫</option>
+          <option value="加工場＋冷蔵庫">加工場＋冷蔵庫</option>
+          <option value="加工場＋冷凍庫">加工場＋冷凍庫</option>
+          <option value="全て">全て（加工場・冷蔵・冷凍）</option>
+        </select>
+      </div>
     </div>
-  </div>
-
-  <!-- 使用終了テンプレート -->
-  <div class="tmpl-card">
-    <div class="tmpl-hdr">🔴 終わったとき（コピーして送る）</div>
-    <div class="tmpl-body">
-      <div class="tmpl-text" id="end-tmpl">【加工場 使用終了🔴】
-名前：
-終了時間：　時
-清掃：済み ✅</div>
-      <button class="copy-btn" onclick="copyText('end-tmpl', this)">
-        📋 このテンプレートをコピー
-      </button>
+    <div class="form-card">
+      <div class="form-group">
+        <label>使用希望日<span class="req">必須</span></label>
+        <input type="text" id="date" placeholder="例：5月2日（土）" required>
+      </div>
+      <div class="form-group">
+        <label>使用時間<span class="req">必須</span></label>
+        <div class="time-row">
+          <input type="text" id="startTime" placeholder="例：10:00">
+          <div class="time-sep">〜</div>
+          <input type="text" id="endTime" placeholder="例：14:00">
+        </div>
+      </div>
+      <div class="form-group">
+        <label>使用目的<span class="req">必須</span></label>
+        <select id="purpose" required>
+          <option value="">選んでください</option>
+          <option value="猪の解体">猪の解体</option>
+          <option value="鹿の解体・皮はぎ">鹿の解体・皮はぎ</option>
+          <option value="穴熊の処理">穴熊の処理</option>
+          <option value="冷蔵庫への一時保管">冷蔵庫への一時保管</option>
+          <option value="冷凍庫への保管">冷凍庫への保管</option>
+          <option value="その他">その他</option>
+        </select>
+      </div>
     </div>
-  </div>
+    <div class="form-card">
+      <div class="form-group">
+        <label>補足・連絡事項</label>
+        <input type="text" id="notes" placeholder="例：急遽今日使えますか？など">
+      </div>
+    </div>
+    <button type="submit" class="btn-send">📤 グループに報告する</button>
+    <div style="text-align:center;font-size:11px;color:#888;margin-top:10px">
+      ボタンを押すと報告文をコピーします。グループに貼り付けて送信してください。
+    </div>
+  </form>
 
   <!-- ルール -->
   <div class="rules">
-    <div class="rules-hdr">📌 4つのルール</div>
+    <div class="rules-hdr">📌 使用ルール（4つだけ）</div>
     <div class="rule"><div class="rule-num">1</div>開始・終了を必ずグループに報告する</div>
     <div class="rule"><div class="rule-num">2</div>使い終わったら清掃してから出る</div>
-    <div class="rule"><div class="rule-num">3</div>他の人の投稿を確認してからダブらないようにする</div>
+    <div class="rule"><div class="rule-num">3</div>他の人の投稿を確認してダブらないようにする</div>
     <div class="rule"><div class="rule-num">4</div>壊れた・おかしいと思ったら管理者へ連絡</div>
   </div>
 </div>
@@ -116,29 +135,33 @@ footer a{color:#C8A030;text-decoration:none;font-weight:bold;display:block;margi
 </footer>
 
 <script>
-function copyText(id, btn) {
-  const text = document.getElementById(id).textContent;
-  navigator.clipboard.writeText(text).then(() => {
-    const orig = btn.innerHTML;
-    btn.innerHTML = '✅ コピーしました！';
-    btn.classList.add('copied');
-    setTimeout(() => {
-      btn.innerHTML = orig;
-      btn.classList.remove('copied');
-    }, 2000);
-  }).catch(() => {
-    // フォールバック
-    const ta = document.createElement('textarea');
-    ta.value = text;
-    document.body.appendChild(ta);
-    ta.select();
-    document.execCommand('copy');
-    document.body.removeChild(ta);
-    btn.innerHTML = '✅ コピーしました！';
-    btn.classList.add('copied');
-    setTimeout(() => { btn.innerHTML = '📋 このテンプレートをコピー'; btn.classList.remove('copied'); }, 2000);
+document.getElementById('reserveForm').addEventListener('submit',function(e){
+  e.preventDefault();
+  const name=document.getElementById('name').value;
+  const facility=document.getElementById('facility').value;
+  const date=document.getElementById('date').value;
+  const startTime=document.getElementById('startTime').value;
+  const endTime=document.getElementById('endTime').value;
+  const purpose=document.getElementById('purpose').value;
+  const notes=document.getElementById('notes').value;
+  if(!name||!facility||!date||!startTime||!purpose){alert('必須項目を入力してください');return;}
+  let msg='【加工場 使用開始🟢】\n';
+  msg+='名前：'+name+'\n';
+  msg+='施設：'+facility+'\n';
+  msg+='日時：'+date+'　'+startTime+'〜'+(endTime||'未定')+'\n';
+  msg+='目的：'+purpose+'\n';
+  if(notes) msg+='補足：'+notes+'\n';
+  msg+='---\n終了時は「使用終了🔴 清掃済み」と投稿します';
+  // クリップボードにコピー
+  navigator.clipboard.writeText(msg).then(()=>{
+    alert('✅ 報告文をコピーしました！\n\n加工場グループを開いて貼り付けてください。');
+  }).catch(()=>{
+    const ta=document.createElement('textarea');
+    ta.value=msg; document.body.appendChild(ta); ta.select();
+    document.execCommand('copy'); document.body.removeChild(ta);
+    alert('✅ 報告文をコピーしました！\n\n加工場グループを開いて貼り付けてください。');
   });
-}
+});
 </script>
 </body>
 </html>
