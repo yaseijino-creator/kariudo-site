@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>買取価格表｜狩人の日常</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Hiragino Kaku Gothic ProN','Noto Sans JP',sans-serif;background:#f5f5f2;color:#222;min-height:100vh}
+header{background:#2D5016;padding:14px 20px 12px;text-align:center;border-bottom:3px solid #C8A030;position:sticky;top:0;z-index:100}
+header .brand{font-size:10px;color:#C8A030;letter-spacing:2px}
+header h1{font-size:18px;font-weight:bold;color:#fff;margin-top:2px}
+header .sub{font-size:11px;color:#a8d878;margin-top:2px}
+.container{max-width:500px;margin:0 auto;padding:16px}
+.nav{display:flex;gap:8px;margin-bottom:20px}
+.nav a{flex:1;padding:10px 4px;text-align:center;border-radius:8px;font-size:12px;font-weight:bold;text-decoration:none;border:2px solid #2D5016;color:#2D5016;background:#fff}
+.nav a.active{background:#2D5016;color:#fff}
+.section{background:#fff;border-radius:12px;margin-bottom:16px;overflow:hidden;border:1px solid #e0e0d8}
+.section-hdr{background:#2D5016;color:#fff;padding:12px 16px;font-size:15px;font-weight:bold}
+.section-hdr span{color:#C8A030}
+table{width:100%;border-collapse:collapse;font-size:13px}
+th{background:#4A7C28;color:#fff;padding:8px 10px;text-align:center;font-weight:bold;font-size:12px}
+td{padding:10px;border-bottom:1px solid #f0f0ea;text-align:center;vertical-align:middle}
+tr:last-child td{border-bottom:none}
+tr:nth-child(even) td{background:#f8f8f4}
+.price{font-weight:bold;font-size:15px;color:#2D5016}
+.price.zero{color:#C0392B}
+.season{font-size:11px;color:#666}
+.tag-best{background:#2D5016;color:#fff;font-size:10px;padding:2px 6px;border-radius:4px;display:inline-block}
+.tag-stop{background:#C0392B;color:#fff;font-size:10px;padding:2px 6px;border-radius:4px;display:inline-block}
+.warn{background:#fffbe6;border:1px solid #E8A020;border-radius:8px;padding:12px 14px;margin-top:12px;font-size:12px;color:#7a5a00;line-height:1.75}
+.warn strong{font-weight:bold;color:#C8A030}
+.kukuri{background:#fff9e6;border:2px solid #E8A020;border-radius:8px;padding:12px 16px;margin:0 0 12px;font-size:12px;color:#7a5a00;line-height:1.75}
+.kukuri strong{display:block;font-size:14px;font-weight:bold;color:#E8A020;margin-bottom:4px}
+footer{background:#2D5016;color:#a8c890;font-size:11px;text-align:center;padding:20px 16px;margin-top:24px}
+footer a{color:#C8A030;text-decoration:none;font-weight:bold;display:block;margin-top:8px;background:#06c755;color:#fff;padding:12px;border-radius:24px;font-size:14px}
+</style>
+</head>
+<body>
+<header>
+  <div class="brand">狩人の日常 猟師専用ライン</div>
+  <h1>買取価格表</h1>
+  <div class="sub">生体 円/kg（穴熊のみ円/頭）</div>
+</header>
+<div class="container">
+  <nav class="nav">
+    <a href="index.html">買取の流れ</a>
+    <a href="prices.html" class="active">買取価格表</a>
+    <a href="reservation.html">加工場の予約</a>
+  </nav>
+  <div class="kukuri">
+    <strong>⚠️ 括りわなの場合は全て20%引き</strong>
+    例）300円/kg → 240円/kg　100円/kg → 80円/kg
+  </div>
+  <div class="section">
+    <div class="section-hdr">猪（イノシシ）<span>　生体 円/kg</span></div>
+    <table>
+      <tr><th>性別</th><th>時期</th><th>買取価格</th></tr>
+      <tr><td>メス・オス</td><td><span class="tag-best">最高品質期</span><br><span class="season">11〜12月</span></td><td><span class="price">300円/kg</span></td></tr>
+      <tr><td>メス</td><td>発情期<br><span class="season">1〜4月</span></td><td><span class="price">200円/kg</span></td></tr>
+      <tr><td>オス</td><td>発情期<br><span class="season">1〜4月</span></td><td><span class="price zero">買取なし</span></td></tr>
+      <tr><td>全性別</td><td><span class="tag-stop">買取停止</span><br><span class="season">5〜10月</span></td><td><span class="price zero">買取なし</span></td></tr>
+    </table>
+  </div>
+  <div class="section">
+    <div class="section-hdr">鹿（シカ）<span>　生体 円/kg</span></div>
+    <table>
+      <tr><th>性別・状態</th><th>時期</th><th>買取価格</th></tr>
+      <tr><td>メス（毛皮良）</td><td>通年</td><td><span class="price">50円/kg</span></td></tr>
+      <tr><td>オス（ツノ良・毛皮良）</td><td>通年</td><td><span class="price">100円/kg<br><small style="font-weight:normal;color:#666">＋ツノ代別途</small></span></td></tr>
+    </table>
+    <div style="padding:10px 14px;font-size:11px;color:#888;border-top:1px solid #f0f0ea">※ 毛皮・ツノの状態が条件に満たない場合は要相談</div>
+  </div>
+  <div class="section">
+    <div class="section-hdr">日本穴熊（アナグマ）<span>　円/頭</span></div>
+    <table>
+      <tr><th>対象</th><th>時期</th><th>買取価格</th></tr>
+      <tr><td>全個体</td><td><span class="tag-best">買取期</span><br><span class="season">10〜12月</span></td><td><span class="price">2,000円/頭</span></td></tr>
+      <tr><td>全個体</td><td><span class="tag-stop">買取停止</span><br><span class="season">1〜9月</span></td><td><span class="price zero">買取なし</span></td></tr>
+    </table>
+    <div style="padding:10px 14px;font-size:11px;color:#888;border-top:1px solid #f0f0ea">※ 肉＋毛皮目的・冬毛最良</div>
+  </div>
+  <div class="warn">
+    <strong style="display:block;margin-bottom:6px">振込について</strong>
+    振込は毎月末日に一括でご登録の口座へ振込みます。<br>
+    振込完了後にラインでご連絡します。<br>
+    口座情報の変更はラインのチャットからご連絡ください。
+  </div>
+</div>
+<footer>
+  <p>狩人の日常 猟師専用ライン</p>
+  <a href="https://line.me/R/ti/p/@010vvmsj">LINEで友達追加する</a>
+</footer>
+</body>
+</html>
