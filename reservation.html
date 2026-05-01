@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>加工場の予約｜狩人の日常</title>
+<title>加工場の予約・空き確認｜狩人の日常</title>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:'Hiragino Kaku Gothic ProN','Noto Sans JP',sans-serif;background:#f5f5f2;color:#222;min-height:100vh}
@@ -12,34 +12,32 @@ header .brand{font-size:10px;color:#C8A030;letter-spacing:2px}
 header h1{font-size:18px;font-weight:bold;color:#fff;margin-top:2px}
 header .sub{font-size:11px;color:#a8d878;margin-top:2px}
 .container{max-width:500px;margin:0 auto;padding:16px}
-.nav{display:flex;gap:8px;margin-bottom:20px}
+.nav{display:flex;gap:8px;margin-bottom:16px}
 .nav a{flex:1;padding:10px 4px;text-align:center;border-radius:8px;font-size:12px;font-weight:bold;text-decoration:none;border:2px solid #2D5016;color:#2D5016;background:#fff}
 .nav a.active{background:#2D5016;color:#fff}
-.btn-green{display:block;width:100%;background:#2D5016;color:#fff;text-align:center;padding:16px;border-radius:12px;font-size:16px;font-weight:bold;text-decoration:none;margin-bottom:12px}
-.btn-outline{display:block;width:100%;background:#fff;color:#2D5016;text-align:center;padding:14px;border-radius:12px;font-size:14px;font-weight:bold;text-decoration:none;margin-bottom:20px;border:2px solid #2D5016}
-.btn-sub{font-size:11px;font-weight:normal;color:#a8d878;display:block;margin-top:3px}
-.btn-outline .btn-sub{color:#4A7C28}
+/* カレンダー */
+.cal-wrap{background:#fff;border-radius:12px;overflow:hidden;border:1px solid #e0e0d8;margin-bottom:16px}
+.cal-hdr{background:#2D5016;color:#fff;padding:12px 16px;font-size:14px;font-weight:bold;display:flex;justify-content:space-between;align-items:center}
+.cal-hdr span{font-size:11px;color:#a8d878}
+.cal-grid{display:grid;grid-template-columns:80px repeat(7,1fr);font-size:11px}
+.cal-grid .day-hdr{padding:6px 2px;text-align:center;background:#4A7C28;color:#fff;font-weight:bold;font-size:10px}
+.cal-grid .row-label{padding:10px 8px;font-size:12px;font-weight:bold;border-bottom:1px solid #f0f0ea;display:flex;align-items:center;background:#f8f8f4;color:#2D5016}
+.cal-grid .cell{padding:6px 2px;text-align:center;border-bottom:1px solid #f0f0ea;border-left:1px solid #f0f0ea;cursor:pointer;font-size:16px;display:flex;align-items:center;justify-content:center}
+.cell.ok{background:#f8fff8}
+.cell.busy{background:#fff0f0}
+.cell.reserved{background:#fffde8}
+.cell:hover{filter:brightness(0.95)}
+/* 凡例 */
+.legend{display:flex;gap:12px;padding:10px 16px;border-top:1px solid #f0f0ea;font-size:11px;background:#fafafa}
+.legend span{display:flex;align-items:center;gap:4px}
+/* 投稿テンプレート */
 .section{background:#fff;border-radius:12px;margin-bottom:16px;overflow:hidden;border:1px solid #e0e0d8}
-.section-hdr{background:#2D5016;color:#fff;padding:12px 16px;font-size:14px;font-weight:bold;display:flex;align-items:center;gap:8px}
+.section-hdr{background:#2D5016;color:#fff;padding:12px 16px;font-size:14px;font-weight:bold}
 .section-body{padding:14px 16px}
-.step{display:flex;gap:12px;margin-bottom:14px;align-items:flex-start}
-.step:last-child{margin-bottom:0}
-.step-num{width:28px;height:28px;border-radius:50%;background:#2D5016;color:#fff;font-size:13px;font-weight:bold;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px}
-.step-content{flex:1}
-.step-title{font-size:13px;font-weight:bold;margin-bottom:3px}
-.step-desc{font-size:12px;color:#555;line-height:1.65}
-.status-table{width:100%;border-collapse:collapse;font-size:13px}
-.status-table th{background:#4A7C28;color:#fff;padding:8px 10px;text-align:center;font-size:11px}
-.status-table td{padding:10px;border-bottom:1px solid #f0f0ea;text-align:center;font-size:12px}
-.status-ok{color:#2D5016;font-weight:bold}
-.status-busy{color:#C0392B;font-weight:bold}
-.status-reserved{color:#E8A020;font-weight:bold}
-.rule{display:flex;gap:10px;padding:10px 0;border-bottom:1px solid #f0f0ea;font-size:13px;align-items:flex-start}
-.rule:last-child{border-bottom:none}
-.rule-icon{width:24px;height:24px;border-radius:50%;background:#2D5016;color:#fff;font-size:11px;font-weight:bold;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.tmpl{background:#f0f8e8;border-radius:8px;padding:12px 14px;font-size:12px;color:#2D5016;line-height:1.85;white-space:pre-line}
+.tmpl-title{font-size:12px;font-weight:bold;color:#2D5016;margin-bottom:6px}
 .note{background:#fffbe6;border:1px solid #E8A020;border-radius:8px;padding:12px 14px;font-size:12px;color:#7a5a00;line-height:1.75;margin-bottom:16px}
 .note strong{display:block;margin-bottom:4px;font-size:13px}
-.tmpl{background:#f0f8e8;border-radius:8px;padding:12px 14px;font-size:12px;color:#2D5016;line-height:1.75;margin-top:8px;white-space:pre-line}
 footer{background:#2D5016;color:#a8c890;font-size:11px;text-align:center;padding:20px 16px;margin-top:24px}
 footer a{color:#C8A030;text-decoration:none;font-weight:bold;display:block;margin-top:8px;background:#06c755;color:#fff;padding:12px;border-radius:24px;font-size:14px}
 </style>
@@ -47,8 +45,8 @@ footer a{color:#C8A030;text-decoration:none;font-weight:bold;display:block;margi
 <body>
 <header>
   <div class="brand">狩人の日常 猟師専用ライン</div>
-  <h1>加工場の予約・確認</h1>
-  <div class="sub">メンバー専用施設</div>
+  <h1>加工場の空き確認</h1>
+  <div class="sub">直近1週間の使用状況</div>
 </header>
 <div class="container">
   <nav class="nav">
@@ -56,54 +54,131 @@ footer a{color:#C8A030;text-decoration:none;font-weight:bold;display:block;margi
     <a href="prices.html">買取価格表</a>
     <a href="reservation.html" class="active">加工場の予約</a>
   </nav>
-  <a href="https://docs.google.com/forms/d/18oL0q7dW1OFpzmZeNiEnQqG-fhkL_1tTKKytTgstZzA/viewform" target="_blank" class="btn-green">予約申請フォーム<span class="btn-sub">↑ タップして予約申請（Google フォーム）</span></a>
-  <a href="https://docs.google.com/spreadsheets/" class="btn-outline">空き状況を確認する<span class="btn-sub">↑ 現在の予約カレンダー（後で設定）</span></a>
-  <div class="note"><strong>予約の流れ</strong>フォームを送信すると、メンバーグループに通知が届きます。重複がなければそのままご利用いただけます。問題がある場合は管理者からご連絡します。</div>
-  <div class="section">
-    <div class="section-hdr">予約の手順</div>
-    <div class="section-body">
-      <div class="step"><div class="step-num">1</div><div class="step-content"><div class="step-title">空き状況を確認</div><div class="step-desc">上の「空き状況を確認する」ボタンからチェック</div></div></div>
-      <div class="step"><div class="step-num">2</div><div class="step-content"><div class="step-title">予約フォームを送信</div><div class="step-desc">名前・使用希望日時・使用目的を入力して送信</div></div></div>
-      <div class="step"><div class="step-num">3</div><div class="step-content"><div class="step-title">メンバーグループに自動通知</div><div class="step-desc">申請内容がグループに届きます。重複なければそのまま使用可</div></div></div>
-      <div class="step"><div class="step-num">4</div><div class="step-content"><div class="step-title">使用開始・終了を投稿</div><div class="step-desc">使い始めと終わりにグループへ報告</div></div></div>
+
+  <div class="note">
+    <strong>📋 ご利用の手順</strong>
+    使用したい日が空きであれば、<strong>ラインの加工場グループ</strong>に投稿してください。予約フォーム等は不要です。<br>
+    <span style="font-size:11px;margin-top:4px;display:block">※使用開始・終了の報告もグループへお願いします</span>
+  </div>
+
+  <!-- 加工場カレンダー -->
+  <div class="cal-wrap">
+    <div class="cal-hdr">
+      🏭 加工場・設備の使用状況
+      <span id="week-label">今週</span>
+    </div>
+    <div class="cal-grid" id="cal-grid">
+      <!-- JSで生成 -->
+    </div>
+    <div class="legend">
+      <span>🟢 空き</span>
+      <span>🔴 使用中</span>
+      <span>🟡 予約済</span>
     </div>
   </div>
+
+  <!-- グループ投稿テンプレート -->
   <div class="section">
-    <div class="section-hdr">ステータスの見方</div>
-    <table class="status-table">
-      <tr><th>表示</th><th>意味</th></tr>
-      <tr><td><span class="status-ok">✅ 空きあり</span></td><td>誰も使っていない・すぐ使用可</td></tr>
-      <tr><td><span class="status-busy">🟢 使用中</span></td><td>現在誰かが使用中</td></tr>
-      <tr><td><span class="status-reserved">📋 予約済</span></td><td>すでに予約が入っている</td></tr>
-    </table>
-  </div>
-  <div class="section">
-    <div class="section-hdr">使用ルール</div>
+    <div class="section-hdr">📱 グループへの投稿テンプレート</div>
     <div class="section-body">
-      <div class="rule"><div class="rule-icon">1</div><div>使用開始・終了は必ずグループに投稿する</div></div>
-      <div class="rule"><div class="rule-icon">2</div><div>使用後は清掃してから退室する</div></div>
-      <div class="rule"><div class="rule-icon">3</div><div>他のメンバーの予約を確認してから使用する</div></div>
-      <div class="rule"><div class="rule-icon">4</div><div>設備の損傷・異常は速やかに管理者へ連絡</div></div>
-    </div>
-  </div>
-  <div class="section">
-    <div class="section-hdr">グループ投稿テンプレート</div>
-    <div class="section-body">
-      <div style="font-size:12px;font-weight:bold;color:#2D5016;margin-bottom:4px">使用開始のとき</div>
-      <div class="tmpl">【加工場 使用開始🟢】
-〇〇（名前）
-〇月〇日 〇時〜〇時（予定）
+      <div class="tmpl-title">使用開始するとき</div>
+      <div class="tmpl">【使用開始🟢】
+名前：〇〇
+施設：加工場 / 冷蔵庫 / 冷凍庫
+日時：〇月〇日（〇）〇時〜
 目的：〇〇の解体</div>
-      <div style="font-size:12px;font-weight:bold;color:#2D5016;margin:12px 0 4px">使用終了のとき</div>
-      <div class="tmpl">【加工場 使用終了🔴】
-〇〇（名前）
-終了しました。清掃済みです✅</div>
+
+      <div class="tmpl-title" style="margin-top:14px">使用終了するとき</div>
+      <div class="tmpl">【使用終了🔴】
+〇〇です。〇時に終わりました。
+清掃済みです ✅</div>
+    </div>
+  </div>
+
+  <!-- 使用ルール -->
+  <div class="section">
+    <div class="section-hdr">📌 使用ルール（4つだけ）</div>
+    <div class="section-body">
+      <div style="display:flex;flex-direction:column;gap:10px;font-size:13px">
+        <div style="display:flex;gap:10px;align-items:flex-start">
+          <div style="width:24px;height:24px;border-radius:50%;background:#2D5016;color:#fff;font-weight:bold;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:12px">1</div>
+          <div>使用開始・終了をグループに報告する</div>
+        </div>
+        <div style="display:flex;gap:10px;align-items:flex-start">
+          <div style="width:24px;height:24px;border-radius:50%;background:#2D5016;color:#fff;font-weight:bold;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:12px">2</div>
+          <div>使い終わったら清掃してから退室する</div>
+        </div>
+        <div style="display:flex;gap:10px;align-items:flex-start">
+          <div style="width:24px;height:24px;border-radius:50%;background:#2D5016;color:#fff;font-weight:bold;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:12px">3</div>
+          <div>他の人の予定を確認してから使う</div>
+        </div>
+        <div style="display:flex;gap:10px;align-items:flex-start">
+          <div style="width:24px;height:24px;border-radius:50%;background:#2D5016;color:#fff;font-weight:bold;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:12px">4</div>
+          <div>壊れた・おかしいと思ったら管理者へ連絡</div>
+        </div>
+      </div>
     </div>
   </div>
 </div>
+
 <footer>
   <p>狩人の日常 猟師専用ライン</p>
   <a href="https://line.me/R/ti/p/@010vvmsj">LINEで友達追加する</a>
 </footer>
+
+<script>
+// 今週のカレンダーを生成
+const dates = [{"label":"月","date":"4/27"},{"label":"火","date":"4/28"},{"label":"水","date":"4/29"},{"label":"木","date":"4/30"},{"label":"金","date":"5/1"},{"label":"土","date":"5/2"},{"label":"日","date":"5/3"}];
+const facilities = [
+  {label:'🏭 加工場', key:'kakouba'},
+  {label:'❄️ 冷蔵庫', key:'reizoko'},
+  {label:'🧊 冷凍庫', key:'reitoko'},
+];
+
+// デモ状態（管理者が更新する想定）
+// 実際はGoogleスプレッドシートや手動更新で管理
+const status = {
+  kakouba: ['ok','ok','ok','ok','ok','ok','ok'],
+  reizoko: ['ok','ok','ok','ok','ok','ok','ok'],
+  reitoko: ['ok','ok','ok','ok','ok','ok','ok'],
+};
+
+const icons = {ok:'🟢', busy:'🔴', reserved:'🟡'};
+
+const grid = document.getElementById('cal-grid');
+const weekLabel = document.getElementById('week-label');
+
+// 今週の日付範囲を表示
+weekLabel.textContent = dates[0].date + '〜' + dates[6].date;
+
+// ヘッダー行
+const blank = document.createElement('div');
+blank.className='day-hdr';
+blank.style.background='#3D6B1F';
+grid.appendChild(blank);
+dates.forEach(d => {
+  const hdr = document.createElement('div');
+  hdr.className='day-hdr';
+  hdr.innerHTML = `<span>${d.label}</span><br><span style="font-size:9px">${d.date}</span>`;
+  grid.appendChild(hdr);
+});
+
+// 各設備の行
+facilities.forEach(fac => {
+  const label = document.createElement('div');
+  label.className='row-label';
+  label.textContent=fac.label;
+  grid.appendChild(label);
+  
+  dates.forEach((d,i) => {
+    const cell = document.createElement('div');
+    const st = status[fac.key][i];
+    cell.className='cell '+st;
+    cell.textContent=icons[st];
+    cell.title=d.date+' '+fac.label+': '+(st==='ok'?'空き':st==='busy'?'使用中':'予約済');
+    grid.appendChild(cell);
+  });
+});
+</script>
 </body>
 </html>
