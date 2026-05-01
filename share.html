@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>猟師仲間を紹介する｜狩人の日常</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Hiragino Kaku Gothic ProN','Noto Sans JP',sans-serif;background:#f5f5f2;color:#222;min-height:100vh}
+header{background:#2D5016;padding:14px 20px 12px;text-align:center;border-bottom:3px solid #C8A030;position:sticky;top:0;z-index:100}
+header .brand{font-size:10px;color:#C8A030;letter-spacing:2px}
+header h1{font-size:20px;font-weight:bold;color:#fff;margin-top:2px}
+header .sub{font-size:11px;color:#a8d878;margin-top:2px}
+.container{max-width:480px;margin:0 auto;padding:20px 16px 32px}
+.main-card{background:#fff;border-radius:16px;padding:24px 20px;margin-bottom:16px;border:1px solid #e0e0d8;text-align:center}
+.main-card h2{font-size:18px;font-weight:bold;color:#2D5016;margin-bottom:8px}
+.main-card p{font-size:13px;color:#555;line-height:1.75;margin-bottom:20px}
+/* QRコード */
+.qr-wrap{background:#f8f8f5;border-radius:12px;padding:16px;display:inline-block;margin-bottom:20px;border:2px solid #e0e0d8}
+.qr-wrap img{width:200px;height:200px;display:block}
+.qr-label{font-size:11px;color:#888;margin-top:8px}
+/* ワンタップボタン */
+.btn-line{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;background:#06c755;color:#fff;border:none;border-radius:14px;padding:18px 20px;font-size:18px;font-weight:bold;text-decoration:none;margin-bottom:12px;-webkit-tap-highlight-color:transparent}
+.btn-line:active{background:#05a844}
+.btn-line .icon{width:32px;height:32px;background:#fff;border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:20px}
+/* IDコピー */
+.id-row{display:flex;align-items:center;gap:8px;background:#f0f8e8;border:2px solid #4A7C28;border-radius:10px;padding:12px 14px;margin-bottom:12px}
+.id-text{flex:1;font-size:18px;font-weight:bold;color:#2D5016;letter-spacing:1px}
+.btn-copy{background:#2D5016;color:#fff;border:none;border-radius:8px;padding:10px 14px;font-size:13px;font-weight:bold;cursor:pointer;flex-shrink:0}
+.btn-copy:active{background:#1a3009}
+/* リンクコピー */
+.link-row{display:flex;align-items:center;gap:8px;background:#fff;border:2px solid #ddd;border-radius:10px;padding:10px 14px;margin-bottom:20px}
+.link-text{flex:1;font-size:11px;color:#888;word-break:break-all;line-height:1.4}
+.btn-copy2{background:#4A7C28;color:#fff;border:none;border-radius:8px;padding:8px 12px;font-size:12px;font-weight:bold;cursor:pointer;flex-shrink:0;white-space:nowrap}
+/* 使い方 */
+.how-card{background:#fff;border-radius:12px;padding:16px;border:1px solid #e0e0d8}
+.how-card h3{font-size:14px;font-weight:bold;color:#2D5016;margin-bottom:12px}
+.how-item{display:flex;gap:10px;align-items:flex-start;margin-bottom:12px;font-size:13px;color:#333;line-height:1.65}
+.how-item:last-child{margin-bottom:0}
+.how-num{width:26px;height:26px;border-radius:50%;background:#2D5016;color:#fff;font-size:12px;font-weight:bold;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+footer{background:#2D5016;color:#a8c890;font-size:11px;text-align:center;padding:16px;margin-top:24px}
+</style>
+</head>
+<body>
+<header>
+  <div class="brand">狩人の日常 猟師専用ライン</div>
+  <h1>猟師仲間を紹介する</h1>
+  <div class="sub">QRコードまたはリンクをシェアしてください</div>
+</header>
+<div class="container">
+  <div class="main-card">
+    <h2>🦌 仲間に紹介しよう</h2>
+    <p>下のQRコードを見せるか、ワンタップで友達追加ページを開いてもらってください。ラインを追加するだけで捕獲報告や買取が始められます。</p>
+
+    <!-- QRコード -->
+    <div class="qr-wrap">
+      <img src="https://chart.googleapis.com/chart?chs=280x280&cht=qr&chl=https%3A%2F%2Fline.me%2FR%2Fti%2Fp%2F%40010vvmsj&choe=UTF-8&chld=M|1" alt="友達追加QRコード" onerror="this.style.display='none';document.getElementById('qrFallback').style.display='block'">
+      <div id="qrFallback" style="display:none;width:200px;height:200px;display:none;background:#f0f0e8;border-radius:8px;line-height:200px;font-size:12px;color:#888">QR読み込み中...</div>
+    </div>
+    <div class="qr-label">📷 カメラでQRコードを読み取る</div>
+
+    <!-- ワンタップリンク -->
+    <div style="margin-top:20px">
+      <a href="https://line.me/R/ti/p/@010vvmsj" class="btn-line" target="_blank">
+        <div class="icon">💬</div>
+        ワンタップで友達追加ページへ
+      </a>
+    </div>
+
+    <!-- LINE ID表示 -->
+    <div class="id-row">
+      <div class="id-text">@010vvmsj</div>
+      <button class="btn-copy" onclick="copyText('@010vvmsj','idCopyBtn')" id="idCopyBtn">コピー</button>
+    </div>
+
+    <!-- リンクコピー -->
+    <div class="link-row">
+      <div class="link-text">https://line.me/R/ti/p/@010vvmsj</div>
+      <button class="btn-copy2" onclick="copyText('https://line.me/R/ti/p/@010vvmsj','linkCopyBtn')" id="linkCopyBtn">リンクをコピー</button>
+    </div>
+  </div>
+
+  <!-- 使い方 -->
+  <div class="how-card">
+    <h3>📱 紹介のしかた</h3>
+    <div class="how-item">
+      <div class="how-num">1</div>
+      <div><strong>QRコードを見せる</strong><br>仲間のスマホで画面のQRコードを読み取ってもらう</div>
+    </div>
+    <div class="how-item">
+      <div class="how-num">2</div>
+      <div><strong>ワンタップリンクを送る</strong><br>「ワンタップで友達追加ページへ」ボタンを長押しまたはシェアして仲間に送る</div>
+    </div>
+    <div class="how-item">
+      <div class="how-num">3</div>
+      <div><strong>LINEのIDをコピーして教える</strong><br>ラインの友だち追加→ID検索で「@010vvmsj」を検索してもらう</div>
+    </div>
+  </div>
+</div>
+<footer>
+  <p>狩人の日常 猟師専用ライン</p>
+</footer>
+<script>
+function copyText(text,btnId){
+  navigator.clipboard.writeText(text).then(()=>showCopied(btnId)).catch(()=>{
+    const ta=document.createElement('textarea');ta.value=text;document.body.appendChild(ta);ta.select();
+    document.execCommand('copy');document.body.removeChild(ta);showCopied(btnId);
+  });
+}
+function showCopied(btnId){
+  const btn=document.getElementById(btnId);
+  const orig=btn.textContent;
+  btn.textContent='✅ コピー済み';
+  btn.style.background='#C8A030';
+  setTimeout(()=>{btn.textContent=orig;btn.style.background='';},2000);
+}
+</script>
+</body>
+</html>
