@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>買取の流れ｜狩人の日常</title>
+<title>獲物を売る手順｜狩人の日常</title>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:'Hiragino Kaku Gothic ProN','Noto Sans JP',sans-serif;background:#f5f5f2;color:#222;min-height:100vh}
@@ -19,25 +19,27 @@ header .sub{font-size:11px;color:#a8d878;margin-top:2px}
 .lg{display:flex;align-items:center;gap:5px}
 .ld{width:12px;height:12px;border-radius:3px;flex-shrink:0}
 .flow{display:flex;flex-direction:column;align-items:center;gap:0}
-.node{width:100%;border-radius:8px;padding:14px 16px;position:relative}
+.node{width:100%;border-radius:8px;padding:14px 16px}
 .node.hunter{background:#4A7C28;color:#fff}
 .node.auto{background:#2D5016;color:#fff}
 .node.owner{background:#E8A020;color:#fff}
-.node.pass{background:#C0392B;color:#fff}
+.node.pass{background:#8B5A2B;color:#fff}
 .node-label{font-size:10px;font-weight:bold;opacity:0.75;margin-bottom:3px}
 .node-title{font-size:15px;font-weight:bold;margin-bottom:5px}
 .node-sub{font-size:12px;line-height:1.7;opacity:0.95}
 .node-sub.green{color:#a8d878}
 .node-sub.yellow{color:#ffe0a0}
+.node-sub.tan{color:#ffd4a0}
 .arrow{width:2px;height:20px;background:#aaa;position:relative;margin:0 auto}
 .arrow::after{content:'';position:absolute;bottom:-6px;left:-4px;border:5px solid transparent;border-top-color:#aaa;border-bottom:none}
 .branch-wrap{width:100%;display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:0}
 .branch-line{width:100%;height:1px;background:#aaa;margin:8px 0}
-footer{background:#2D5016;color:#a8c890;font-size:11px;text-align:center;padding:20px 16px;margin-top:24px}
-footer a{color:#C8A030;text-decoration:none;font-weight:bold;display:block;margin-top:8px;background:#06c755;color:#fff;padding:12px;border-radius:24px;font-size:14px}
+.tip{background:#e8f5d0;border-radius:6px;padding:8px 12px;font-size:11px;color:#2D5016;margin-top:8px}
+.btn-big{display:block;width:100%;background:#C8A030;color:#1a3009;text-align:center;padding:16px;border-radius:12px;font-size:16px;font-weight:bold;text-decoration:none;margin-bottom:20px}
 .arrow.dashed{background:repeating-linear-gradient(to bottom,#aaa 0,#aaa 4px,transparent 4px,transparent 8px)}
 .fade-text{font-size:11px;color:#aaa;text-align:center;padding:4px}
-.tip{background:#e8f5d0;border-radius:6px;padding:8px 12px;font-size:11px;color:#2D5016;margin-top:8px}
+footer{background:#2D5016;color:#a8c890;font-size:11px;text-align:center;padding:20px 16px;margin-top:24px}
+footer a{color:#C8A030;text-decoration:none;font-weight:bold;display:block;margin-top:8px;background:#06c755;color:#fff;padding:12px;border-radius:24px;font-size:14px}
 </style>
 </head>
 <body>
@@ -48,86 +50,62 @@ footer a{color:#C8A030;text-decoration:none;font-weight:bold;display:block;margi
 </header>
 <div class="container">
   <nav class="nav">
-    <a href="index.html" class="active">買取の流れ</a>
+    <a href="index.html" class="active">売る手順</a>
     <a href="prices.html">買取価格表</a>
     <a href="reservation.html">加工場の予約</a>
   </nav>
+
+  <a href="sell.html" class="btn-big">🦌 捕獲を報告する（ここをタップ）</a>
+
   <div class="legend">
     <div class="lg"><div class="ld" style="background:#2D5016"></div>自動で届く</div>
     <div class="lg"><div class="ld" style="background:#4A7C28"></div>あなたの操作</div>
     <div class="lg"><div class="ld" style="background:#E8A020"></div>こちらが対応</div>
-    <div class="lg"><div class="ld" style="background:#C0392B"></div>今回は見送り</div>
   </div>
   <div class="flow">
     <div class="node hunter">
       <div class="node-label">あなたの操作</div>
-      <div class="node-title">このラインを追加する</div>
-      <div class="node-sub green">QRコードを読む / 猟友から紹介してもらう</div>
-    </div>
-    <div class="arrow"></div>
-    <div class="node auto">
-      <div class="node-label">自動で届く</div>
-      <div class="node-title">使い方の案内が届く</div>
-      <div class="node-sub">メニューが表示されるので「獲物を売る」をタップ</div>
-    </div>
-    <div class="arrow"></div>
-    <div class="node hunter">
-      <div class="node-label">あなたの操作</div>
       <div class="node-title">獲物が捕れたら報告する</div>
-      <div class="node-sub green">「獲物を売る」ボタンをタップ<br>またはチャットで「捕獲」と送る</div>
+      <div class="node-sub green">上の「捕獲を報告する」ボタンをタップ<br>フォームに入力してLINEで送信</div>
       <div class="tip">メニューが邪魔なときは「メニューを閉じてチャット」バーを押すと隠れます</div>
     </div>
     <div class="arrow"></div>
     <div class="node auto">
-      <div class="node-label">自動で届く</div>
-      <div class="node-title">必要な情報のリストが届く</div>
-      <div class="node-sub">
-        ①獲物の種類（猪・鹿・穴熊）<br>
-        ②オスかメスか<br>
-        ③だいたいの重さ<br>
-        ④罠の種類（括りわな・箱わな・銃）<br>
-        ⑤捕れた日時<br>
-        ⑥場所のピン（マップ共有）<br>
-        ⑦写真を1〜2枚
-      </div>
+      <div class="node-label">こちらが確認</div>
+      <div class="node-title">情報と写真を確認する</div>
+      <div class="node-sub">送っていただいた内容を確認後、<br>引き取りに伺う日程をご連絡します</div>
     </div>
     <div class="arrow"></div>
     <div class="node hunter">
       <div class="node-label">あなたの操作</div>
-      <div class="node-title">上の情報を送る</div>
-      <div class="node-sub green">リストに沿って入力して送るだけ</div>
+      <div class="node-title">日程を合わせて待つ</div>
+      <div class="node-sub green">場所がわかれば立ち会い不要<br>わかりにくければ立ち会いをお願いします</div>
     </div>
     <div class="arrow"></div>
     <div class="node owner">
-      <div class="node-label">こちらが対応（当日中に返信）</div>
-      <div class="node-title">内容を確認して返事する</div>
-      <div class="node-sub yellow">オスメスの別・重さ・時期から買取できるか判断</div>
+      <div class="node-label">こちらが対応</div>
+      <div class="node-title">実際に見てから判断します</div>
+      <div class="node-sub yellow">写真だけでなく、実物を確認してから<br>買取するかどうか決めます</div>
     </div>
     <div class="branch-line"></div>
     <div class="branch-wrap">
       <div class="node auto" style="border-radius:8px">
-        <div class="node-label" style="color:#a8d878">買う場合 ✅</div>
-        <div style="font-size:14px;font-weight:bold">「買取します！」</div>
-        <div style="font-size:11px;color:#a8d878;margin-top:5px">取りに行く日を決めます</div>
+        <div class="node-label" style="color:#a8d878">買取する場合 ✅</div>
+        <div style="font-size:14px;font-weight:bold">その場でお支払い</div>
+        <div style="font-size:11px;color:#a8d878;margin-top:5px">月末に口座へ振込</div>
       </div>
       <div class="node pass" style="border-radius:8px">
-        <div class="node-label" style="color:#ffb0a0">見送る場合 ❌</div>
-        <div style="font-size:14px;font-weight:bold">理由を添えて返信</div>
-        <div style="font-size:11px;color:#ffb0a0;margin-top:5px">「また次回よろしく」</div>
+        <div class="node-label" style="color:#ffd4a0">引き取れない場合</div>
+        <div style="font-size:14px;font-weight:bold">理由をお伝えします</div>
+        <div style="font-size:11px;color:#ffd4a0;margin-top:5px">季節・状態・在庫など<br>具体的に説明します</div>
       </div>
     </div>
     <div style="width:100%;display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:0">
       <div style="display:flex;flex-direction:column;align-items:center">
         <div class="arrow" style="margin-top:8px"></div>
-        <div class="node hunter" style="width:100%;border-radius:8px;margin-top:8px">
-          <div class="node-label">あなたの操作</div>
-          <div class="node-title" style="font-size:13px">日程を決めて引き渡し</div>
-          <div class="node-sub green" style="font-size:11px">場所がわかれば立ち会い不要<br>わかりにくければ立ち会いを</div>
-        </div>
-        <div class="arrow" style="margin-top:8px"></div>
         <div class="node auto" style="width:100%;border-radius:8px;margin-top:8px">
           <div class="node-label">自動で届く</div>
-          <div class="node-title" style="font-size:13px">買取完了の連絡が届く</div>
+          <div class="node-title" style="font-size:13px">買取完了の連絡</div>
           <div class="node-sub" style="font-size:11px">金額と振込予定月をお知らせ</div>
         </div>
         <div class="arrow" style="margin-top:8px"></div>
