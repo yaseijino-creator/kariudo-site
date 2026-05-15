@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>捕獲報告書｜狩人の日常</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{
+  font-family:'Hiragino Mincho ProN','YuMincho','Noto Serif JP',serif;
+  background:#1a1410;
+  color:#e8dcc4;
+  min-height:100vh;
+  background-image:
+    radial-gradient(ellipse at top, rgba(60,40,20,.45) 0%, transparent 60%),
+    radial-gradient(ellipse at bottom, rgba(20,30,15,.6) 0%, transparent 70%),
+    linear-gradient(180deg,#1a1410 0%,#0d0a07 100%);
+  background-attachment:fixed;
+}
+
+/* 共通：紋章・装飾 */
+.ornament{position:absolute;width:28px;height:28px;
+  background:
+    linear-gradient(45deg,transparent 46%,#c8a030 47%,#c8a030 53%,transparent 54%),
+    linear-gradient(-45deg,transparent 46%,#c8a030 47%,#c8a030 53%,transparent 54%);
+  opacity:.7;pointer-events:none;
+}
+.ornament.tl{top:6px;left:6px}
+.ornament.tr{top:6px;right:6px;transform:scaleX(-1)}
+.ornament.bl{bottom:6px;left:6px;transform:scaleY(-1)}
+.ornament.br{bottom:6px;right:6px;transform:scale(-1,-1)}
+
+/* プレビュー帯 */
+.preview-banner{
+  background:linear-gradient(180deg,#8b2a2a 0%,#6b1a1a 100%);
+  color:#fff;font-size:11px;text-align:center;
+  padding:8px 16px;letter-spacing:2px;
+  font-family:'Hiragino Kaku Gothic ProN',sans-serif;
+}
+.preview-banner a{color:#f0e3c8;text-decoration:underline}
+
+/* 看板ヘッダー */
+header{
+  position:sticky;top:0;z-index:100;
+  background:linear-gradient(180deg,#3d2817 0%,#2d1d10 100%);
+  padding:22px 20px 20px;text-align:center;
+  border-bottom:4px double #c8a030;
+  box-shadow:0 4px 24px rgba(0,0,0,.6);
+}
+header::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;
+  background:linear-gradient(90deg,transparent,#c8a030 50%,transparent);}
+header .brand{font-size:11px;color:#c8a030;letter-spacing:6px;font-family:'Hiragino Kaku Gothic ProN',sans-serif;}
+header h1{font-size:22px;font-weight:bold;color:#f0e3c8;margin-top:6px;
+  text-shadow:0 2px 0 #1a1410,0 0 12px rgba(200,160,48,.4);letter-spacing:3px;}
+header .sub{font-size:11px;color:#a8946b;margin-top:6px;letter-spacing:2px;font-family:'Hiragino Kaku Gothic ProN',sans-serif;}
+
+.container{max-width:520px;margin:0 auto;padding:20px 14px 36px;}
+
+/* ナビゲーション（カード風） */
+.nav{
+  display:flex;gap:6px;margin-bottom:18px;
+  overflow-x:auto;-webkit-overflow-scrolling:touch;padding-bottom:4px;scrollbar-width:none;
+}
+.nav::-webkit-scrollbar{display:none}
+.nav a{
+  flex:0 0 auto;
+  padding:10px 14px;border-radius:4px;font-size:11px;font-weight:bold;
+  text-decoration:none;letter-spacing:2px;white-space:nowrap;
+  border:1px solid #6b5230;color:#c8a030;
+  background:linear-gradient(180deg,#2d1d10 0%,#1a1410 100%);
+  font-family:'Hiragino Kaku Gothic ProN',sans-serif;
+}
+.nav a.active{
+  background:linear-gradient(180deg,#c8a030 0%,#a08020 100%);
+  color:#1a1410;border-color:#c8a030;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.4),0 2px 6px rgba(200,160,48,.3);
+}
+
+/* 案内（クエスト依頼書風） */
+.note{
+  position:relative;
+  background:linear-gradient(180deg,#2d1d10 0%,#1a1410 100%);
+  border:2px solid #6b5230;border-radius:4px;
+  padding:14px 16px 14px 18px;
+  font-size:12px;color:#d8c79d;line-height:1.85;margin-bottom:18px;
+  box-shadow:inset 0 0 0 1px #c8a030,0 4px 14px rgba(0,0,0,.4);
+}
+.note strong{display:block;font-size:14px;color:#c8a030;margin-bottom:4px;letter-spacing:2px;}
+
+/* 羊皮紙フォームカード */
+.form-card{
+  position:relative;
+  background:radial-gradient(ellipse at center, #ede0c4 0%, #d8c79d 80%, #b8a572 100%);
+  background-blend-mode:multiply;
+  border:1px solid #6b5230;border-radius:4px;
+  padding:18px 16px;margin-bottom:14px;
+  color:#3d2817;
+  box-shadow:0 0 0 3px #2d1d10,0 0 0 4px #c8a030,0 0 0 7px #2d1d10,
+    0 10px 28px rgba(0,0,0,.5),inset 0 0 40px rgba(120,80,40,.3);
+}
+.form-card::before{content:"";position:absolute;inset:0;pointer-events:none;border-radius:4px;
+  background:
+    radial-gradient(circle at 12% 20%, rgba(120,80,40,.15) 0%, transparent 25%),
+    radial-gradient(circle at 85% 75%, rgba(120,80,40,.12) 0%, transparent 30%);}
+
+/* 重要：振込先カード（極秘の書） */
+.form-card.bank{
+  background:radial-gradient(ellipse at center, #2d2418 0%, #1a1410 100%);
+  color:#e8dcc4;
+  box-shadow:0 0 0 3px #1a1410,0 0 0 4px #8b2a2a,0 0 0 7px #1a1410,
+    0 10px 28px rgba(0,0,0,.6);
+}
+.form-card.bank::before{display:none}
+.form-card.bank h3{
+  font-size:13px;font-weight:bold;color:#c8a030;margin-bottom:14px;
+  padding-bottom:10px;border-bottom:1px dashed #6b5230;
+  letter-spacing:3px;display:flex;align-items:center;gap:8px;
+  font-family:'Hiragino Kaku Gothic ProN',sans-serif;
+}
+
+/* フォーム要素 */
+.form-group{margin-bottom:14px;position:relative;z-index:1;}
+.form-group:last-child{margin-bottom:0}
+label{display:block;font-size:13px;font-weight:bold;color:#3d2817;margin-bottom:6px;letter-spacing:1px;
+  font-family:'Hiragino Kaku Gothic ProN',sans-serif;}
+.form-card.bank label{color:#c8a030}
+label .req{color:#8b2a2a;margin-left:6px;font-size:10px;
+  background:#fff;border:1px solid #8b2a2a;padding:1px 5px;border-radius:2px;}
+.form-card.bank label .req{background:#1a1410;}
+label .opt{color:#888;font-size:11px;font-weight:normal;margin-left:4px}
+.form-card.bank label .opt{color:#a8946b}
+
+select,input[type=text],input[type=number],input[type=date],input[type=time],textarea{
+  width:100%;border:2px solid #8b6a3a;border-radius:3px;
+  padding:11px 12px;font-size:15px;color:#1a1410;
+  background:#f8f0d8;-webkit-appearance:none;appearance:none;
+  font-family:'Hiragino Kaku Gothic ProN',sans-serif;
+  box-shadow:inset 0 2px 4px rgba(120,80,40,.15);
+}
+.form-card.bank select,
+.form-card.bank input[type=text],
+.form-card.bank input[type=number]{
+  background:#0d0a07;color:#e8dcc4;border-color:#6b5230;
+  box-shadow:inset 0 2px 4px rgba(0,0,0,.4);
+}
+select:focus,input:focus,textarea:focus{outline:none;border-color:#c8a030;
+  box-shadow:inset 0 2px 4px rgba(120,80,40,.15),0 0 0 3px rgba(200,160,48,.25);}
+
+select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%238b6a3a' stroke-width='2' fill='none'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;background-position:right 12px center;padding-right:36px;background-color:#f8f0d8;}
+.form-card.bank select{
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23c8a030' stroke-width='2' fill='none'/%3E%3C/svg%3E");
+  background-color:#0d0a07;}
+
+textarea{resize:vertical;min-height:80px;font-size:14px;line-height:1.6;}
+.hint{font-size:11px;color:#6b5230;margin-top:5px;font-family:'Hiragino Kaku Gothic ProN',sans-serif;letter-spacing:.5px;}
+.form-card.bank .hint{color:#8b6a3a}
+
+.warn-kukuri{
+  background:#3d1810;border:1px solid #8b2a2a;border-radius:3px;
+  padding:10px 12px;font-size:12px;color:#f0c0a0;margin-top:8px;
+  letter-spacing:1px;font-family:'Hiragino Kaku Gothic ProN',sans-serif;
+  box-shadow:inset 0 0 0 1px rgba(200,160,48,.3);
+}
+.warn-kukuri strong{color:#c8a030;font-weight:bold}
+
+.date-time-row{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.date-time-row label{font-size:11px;color:#5a4628;font-weight:normal;margin-bottom:3px}
+
+/* 送信ボタン（緊急クエスト発令風） */
+.btn-send{
+  display:block;width:100%;text-align:center;text-decoration:none;
+  background:linear-gradient(180deg,#06c755 0%,#04a045 100%);
+  color:#fff;border:none;border-radius:6px;padding:18px;
+  font-size:18px;font-weight:bold;cursor:pointer;margin-top:14px;
+  letter-spacing:3px;font-family:'Hiragino Kaku Gothic ProN',sans-serif;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.3),inset 0 -2px 0 rgba(0,0,0,.2),
+    0 4px 0 #036030,0 6px 14px rgba(0,0,0,.5);
+  text-shadow:0 1px 2px rgba(0,0,0,.4);
+  -webkit-tap-highlight-color:transparent;transition:transform .05s;
+}
+.btn-send:active{transform:translateY(2px);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.3),inset 0 -2px 0 rgba(0,0,0,.2),
+    0 2px 0 #036030,0 3px 8px rgba(0,0,0,.5);}
+
+/* 操作説明（地図と写真） */
+.how-to{
+  background:linear-gradient(180deg,#2d1d10 0%,#1a1410 100%);
+  border:2px solid #6b5230;border-radius:4px;
+  padding:18px 16px;margin-top:18px;position:relative;
+  box-shadow:inset 0 0 0 1px #c8a030,0 6px 18px rgba(0,0,0,.4);
+}
+.how-to h3{font-size:13px;color:#c8a030;margin-bottom:14px;letter-spacing:4px;text-align:center;
+  font-family:'Hiragino Kaku Gothic ProN',sans-serif;}
+.how-to h3::before{content:"◆ "}
+.how-to h3::after{content:" ◆"}
+.how-to-item{display:flex;gap:12px;align-items:flex-start;margin-bottom:12px;
+  font-size:12px;color:#d8c79d;line-height:1.7;padding-bottom:12px;
+  border-bottom:1px dashed rgba(200,160,48,.2);}
+.how-to-item:last-child{margin-bottom:0;padding-bottom:0;border-bottom:none}
+.how-to-icon{font-size:22px;flex-shrink:0;margin-top:1px;color:#c8a030;}
+.how-to-item strong{color:#f0e3c8;display:inline-block;margin-bottom:2px;}
+
+/* フッター */
+footer{
+  background:linear-gradient(180deg,#1a1410 0%,#0d0a07 100%);
+  color:#6b5230;font-size:11px;text-align:center;padding:18px;margin-top:28px;
+  letter-spacing:4px;border-top:2px solid #3d2817;
+  font-family:'Hiragino Kaku Gothic ProN',sans-serif;}
+footer .emblem{color:#c8a030;font-size:14px;margin-bottom:6px}
+
+/* 装飾の区切り線 */
+.section-title{
+  display:flex;align-items:center;justify-content:center;
+  margin:6px 0 12px;color:#3d2817;
+  font-size:13px;letter-spacing:4px;font-weight:bold;
+}
+.section-title::before,.section-title::after{
+  content:"";flex:1;height:1px;
+  background:linear-gradient(90deg,transparent,#8b6a3a,transparent);
+  margin:0 12px;
+}
+</style>
+</head>
+<body>
+<div class="preview-banner">
+  🦌 これは <strong>モンハン風プレビュー版</strong> ／ <a href="/sell.html">通常版を見る</a>
+</div>
+
+<header>
+  <span class="ornament tl"></span><span class="ornament tr"></span>
+  <span class="ornament bl"></span><span class="ornament br"></span>
+  <div class="brand">狩 人 の 日 常</div>
+  <h1>捕 獲 報 告 書</h1>
+  <div class="sub">入力後 LINE で 提 出</div>
+</header>
+
+<div class="container">
+  <nav class="nav">
+    <a href="index.html">売る手順</a>
+    <a href="sell-mh.html" class="active">📋 捕獲報告</a>
+    <a href="prices.html">買取価格表</a>
+    <a href="reservation.html">加工場の予約</a>
+  </nav>
+
+  <div class="note">
+    <strong>📜 提出のしかた</strong>
+    フォームに入力して「LINE で 報告する」をタップすると、ラインが開いてメッセージが自動入力されます。<br>
+    <span style="font-size:11px;color:#a8946b">送信後に 📍 マップのピン と 📷 写真 も続けて送ってください</span>
+  </div>
+
+  <form id="reportForm">
+    <!-- 獲物の情報 -->
+    <div class="form-card">
+      <div class="section-title">獲 物 の 情 報</div>
+      <div class="form-group">
+        <label>獲物の種類<span class="req">必須</span></label>
+        <select id="species" required>
+          <option value="">選んでください</option>
+          <option value="猪（イノシシ）">猪（イノシシ）</option>
+          <option value="鹿（シカ）">鹿（シカ）</option>
+          <option value="日本穴熊">日本穴熊</option>
+          <option value="その他">その他</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>性別<span class="req">必須</span></label>
+        <select id="gender" required>
+          <option value="">選んでください</option>
+          <option value="メス">メス</option>
+          <option value="オス">オス</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>推定重量（kg）<span class="req">必須</span></label>
+        <input type="number" id="weight" placeholder="例：45" min="1" max="999" required>
+      </div>
+    </div>
+
+    <!-- 捕獲状況 -->
+    <div class="form-card">
+      <div class="section-title">捕 獲 状 況</div>
+      <div class="form-group">
+        <label>罠の種類<span class="req">必須</span></label>
+        <select id="trap" required>
+          <option value="">選んでください</option>
+          <option value="箱わな">箱わな</option>
+          <option value="括りわな">括りわな（買取価格20%引き）</option>
+          <option value="銃猟">銃猟</option>
+          <option value="有害駆除">有害駆除</option>
+          <option value="その他">その他</option>
+        </select>
+        <div class="warn-kukuri" id="kukuriWarn" style="display:none">⚠️ 括りわなの場合、買取価格が<strong>20%引き</strong>になります</div>
+      </div>
+      <div class="form-group">
+        <label>捕獲日時<span class="req">必須</span></label>
+        <div class="date-time-row">
+          <div>
+            <label>日付</label>
+            <input type="date" id="captureDate" required>
+          </div>
+          <div>
+            <label>時間（おおよそ）</label>
+            <input type="time" id="captureTime">
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>立ち会いの有無<span class="req">必須</span></label>
+        <select id="attendance" required>
+          <option value="">選んでください</option>
+          <option value="立ち会いあり（その場で尻尾をお渡し）">立ち会いあり（その場で尻尾をお渡し）</option>
+          <option value="立ち会いなし（尻尾は和職工房で保管）">立ち会いなし（尻尾は和職工房で保管）</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>捕獲場所<span class="req">必須</span></label>
+        <input type="text" id="location" placeholder="例：○○市 △△地区の山中" required>
+        <div class="hint">場所のピンは送信後に続けて送ってください</div>
+      </div>
+    </div>
+
+    <!-- 詳細 -->
+    <div class="form-card">
+      <div class="section-title">そ の 他 詳 細</div>
+      <div class="form-group">
+        <label>鹿の場合：ツノの状態</label>
+        <select id="antler">
+          <option value="">（猪・穴熊は選択不要）</option>
+          <option value="ツノあり・状態良好">ツノあり・状態良好</option>
+          <option value="ツノあり・先端欠けあり">ツノあり・先端欠けあり</option>
+          <option value="ツノなし">ツノなし</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>補足・その他</label>
+        <textarea id="notes" placeholder="気になる点など"></textarea>
+      </div>
+    </div>
+
+    <!-- 振込先（極秘の書） -->
+    <div class="form-card bank">
+      <h3>🏦 振込先口座（初回の方のみご記入ください）</h3>
+      <div class="form-group">
+        <label>銀行名<span class="opt">（初回のみ）</span></label>
+        <input type="text" id="bankName" placeholder="例：○○銀行">
+      </div>
+      <div class="form-group">
+        <label>支店名<span class="opt">（初回のみ）</span></label>
+        <input type="text" id="branchName" placeholder="例：△△支店">
+      </div>
+      <div class="form-group">
+        <label>口座種別<span class="opt">（初回のみ）</span></label>
+        <select id="accountType">
+          <option value="">選んでください</option>
+          <option value="普通">普通</option>
+          <option value="当座">当座</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>口座番号<span class="opt">（初回のみ）</span></label>
+        <input type="text" id="accountNum" placeholder="例：1234567">
+      </div>
+      <div class="form-group">
+        <label>口座名義（カタカナ）<span class="opt">（初回のみ）</span></label>
+        <input type="text" id="accountName" placeholder="例：ヤマダ タロウ">
+      </div>
+      <div class="hint" style="margin-top:8px">※2回目以降は省略してください</div>
+    </div>
+
+    <a id="lineBtn" class="btn-send" href="#" onclick="return sendReport()">📱 LINEで報告する</a>
+    <div style="text-align:center;font-size:11px;color:#a8946b;margin-top:12px;letter-spacing:2px">
+      タップするとLINEが開きます。そのまま送信してください。
+    </div>
+  </form>
+
+  <!-- 紹介の方法 -->
+  <div class="how-to">
+    <h3>送信後に ピン と 写真 を 送 る</h3>
+    <div class="how-to-item">
+      <span class="how-to-icon">📍</span>
+      <div>
+        <strong>マップのピンの送り方</strong><br>
+        ラインのチャット画面で「＋」をタップ<br>
+        →「位置情報」を選ぶ → 場所を確認して「送信」
+      </div>
+    </div>
+    <div class="how-to-item">
+      <span class="how-to-icon">📷</span>
+      <div>
+        <strong>写真の送り方</strong><br>
+        チャット画面下のカメラアイコンをタップ<br>
+        → アルバムから写真を選んで送信<br>
+        <span style="font-size:11px;color:#a8946b">（全体がわかる写真を1〜2枚）</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="emblem">◆ ◇ ◆</div>
+  <div>狩 人 の 日 常 ／ 猟 師 専 用 ラ イ ン　@010vvmsj</div>
+</footer>
+
+<script>
+document.getElementById('trap').addEventListener('change',function(){
+  document.getElementById('kukuriWarn').style.display=this.value.includes('括り')?'block':'none';
+});
+function sendReport(){
+  const g=id=>document.getElementById(id)?.value||'';
+  if(!g('species')||!g('gender')||!g('weight')||!g('trap')||!g('captureDate')||!g('attendance')||!g('location')){
+    alert('必須項目を入力してください');return false;
+  }
+  const date=g('captureDate');
+  const time=g('captureTime');
+  const dateStr=date?new Date(date).toLocaleDateString('ja-JP',{month:'long',day:'numeric',weekday:'short'}):'';
+  const timeStr=time?time+'ごろ':'';
+  let msg='【捕獲報告】\n';
+  msg+='種類：'+g('species')+'\n';
+  msg+='性別：'+g('gender')+'\n';
+  msg+='重さ：約'+g('weight')+'kg\n';
+  msg+='罠：'+g('trap')+'\n';
+  msg+='日時：'+dateStr+' '+timeStr+'\n';
+  msg+='場所：'+g('location')+'\n';
+  msg+='立ち会い：'+g('attendance')+'\n';
+  if(g('antler')) msg+='ツノ：'+g('antler')+'\n';
+  if(g('notes')) msg+='補足：'+g('notes')+'\n';
+  if(g('bankName')){
+    msg+='---\n【振込先（初回）】\n';
+    msg+='銀行：'+g('bankName')+(g('branchName')?' '+g('branchName')+'支店':'')+'\n';
+    if(g('accountType')) msg+='種別：'+g('accountType')+'\n';
+    if(g('accountNum')) msg+='番号：'+g('accountNum')+'\n';
+    if(g('accountName')) msg+='名義：'+g('accountName')+'\n';
+  }
+  msg+='---\nこの後、マップのピンと写真を続けて送ります';
+  const lineUrl='https://line.me/R/oaMessage/@010vvmsj/?text='+encodeURIComponent(msg);
+  document.getElementById('lineBtn').href=lineUrl;
+  return true;
+}
+document.getElementById('captureDate').value=new Date().toISOString().split('T')[0];
+</script>
+</body>
+</html>
