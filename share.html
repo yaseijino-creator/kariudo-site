@@ -54,8 +54,7 @@ footer{background:#2D5016;color:#a8c890;font-size:11px;text-align:center;padding
 
     <!-- QRコード -->
     <div class="qr-wrap">
-      <img src="https://chart.googleapis.com/chart?chs=280x280&cht=qr&chl=https%3A%2F%2Fline.me%2FR%2Fti%2Fp%2F%40010vvmsj&choe=UTF-8&chld=M|1" alt="友達追加QRコード" onerror="this.style.display='none';document.getElementById('qrFallback').style.display='block'">
-      <div id="qrFallback" style="display:none;width:200px;height:200px;display:none;background:#f0f0e8;border-radius:8px;line-height:200px;font-size:12px;color:#888">QR読み込み中...</div>
+      <img src="https://api.qrserver.com/v1/create-qr-code/?size=280x280&ecc=M&margin=1&data=https%3A%2F%2Fline.me%2FR%2Fti%2Fp%2F%40010vvmsj" alt="友達追加QRコード" onerror="this.onerror=null;this.src='https://quickchart.io/qr?text=https%3A%2F%2Fline.me%2FR%2Fti%2Fp%2F%40010vvmsj&size=280&ecLevel=M&margin=1'">
     </div>
     <div class="qr-label">📷 カメラでQRコードを読み取る</div>
 
