@@ -6,62 +6,155 @@
 <title>獲物を売る手順｜狩人の日常</title>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
-body{font-family:'Hiragino Kaku Gothic ProN','Noto Sans JP',sans-serif;background:#f5f5f2;color:#222;min-height:100vh}
-header{background:#2D5016;padding:14px 20px 12px;text-align:center;border-bottom:3px solid #C8A030;position:sticky;top:0;z-index:100}
-header .brand{font-size:10px;color:#C8A030;letter-spacing:2px}
-header h1{font-size:20px;font-weight:bold;color:#fff;margin-top:2px}
-header .sub{font-size:11px;color:#a8d878;margin-top:2px}
-.container{max-width:500px;margin:0 auto;padding:16px}
-.nav{display:flex;gap:6px;margin-bottom:20px;overflow-x:auto;-webkit-overflow-scrolling:touch;padding-bottom:4px;scrollbar-width:none}
+:root{
+  --gold:#c8a030;
+  --gold-bright:#e8c860;
+  --wood-dark:#3d2817;
+  --wood-mid:#6b5230;
+  --wood-light:#8b6a3a;
+  --ink:#3d2817;
+  --crimson:#8b2a2a;
+}
+html,body{overflow-x:hidden}
+body{
+  font-family:'Hiragino Mincho ProN','YuMincho','Noto Serif JP',serif;
+  color:#e8dcc4;min-height:100vh;line-height:1.5;position:relative;background:#050302;
+}
+body::before{
+  content:"";position:fixed;inset:0;pointer-events:none;z-index:0;
+  background-image:url("assets/bg-hunter.jpg");
+  background-size:cover;background-position:center center;background-repeat:no-repeat;
+}
+body::after{
+  content:"";position:fixed;inset:0;pointer-events:none;z-index:0;
+  background:
+    linear-gradient(180deg,rgba(10,8,5,.55) 0%,rgba(10,8,5,.35) 50%,rgba(10,8,5,.7) 100%),
+    radial-gradient(ellipse 90% 60% at 50% 0%, rgba(232,200,96,.12) 0%, transparent 60%);
+}
+.noise{position:fixed;inset:0;pointer-events:none;z-index:1;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/><feColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 .4 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+  opacity:.35;mix-blend-mode:overlay;}
+.frame{position:fixed;inset:0;pointer-events:none;z-index:2;
+  box-shadow:inset 0 0 0 1px rgba(200,160,48,.2),inset 0 0 80px rgba(0,0,0,.5),inset 0 0 160px rgba(0,0,0,.3);}
+.corner{position:fixed;width:38px;height:38px;z-index:3;pointer-events:none;opacity:.5;
+  background:
+    linear-gradient(45deg,transparent 46%,var(--gold) 47%,var(--gold) 53%,transparent 54%),
+    linear-gradient(-45deg,transparent 46%,var(--gold) 47%,var(--gold) 53%,transparent 54%);}
+.corner.tl{top:8px;left:8px}.corner.tr{top:8px;right:8px;transform:scaleX(-1)}
+.corner.bl{bottom:8px;left:8px;transform:scaleY(-1)}.corner.br{bottom:8px;right:8px;transform:scale(-1,-1)}
+
+header{
+  position:sticky;top:0;z-index:50;
+  background:linear-gradient(180deg,rgba(61,40,23,.95) 0%,rgba(45,29,16,.95) 100%);
+  backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);
+  padding:18px 20px 16px;text-align:center;border-bottom:4px double var(--gold);
+  box-shadow:0 4px 24px rgba(0,0,0,.6);
+}
+header::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;
+  background:linear-gradient(90deg,transparent,var(--gold) 50%,transparent);}
+header .brand{font-size:11px;color:var(--gold);letter-spacing:6px;font-family:'Hiragino Kaku Gothic ProN',sans-serif;}
+header h1{font-size:22px;font-weight:bold;color:#f0e3c8;margin-top:6px;
+  text-shadow:0 2px 0 #1a1410,0 0 12px rgba(200,160,48,.4);letter-spacing:3px;}
+header .sub{font-size:11px;color:#a8946b;margin-top:6px;letter-spacing:2px;font-family:'Hiragino Kaku Gothic ProN',sans-serif;}
+
+.container{position:relative;z-index:10;max-width:520px;margin:0 auto;padding:20px 14px 36px;}
+
+.nav{display:flex;gap:6px;margin-bottom:18px;overflow-x:auto;-webkit-overflow-scrolling:touch;
+  padding-bottom:4px;scrollbar-width:none;}
 .nav::-webkit-scrollbar{display:none}
-.nav a{flex:0 0 auto;padding:9px 12px;border-radius:8px;font-size:11px;font-weight:bold;text-decoration:none;border:2px solid #2D5016;color:#2D5016;background:#fff;white-space:nowrap}
-.nav a.active{background:#2D5016;color:#fff}
-.nav a.sell{border-color:#C8A030;color:#7a5500;background:#fffbe6}
-.legend{display:flex;flex-wrap:wrap;gap:8px;background:#fff;border-radius:10px;padding:12px 14px;margin-bottom:16px;font-size:11px;border:1px solid #e0e0d8}
-.lg{display:flex;align-items:center;gap:5px}
-.ld{width:12px;height:12px;border-radius:3px;flex-shrink:0}
+.nav a{flex:0 0 auto;padding:10px 14px;border-radius:4px;font-size:11px;font-weight:bold;
+  text-decoration:none;letter-spacing:2px;white-space:nowrap;
+  border:1px solid var(--wood-mid);color:var(--gold);
+  background:linear-gradient(180deg,rgba(45,29,16,.85) 0%,rgba(26,20,16,.9) 100%);
+  font-family:'Hiragino Kaku Gothic ProN',sans-serif;
+  backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);}
+.nav a.active{
+  background:linear-gradient(180deg,var(--gold) 0%,#806010 100%);color:#1a1410;border-color:var(--gold);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.4),0 2px 6px rgba(200,160,48,.4),0 0 16px rgba(200,160,48,.3);}
+
+/* 凡例 */
+.legend{display:flex;flex-wrap:wrap;gap:8px 12px;
+  background:linear-gradient(180deg,rgba(45,29,16,.85) 0%,rgba(26,20,16,.85) 100%);
+  border:2px solid var(--wood-mid);border-radius:4px;
+  padding:12px 14px;margin-bottom:16px;font-size:11px;color:#d8c79d;
+  box-shadow:inset 0 0 0 1px var(--gold),0 4px 16px rgba(0,0,0,.5);
+  backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);
+  font-family:'Hiragino Kaku Gothic ProN',sans-serif;letter-spacing:1px;}
+.lg{display:flex;align-items:center;gap:6px}
+.ld{width:12px;height:12px;border-radius:2px;flex-shrink:0;box-shadow:0 0 0 1px rgba(0,0,0,.4);}
+
+/* 流れノード */
 .flow{display:flex;flex-direction:column;align-items:center;gap:0}
-.node{width:100%;border-radius:8px;padding:14px 16px}
-.node.hunter{background:#4A7C28;color:#fff}
-.node.auto{background:#2D5016;color:#fff}
-.node.owner{background:#E8A020;color:#fff}
-.node.pass{background:#8B5A2B;color:#fff}
-.node.info{background:#4A4080;color:#fff}
-.node-label{font-size:10px;font-weight:bold;opacity:0.75;margin-bottom:3px}
-.node-title{font-size:15px;font-weight:bold;margin-bottom:5px}
-.node-sub{font-size:12px;line-height:1.75;opacity:0.95}
-.node-sub.green{color:#a8d878}
-.node-sub.yellow{color:#ffe0a0}
-.node-sub.purple{color:#d8c8ff}
-.arrow{width:2px;height:20px;background:#aaa;position:relative;margin:0 auto}
-.arrow::after{content:'';position:absolute;bottom:-6px;left:-4px;border:5px solid transparent;border-top-color:#aaa;border-bottom:none}
+.node{width:100%;border-radius:4px;padding:14px 16px;position:relative;
+  border:1px solid #1a1410;
+  box-shadow:0 0 0 2px var(--gold),0 0 0 3px #1a1410,0 6px 18px rgba(0,0,0,.5),inset 0 0 24px rgba(0,0,0,.25);}
+.node.hunter{background:linear-gradient(180deg,#4A7C28 0%,#2f5418 100%);color:#fff}
+.node.auto{background:linear-gradient(180deg,#3a5a2a 0%,#1f3810 100%);color:#fff}
+.node.owner{background:linear-gradient(180deg,#C88020 0%,#7a4f0e 100%);color:#fff;box-shadow:0 0 0 2px var(--gold-bright),0 0 0 3px #1a1410,0 6px 18px rgba(0,0,0,.5);}
+.node.pass{background:linear-gradient(180deg,#8B5A2B 0%,#5a3818 100%);color:#fff}
+.node.info{background:linear-gradient(180deg,#5a3a8b 0%,#2f1f5a 100%);color:#fff;
+  box-shadow:0 0 0 2px var(--crimson),0 0 0 3px #1a1410,0 6px 18px rgba(0,0,0,.5);}
+.node-label{font-size:10px;font-weight:bold;opacity:0.85;margin-bottom:4px;letter-spacing:2px;
+  font-family:'Hiragino Kaku Gothic ProN',sans-serif;}
+.node-title{font-size:15px;font-weight:bold;margin-bottom:6px;letter-spacing:2px;
+  text-shadow:0 1px 2px rgba(0,0,0,.5);}
+.node-sub{font-size:12px;line-height:1.8;opacity:0.95;font-family:'Hiragino Kaku Gothic ProN',sans-serif;}
+.node-sub.green{color:#cce8a8}.node-sub.yellow{color:#ffe0a0}.node-sub.purple{color:#e0d0ff}
+
+.arrow{width:2px;height:22px;background:var(--gold);position:relative;margin:0 auto;opacity:.7;
+  box-shadow:0 0 6px rgba(200,160,48,.5);}
+.arrow::after{content:'';position:absolute;bottom:-6px;left:-4px;
+  border:5px solid transparent;border-top-color:var(--gold);border-bottom:none;}
+.arrow.dashed{background:repeating-linear-gradient(to bottom,var(--gold) 0,var(--gold) 4px,transparent 4px,transparent 8px);box-shadow:none;}
+
+.branch-line{width:100%;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);margin:10px 0;opacity:.6;}
 .branch-wrap{width:100%;display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:0}
-.branch-line{width:100%;height:1px;background:#aaa;margin:8px 0}
-.tip{background:#e8f5d0;border-radius:6px;padding:8px 12px;font-size:11px;color:#2D5016;margin-top:8px}
-.arrow.dashed{background:repeating-linear-gradient(to bottom,#aaa 0,#aaa 4px,transparent 4px,transparent 8px)}
-.fade-text{font-size:11px;color:#aaa;text-align:center;padding:4px}
-footer{background:#2D5016;color:#a8c890;font-size:11px;text-align:center;padding:20px 16px;margin-top:24px}
-footer a{color:#C8A030;text-decoration:none;font-weight:bold;display:block;margin-top:8px;background:#06c755;color:#fff;padding:12px;border-radius:24px;font-size:14px}
+
+.tip{background:rgba(13,10,7,.55);border:1px dashed rgba(200,160,48,.5);border-radius:3px;
+  padding:8px 10px;font-size:11px;color:#f0e3c8;margin-top:8px;letter-spacing:.5px;
+  font-family:'Hiragino Kaku Gothic ProN',sans-serif;}
+
+.fade-text{font-size:11px;color:#a8946b;text-align:center;padding:6px;letter-spacing:2px;
+  font-family:'Hiragino Kaku Gothic ProN',sans-serif;}
+
+footer{position:relative;z-index:10;
+  background:linear-gradient(180deg,rgba(26,20,16,.9) 0%,rgba(13,10,7,.95) 100%);
+  color:var(--wood-mid);font-size:11px;text-align:center;padding:18px;margin-top:28px;
+  letter-spacing:4px;border-top:2px solid var(--wood-dark);
+  font-family:'Hiragino Kaku Gothic ProN',sans-serif;
+  backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);}
+footer p{color:var(--gold);margin-bottom:8px;font-size:12px;letter-spacing:5px;}
+footer a{display:inline-block;text-decoration:none;color:#fff;
+  background:linear-gradient(180deg,#0fd060 0%,#06c755 50%,#04a045 100%);
+  padding:12px 22px;border-radius:6px;font-size:14px;font-weight:bold;letter-spacing:2px;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.3),inset 0 -2px 0 rgba(0,0,0,.2),
+    0 4px 0 #036030,0 6px 14px rgba(0,0,0,.5);
+  text-shadow:0 1px 2px rgba(0,0,0,.4);}
 </style>
 </head>
 <body>
+<div class="noise"></div>
+<div class="frame"></div>
+<span class="corner tl"></span><span class="corner tr"></span>
+<span class="corner bl"></span><span class="corner br"></span>
+
 <header>
-  <div class="brand">狩人の日常 猟師専用ライン</div>
-  <h1>獲物を売る手順</h1>
-  <div class="sub">捕れたらこの流れで連絡してください</div>
+  <div class="brand">狩 人 の 日 常</div>
+  <h1>獲 物 を 売 る 手 順</h1>
+  <div class="sub">捕 れ た ら こ の 流 れ で</div>
 </header>
 <div class="container">
   <nav class="nav">
     <a href="index.html" class="active">売る手順</a>
-    <a href="sell.html" class="sell">📋 捕獲を報告</a>
+    <a href="sell-mh.html">📋 捕獲を報告</a>
     <a href="prices.html">買取価格表</a>
     <a href="reservation.html">加工場の予約</a>
   </nav>
   <div class="legend">
-    <div class="lg"><div class="ld" style="background:#2D5016"></div>自動で届く</div>
-    <div class="lg"><div class="ld" style="background:#4A7C28"></div>あなたの操作</div>
-    <div class="lg"><div class="ld" style="background:#E8A020"></div>こちらが対応</div>
-    <div class="lg"><div class="ld" style="background:#4A4080"></div>重要なお知らせ</div>
+    <div class="lg"><div class="ld" style="background:linear-gradient(180deg,#3a5a2a,#1f3810)"></div>自動で届く</div>
+    <div class="lg"><div class="ld" style="background:linear-gradient(180deg,#4A7C28,#2f5418)"></div>あなたの操作</div>
+    <div class="lg"><div class="ld" style="background:linear-gradient(180deg,#C88020,#7a4f0e)"></div>こちらが対応</div>
+    <div class="lg"><div class="ld" style="background:linear-gradient(180deg,#5a3a8b,#2f1f5a)"></div>重要なお知らせ</div>
   </div>
   <div class="flow">
     <div class="node hunter">
@@ -89,17 +182,16 @@ footer a{color:#C8A030;text-decoration:none;font-weight:bold;display:block;margi
       <div class="node-sub yellow">写真だけでなく、実物を確認してから<br>買取するかどうか決めます</div>
     </div>
     <div class="arrow"></div>
-    <!-- 止め刺し・尻尾の説明 -->
     <div class="node info">
       <div class="node-label">重要：止め刺しと尻尾について</div>
       <div class="node-title">認定業者以外はこちらで止め刺し</div>
       <div class="node-sub purple">
         <div style="margin-bottom:8px;padding-bottom:8px;border-bottom:1px solid rgba(255,255,255,0.2)">
-          <strong style="color:#d8c8ff">立ち会いアリの場合</strong><br>
+          <strong style="color:#f0e3c8">立ち会いアリの場合</strong><br>
           その場で尻尾をお渡しします
         </div>
         <div>
-          <strong style="color:#d8c8ff">立ち会いなしの場合</strong><br>
+          <strong style="color:#f0e3c8">立ち会いなしの場合</strong><br>
           尻尾はこちらで保管します。<br>
           有害駆除申請日に<strong>和職工房</strong>まで<br>お引き取りください。
         </div>
@@ -108,21 +200,21 @@ footer a{color:#C8A030;text-decoration:none;font-weight:bold;display:block;margi
     <div class="arrow"></div>
     <div class="branch-line"></div>
     <div class="branch-wrap">
-      <div class="node auto" style="border-radius:8px">
-        <div class="node-label" style="color:#a8d878">買取する場合 ✅</div>
-        <div style="font-size:14px;font-weight:bold">月末に口座へ振込</div>
-        <div style="font-size:11px;color:#a8d878;margin-top:5px">毎月末日・ラインでお知らせ</div>
+      <div class="node auto">
+        <div class="node-label" style="color:#cce8a8">買取する場合 ✅</div>
+        <div style="font-size:14px;font-weight:bold;letter-spacing:1px">月末に口座へ振込</div>
+        <div style="font-size:11px;color:#cce8a8;margin-top:5px;font-family:'Hiragino Kaku Gothic ProN',sans-serif">毎月末日・ラインでお知らせ</div>
       </div>
-      <div class="node pass" style="border-radius:8px">
+      <div class="node pass">
         <div class="node-label" style="color:#ffd4a0">引き取れない場合</div>
-        <div style="font-size:14px;font-weight:bold">理由をお伝えします</div>
-        <div style="font-size:11px;color:#ffd4a0;margin-top:5px">季節・状態・在庫など<br>具体的に説明します</div>
+        <div style="font-size:14px;font-weight:bold;letter-spacing:1px">理由をお伝えします</div>
+        <div style="font-size:11px;color:#ffd4a0;margin-top:5px;font-family:'Hiragino Kaku Gothic ProN',sans-serif">季節・状態・在庫など<br>具体的に説明します</div>
       </div>
     </div>
     <div style="width:100%;display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:0">
       <div style="display:flex;flex-direction:column;align-items:center">
         <div class="arrow" style="margin-top:8px"></div>
-        <div class="node owner" style="width:100%;border-radius:8px;margin-top:8px">
+        <div class="node owner" style="width:100%;margin-top:8px">
           <div class="node-label">こちらが対応</div>
           <div class="node-title" style="font-size:13px">月末に口座へ振込</div>
           <div class="node-sub yellow" style="font-size:11px">毎月末日・完了後ラインで連絡</div>
@@ -136,8 +228,9 @@ footer a{color:#C8A030;text-decoration:none;font-weight:bold;display:block;margi
   </div>
 </div>
 <footer>
-  <p>狩人の日常 猟師専用ライン</p>
-  <a href="https://line.me/R/ti/p/@010vvmsj">LINEで友達追加する</a>
+  <p>◆ 狩 人 の 日 常 ◆</p>
+  猟 師 専 用 ラ イ ン　@010vvmsj<br><br>
+  <a href="https://line.me/R/ti/p/@010vvmsj">📱 LINEで友達追加する</a>
 </footer>
 </body>
 </html>

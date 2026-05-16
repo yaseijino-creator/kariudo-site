@@ -6,51 +6,181 @@
 <title>買取価格表｜狩人の日常</title>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
-body{font-family:'Hiragino Kaku Gothic ProN','Noto Sans JP',sans-serif;background:#f5f5f2;color:#222;min-height:100vh}
-header{background:#2D5016;padding:14px 20px 12px;text-align:center;border-bottom:3px solid #C8A030;position:sticky;top:0;z-index:100}
-header .brand{font-size:10px;color:#C8A030;letter-spacing:2px}
-header h1{font-size:18px;font-weight:bold;color:#fff;margin-top:2px}
-header .sub{font-size:11px;color:#a8d878;margin-top:2px}
-.container{max-width:500px;margin:0 auto;padding:16px}
-.nav{display:flex;gap:6px;margin-bottom:20px;overflow-x:auto;-webkit-overflow-scrolling:touch;padding-bottom:4px;scrollbar-width:none}
+:root{
+  --gold:#c8a030;
+  --gold-bright:#e8c860;
+  --wood-dark:#3d2817;
+  --wood-mid:#6b5230;
+  --wood-light:#8b6a3a;
+  --ink:#3d2817;
+  --crimson:#8b2a2a;
+}
+html,body{overflow-x:hidden}
+body{
+  font-family:'Hiragino Mincho ProN','YuMincho','Noto Serif JP',serif;
+  color:#e8dcc4;min-height:100vh;line-height:1.5;position:relative;background:#050302;
+}
+body::before{
+  content:"";position:fixed;inset:0;pointer-events:none;z-index:0;
+  background-image:url("assets/bg-hunter.jpg");
+  background-size:cover;background-position:center center;background-repeat:no-repeat;
+}
+body::after{
+  content:"";position:fixed;inset:0;pointer-events:none;z-index:0;
+  background:
+    linear-gradient(180deg,rgba(10,8,5,.6) 0%,rgba(10,8,5,.4) 50%,rgba(10,8,5,.75) 100%),
+    radial-gradient(ellipse 90% 60% at 50% 0%, rgba(232,200,96,.12) 0%, transparent 60%);
+}
+.noise{position:fixed;inset:0;pointer-events:none;z-index:1;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/><feColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 .4 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+  opacity:.35;mix-blend-mode:overlay;}
+.frame{position:fixed;inset:0;pointer-events:none;z-index:2;
+  box-shadow:inset 0 0 0 1px rgba(200,160,48,.2),inset 0 0 80px rgba(0,0,0,.5),inset 0 0 160px rgba(0,0,0,.3);}
+.corner{position:fixed;width:38px;height:38px;z-index:3;pointer-events:none;opacity:.5;
+  background:
+    linear-gradient(45deg,transparent 46%,var(--gold) 47%,var(--gold) 53%,transparent 54%),
+    linear-gradient(-45deg,transparent 46%,var(--gold) 47%,var(--gold) 53%,transparent 54%);}
+.corner.tl{top:8px;left:8px}.corner.tr{top:8px;right:8px;transform:scaleX(-1)}
+.corner.bl{bottom:8px;left:8px;transform:scaleY(-1)}.corner.br{bottom:8px;right:8px;transform:scale(-1,-1)}
+
+header{
+  position:sticky;top:0;z-index:50;
+  background:linear-gradient(180deg,rgba(61,40,23,.95) 0%,rgba(45,29,16,.95) 100%);
+  backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);
+  padding:18px 20px 16px;text-align:center;border-bottom:4px double var(--gold);
+  box-shadow:0 4px 24px rgba(0,0,0,.6);
+}
+header::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;
+  background:linear-gradient(90deg,transparent,var(--gold) 50%,transparent);}
+header .brand{font-size:11px;color:var(--gold);letter-spacing:6px;font-family:'Hiragino Kaku Gothic ProN',sans-serif;}
+header h1{font-size:22px;font-weight:bold;color:#f0e3c8;margin-top:6px;
+  text-shadow:0 2px 0 #1a1410,0 0 12px rgba(200,160,48,.4);letter-spacing:3px;}
+header .sub{font-size:11px;color:#a8946b;margin-top:6px;letter-spacing:2px;font-family:'Hiragino Kaku Gothic ProN',sans-serif;}
+
+.container{position:relative;z-index:10;max-width:520px;margin:0 auto;padding:20px 14px 36px;}
+
+.nav{display:flex;gap:6px;margin-bottom:18px;overflow-x:auto;-webkit-overflow-scrolling:touch;
+  padding-bottom:4px;scrollbar-width:none;}
 .nav::-webkit-scrollbar{display:none}
-.nav a{flex:0 0 auto;padding:9px 12px;border-radius:8px;font-size:11px;font-weight:bold;text-decoration:none;border:2px solid #2D5016;color:#2D5016;background:#fff;white-space:nowrap}
-.nav a.active{background:#2D5016;color:#fff}
-.nav a.sell{border-color:#C8A030;color:#7a5500;background:#fffbe6}
-.section{background:#fff;border-radius:12px;margin-bottom:16px;overflow:hidden;border:1px solid #e0e0d8}
-.section-hdr{background:#2D5016;color:#fff;padding:12px 16px;font-size:15px;font-weight:bold}
-.section-hdr span{color:#C8A030;font-size:12px;font-weight:normal}
-table{width:100%;border-collapse:collapse;font-size:13px}
-th{background:#4A7C28;color:#fff;padding:8px 10px;text-align:center;font-weight:bold;font-size:12px}
-td{padding:10px;border-bottom:1px solid #f0f0ea;text-align:center;vertical-align:middle}
+.nav a{flex:0 0 auto;padding:10px 14px;border-radius:4px;font-size:11px;font-weight:bold;
+  text-decoration:none;letter-spacing:2px;white-space:nowrap;
+  border:1px solid var(--wood-mid);color:var(--gold);
+  background:linear-gradient(180deg,rgba(45,29,16,.85) 0%,rgba(26,20,16,.9) 100%);
+  font-family:'Hiragino Kaku Gothic ProN',sans-serif;
+  backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);}
+.nav a.active{
+  background:linear-gradient(180deg,var(--gold) 0%,#806010 100%);color:#1a1410;border-color:var(--gold);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.4),0 2px 6px rgba(200,160,48,.4),0 0 16px rgba(200,160,48,.3);}
+
+/* 注意（括りわな） */
+.kukuri{position:relative;
+  background:linear-gradient(180deg,#3d1810 0%,#2a0e08 100%);
+  border:1px solid var(--crimson);border-radius:4px;
+  padding:14px 16px;margin-bottom:16px;font-size:12px;color:#f0c0a0;line-height:1.75;
+  letter-spacing:1px;font-family:'Hiragino Kaku Gothic ProN',sans-serif;
+  box-shadow:inset 0 0 0 1px rgba(200,160,48,.3),0 4px 16px rgba(0,0,0,.5),0 0 24px rgba(139,42,42,.3);}
+.kukuri strong{display:block;font-size:14px;color:var(--gold);margin-bottom:6px;letter-spacing:2px;}
+
+/* 羊皮紙カード */
+.section{position:relative;
+  background:radial-gradient(ellipse at center, #ede0c4 0%, #d8c79d 80%, #b8a572 100%);
+  border:1px solid var(--wood-mid);border-radius:4px;
+  margin-bottom:16px;overflow:hidden;color:var(--ink);
+  box-shadow:
+    0 0 0 3px #1a1410,
+    0 0 0 4px var(--gold),
+    0 0 0 7px #1a1410,
+    0 12px 32px rgba(0,0,0,.6),
+    0 0 40px rgba(200,160,48,.1),
+    inset 0 0 40px rgba(120,80,40,.3);}
+.section::before{content:"";position:absolute;inset:0;pointer-events:none;
+  background:
+    radial-gradient(circle at 12% 20%, rgba(120,80,40,.18) 0%, transparent 22%),
+    radial-gradient(circle at 85% 75%, rgba(120,80,40,.14) 0%, transparent 28%);}
+.section-hdr{position:relative;z-index:1;
+  background:linear-gradient(180deg,#3d2817 0%,#2a1c10 100%);
+  color:var(--gold-bright);padding:12px 16px;font-size:15px;font-weight:bold;
+  letter-spacing:3px;border-bottom:2px solid var(--gold);
+  text-shadow:0 1px 2px rgba(0,0,0,.5);
+  font-family:'Hiragino Kaku Gothic ProN',sans-serif;}
+.section-hdr span{color:#a8946b;font-size:12px;font-weight:normal;letter-spacing:1px;}
+
+table{position:relative;z-index:1;width:100%;border-collapse:collapse;font-size:13px;
+  font-family:'Hiragino Kaku Gothic ProN',sans-serif;}
+th{background:linear-gradient(180deg,#6b5230 0%,#3d2817 100%);color:var(--gold-bright);
+  padding:9px 10px;text-align:center;font-weight:bold;font-size:12px;letter-spacing:2px;
+  border-bottom:1px solid var(--gold);}
+td{padding:11px 10px;border-bottom:1px dashed rgba(120,80,40,.4);text-align:center;
+  vertical-align:middle;color:var(--ink);}
 tr:last-child td{border-bottom:none}
-tr:nth-child(even) td{background:#f8f8f4}
-.price{font-weight:bold;font-size:15px;color:#2D5016}
-.price.zero{color:#C0392B}
-.price.free{color:#4A7C28;font-weight:bold;font-size:14px}
-.season{font-size:11px;color:#666;display:block;margin-top:2px}
-.tag-best{background:#2D5016;color:#fff;font-size:10px;padding:2px 6px;border-radius:4px;display:inline-block;margin-bottom:2px}
-.tag-mid{background:#4A7C28;color:#fff;font-size:10px;padding:2px 6px;border-radius:4px;display:inline-block;margin-bottom:2px}
-.tag-ok{background:#E8A020;color:#fff;font-size:10px;padding:2px 6px;border-radius:4px;display:inline-block;margin-bottom:2px}
-.kukuri{background:#fff9e6;border:2px solid #E8A020;border-radius:8px;padding:12px 16px;margin:0 0 12px;font-size:12px;color:#7a5a00;line-height:1.75}
-.kukuri strong{display:block;font-size:14px;font-weight:bold;color:#E8A020;margin-bottom:4px}
-.warn{background:#fffbe6;border:1px solid #E8A020;border-radius:8px;padding:12px 14px;margin-top:12px;font-size:12px;color:#7a5a00;line-height:1.75}
-.info-box{background:#f0f8e8;border:1px solid #4A7C28;border-radius:8px;padding:12px 14px;margin:0 0 10px;font-size:12px;color:#2D5016;line-height:1.75}
-.info-box strong{display:block;font-weight:bold;margin-bottom:3px}
-footer{background:#2D5016;color:#a8c890;font-size:11px;text-align:center;padding:20px 16px;margin-top:24px}
-footer a{color:#C8A030;text-decoration:none;font-weight:bold;display:block;margin-top:8px;background:#06c755;color:#fff;padding:12px;border-radius:24px;font-size:14px}
+tr:nth-child(even) td{background:rgba(120,80,40,.08)}
+
+.price{font-weight:bold;font-size:16px;color:var(--crimson);
+  text-shadow:0 1px 0 rgba(255,255,255,.4);font-family:'Hiragino Mincho ProN',serif;}
+.price.zero{color:#6b3018}
+.price.free{color:#3a5a1a;font-weight:bold;font-size:14px}
+
+.season{font-size:11px;color:#5a4628;display:block;margin-top:2px;letter-spacing:1px;}
+
+.tag-best,.tag-mid,.tag-ok{font-size:10px;padding:2px 7px;border-radius:2px;
+  display:inline-block;margin-bottom:3px;letter-spacing:1px;font-weight:bold;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.2),0 1px 2px rgba(0,0,0,.3);}
+.tag-best{background:linear-gradient(180deg,#c8a030,#806010);color:#1a1410;}
+.tag-mid{background:linear-gradient(180deg,#6b5230,#3d2817);color:var(--gold-bright);}
+.tag-ok{background:linear-gradient(180deg,#8b5a2b,#5a3818);color:#f0e3c8;}
+
+.section .note-bottom{position:relative;z-index:1;
+  padding:10px 14px;font-size:11px;color:#5a4628;border-top:1px solid rgba(120,80,40,.4);
+  letter-spacing:.5px;line-height:1.7;font-family:'Hiragino Kaku Gothic ProN',sans-serif;}
+
+.info-box{position:relative;z-index:1;
+  background:rgba(45,29,16,.12);border-left:3px solid var(--gold);
+  border-right:1px solid rgba(120,80,40,.3);
+  padding:10px 14px;margin:10px 14px;font-size:12px;color:var(--ink);line-height:1.75;
+  font-family:'Hiragino Kaku Gothic ProN',sans-serif;letter-spacing:.5px;}
+.info-box strong{display:block;font-weight:bold;margin-bottom:3px;color:#5a3818;letter-spacing:1.5px;}
+
+/* 振込について（暗いカード） */
+.warn{position:relative;
+  background:linear-gradient(180deg,rgba(45,29,16,.9) 0%,rgba(26,20,16,.9) 100%);
+  border:2px solid var(--wood-mid);border-radius:4px;
+  padding:16px;margin-top:16px;font-size:12px;color:#d8c79d;line-height:1.85;
+  letter-spacing:1px;font-family:'Hiragino Kaku Gothic ProN',sans-serif;
+  box-shadow:inset 0 0 0 1px var(--gold),0 6px 18px rgba(0,0,0,.5),0 0 24px rgba(200,160,48,.1);
+  backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);}
+.warn strong{display:block;color:var(--gold-bright);font-size:14px;margin-bottom:6px;letter-spacing:3px;
+  text-shadow:0 0 8px rgba(200,160,48,.3);}
+
+footer{position:relative;z-index:10;
+  background:linear-gradient(180deg,rgba(26,20,16,.9) 0%,rgba(13,10,7,.95) 100%);
+  color:var(--wood-mid);font-size:11px;text-align:center;padding:18px;margin-top:28px;
+  letter-spacing:4px;border-top:2px solid var(--wood-dark);
+  font-family:'Hiragino Kaku Gothic ProN',sans-serif;
+  backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);}
+footer p{color:var(--gold);margin-bottom:8px;font-size:12px;letter-spacing:5px;}
+footer a{display:inline-block;text-decoration:none;color:#fff;
+  background:linear-gradient(180deg,#0fd060 0%,#06c755 50%,#04a045 100%);
+  padding:12px 22px;border-radius:6px;font-size:14px;font-weight:bold;letter-spacing:2px;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.3),inset 0 -2px 0 rgba(0,0,0,.2),
+    0 4px 0 #036030,0 6px 14px rgba(0,0,0,.5);
+  text-shadow:0 1px 2px rgba(0,0,0,.4);}
 </style>
 </head>
 <body>
+<div class="noise"></div>
+<div class="frame"></div>
+<span class="corner tl"></span><span class="corner tr"></span>
+<span class="corner bl"></span><span class="corner br"></span>
+
 <header>
-  <div class="brand">狩人の日常 猟師専用ライン</div>
-  <h1>買取価格表</h1>
-  <div class="sub">生体 円/kg（穴熊のみ円/頭）</div>
+  <div class="brand">狩 人 の 日 常</div>
+  <h1>買 取 価 格 表</h1>
+  <div class="sub">生 体 円 / kg （ 穴 熊 の み 円 / 頭 ）</div>
 </header>
 <div class="container">
   <nav class="nav">
     <a href="index.html">売る手順</a>
-    <a href="sell.html" class="sell">📋 捕獲を報告</a>
+    <a href="sell-mh.html">📋 捕獲を報告</a>
     <a href="prices.html" class="active">買取価格表</a>
     <a href="reservation.html">加工場の予約</a>
   </nav>
@@ -68,7 +198,7 @@ footer a{color:#C8A030;text-decoration:none;font-weight:bold;display:block;margi
       <tr><td>オス</td><td>発情期〜夏<span class="season">1〜4月</span></td><td><span class="price zero">買取なし</span></td></tr>
       <tr><td>全性別</td><td><span class="tag-ok">引き取り可</span><span class="season">5〜10月</span></td><td><span class="price free">無料引き取り</span></td></tr>
     </table>
-    <div style="padding:10px 14px;font-size:11px;color:#888;border-top:1px solid #f0f0ea">※ 5〜10月は有害駆除で捕獲した場合のみ無料引き取り。通常の狩猟は買取なし。</div>
+    <div class="note-bottom">※ 5〜10月は有害駆除で捕獲した場合のみ無料引き取り。通常の狩猟は買取なし。</div>
   </div>
   <div class="section">
     <div class="section-hdr">鹿（シカ）<span>　生体 円/kg ＋ ツノ加算</span></div>
@@ -81,7 +211,7 @@ footer a{color:#C8A030;text-decoration:none;font-weight:bold;display:block;margi
       <tr><td style="text-align:left;padding-left:14px">毛皮良（全性別）</td><td><span class="price">50円/kg</span></td></tr>
       <tr><td style="text-align:left;padding-left:14px">ツノ加算（毛皮良のオス）</td><td><span class="price">+1,000円/段</span></td></tr>
     </table>
-    <div style="padding:10px 14px;font-size:11px;color:#888;border-top:1px solid #f0f0ea">
+    <div class="note-bottom">
       ※ 毛皮・ツノの状態が条件に満たない場合は要相談<br>
       ※ ツノは状態良好のものが対象（先端欠け・腐食は減額）
     </div>
@@ -93,18 +223,19 @@ footer a{color:#C8A030;text-decoration:none;font-weight:bold;display:block;margi
       <tr><td><span class="tag-best">買取期</span><span class="season">10〜12月</span></td><td><span class="price">2,000円/頭</span></td></tr>
       <tr><td><span class="tag-ok">買取停止</span><span class="season">1〜9月</span></td><td><span class="price zero">買取なし</span></td></tr>
     </table>
-    <div style="padding:10px 14px;font-size:11px;color:#888;border-top:1px solid #f0f0ea">※ 肉＋毛皮目的・冬毛最良</div>
+    <div class="note-bottom">※ 肉＋毛皮目的・冬毛最良</div>
   </div>
   <div class="warn">
-    <strong style="display:block;margin-bottom:6px;font-weight:bold">振込について</strong>
+    <strong>◆ 振込について ◆</strong>
     振込は毎月末日に一括でご登録の口座へ振込みます。<br>
     振込完了後にラインでご連絡します。<br>
     初回の方は捕獲報告フォームに振込先をご記入ください。
   </div>
 </div>
 <footer>
-  <p>狩人の日常 猟師専用ライン</p>
-  <a href="https://line.me/R/ti/p/@010vvmsj">LINEで友達追加する</a>
+  <p>◆ 狩 人 の 日 常 ◆</p>
+  猟 師 専 用 ラ イ ン　@010vvmsj<br><br>
+  <a href="https://line.me/R/ti/p/@010vvmsj">📱 LINEで友達追加する</a>
 </footer>
 </body>
 </html>

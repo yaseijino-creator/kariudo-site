@@ -196,6 +196,11 @@ select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/
 .form-card.bank select{
   background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23c8a030' stroke-width='2' fill='none'/%3E%3C/svg%3E");
   background-color:#0d0a07;}
+/* 口座種別だけ明るくして見やすく */
+.form-card.bank select#accountType{
+  background-color:#f8f0d8;color:var(--ink);border-color:var(--wood-light);
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%238b6a3a' stroke-width='2' fill='none'/%3E%3C/svg%3E");
+  box-shadow:inset 0 2px 4px rgba(120,80,40,.15);}
 
 textarea{resize:vertical;min-height:80px;font-size:14px;line-height:1.6;}
 .hint{font-size:11px;color:var(--wood-mid);margin-top:5px;font-family:'Hiragino Kaku Gothic ProN',sans-serif;letter-spacing:.5px;}
